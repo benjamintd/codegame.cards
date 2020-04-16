@@ -7,7 +7,7 @@ import { GameHandler, GamesHandler, Network } from "./network";
 
 export function setupFirebase() {
   if (!firebase.apps.length) {
-    firebase.initializeApp({
+    const firebaseConfig = {
       apiKey: "AIzaSyCxUmqQWsV1qZ7KDuyVXx4Y3C1Uen7Dnew",
       authDomain: "codenames-5c1a2.firebaseapp.com",
       databaseURL: "https://codenames-5c1a2.firebaseio.com",
@@ -16,8 +16,11 @@ export function setupFirebase() {
       messagingSenderId: "426387002729",
       appId: "1:426387002729:web:7f990ab15dbb0a0a06d9f8",
       measurementId: "G-EZFDE50SDQ",
-    });
-    firebase.analytics();
+    };
+    firebase.initializeApp(firebaseConfig);
+    if (typeof window !== "undefined") {
+      firebase.analytics();
+    }
   }
 
   return firebase.database();

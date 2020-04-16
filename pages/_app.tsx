@@ -1,27 +1,16 @@
-import NextApp, { AppProps } from "next/app";
-import Head from "next/head";
 import React from "react";
 
 import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
 import { NetworkContext } from "../hooks/network";
 
-export default class MyApp extends NextApp {
-  render() {
-    return <App {...this.props} />;
-  }
-}
+import "../css/main.css";
 
-function App(props: AppProps) {
-  const { Component } = props;
-
+export default ({ Component, pageProps }) => {
   const network = new FirebaseNetwork(setupFirebase());
 
   return (
-    <>
-      <Head>{/* todo fill head and meta tags */}</Head>
-      <NetworkContext.Provider value={network}>
-        <Component />
-      </NetworkContext.Provider>
-    </>
+    <NetworkContext.Provider value={network}>
+      <Component {...pageProps} />
+    </NetworkContext.Provider>
   );
-}
+};

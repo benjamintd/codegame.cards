@@ -22,6 +22,7 @@ export default () => {
     id: getId(),
     createdAt: new Date().getTime(),
   };
+
   return game;
 };
 

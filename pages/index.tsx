@@ -1,20 +1,32 @@
-import React, { useEffect } from "react";
-import newGame from "../lib/newGame";
-import { IGame } from "../lib/game";
+import React from "react";
+import { useRouter } from "next/router";
 import useNetwork from "../hooks/network";
 
-export default function Home({ game }: { game: IGame }) {
+const Home = () => {
   const network = useNetwork();
-
+  const router = useRouter();
   network.subscribeToOnGoingGames((games) => console.log(games));
-  console.log(game);
+
   return (
     <div className="container">
-      <div className="font-bold">{JSON.stringify(game)}</div>
+      <div
+        className="p-6"
+        onClick={async () => {
+          try {
+            const { game } = await fetch("/api/new-game").then((res) =>
+              res.json()
+            );
+            await network.updateGame(game);
+            router.push("/[gameId]", `/${game.id}`);
+          } catch (error) {
+            console.log("error");
+          }
+        }}
+      >
+        new game
+      </div>
     </div>
   );
-}
+};
 
-export async function getServerSideProps() {
-  return { props: { game: newGame() } };
-}
+export default Home;
