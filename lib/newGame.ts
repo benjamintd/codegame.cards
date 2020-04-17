@@ -1,4 +1,5 @@
-import dictionnary from "./dictionnary";
+import dictionnaryFr from "./dictionnary-fr";
+import dictionnaryEn from "./dictionnary-en";
 import { shuffle } from "lodash";
 import {
   uniqueNamesGenerator,
@@ -7,60 +8,91 @@ import {
   animals,
 } from "unique-names-generator";
 
-import { IGame, GridStatus } from "./game";
+import {
+  IGame,
+  ClassicGridStatus,
+  DuetGridStatus,
+  IGameOptions,
+  IGameMode,
+  defaultOptions,
+} from "./game";
 
-const words = dictionnary.split("\n");
+const dictionnaries = {
+  en: dictionnaryEn.split("\n"),
+  fr: dictionnaryFr.split("\n"),
+};
 
-export default () => {
-  const randomWords = shuffle(words).slice(0, 25);
+export default (opts?: Partial<IGameOptions>) => {
+  const options: IGameOptions = {
+    ...defaultOptions,
+    ...opts,
+  };
+
+  const randomWords = shuffle(dictionnaries[options.language]).slice(0, 25);
+
   const game: IGame = {
     words: randomWords,
+    options,
     players: {},
     status: "lobby",
-    grid: getGrid(),
+    grid: getGrid(options.mode),
     turns: [],
     id: getId(),
-    createdAt: new Date().getTime(),
+    createdAt: Date.now(),
+    chat: [
+      {
+        playerId: "",
+        timestamp: Date.now(),
+        message: "The game was created!",
+      },
+    ],
   };
 
   return game;
 };
 
-function getGrid() {
-  let r = 0;
-  let b = 0;
-  let black = 0;
-  const maxR = Math.random() > 0.5 ? 9 : 8;
-  const maxB = maxR === 9 ? 8 : 9;
-  const maxBlack = 1;
+function getGrid(mode: IGameMode): DuetGridStatus[] | ClassicGridStatus[] {
   const cardsCount = 25;
-
   let grid = [];
-  for (let i = 0; i < 25; i++) {
+
+  let counts;
+
+  if (mode === "classic") {
+    const whoStarts = Math.round(Math.random());
+    counts = {
+      [ClassicGridStatus.Red]: [0, 8 + whoStarts],
+      [ClassicGridStatus.Blue]: [0, 8 + (1 - whoStarts)],
+      [ClassicGridStatus.Black]: [0, 1],
+      [ClassicGridStatus.Neutral]: [0, 7],
+    };
+  } else if (mode === "duet") {
+    counts = {
+      [DuetGridStatus.GB]: [0, 1],
+      [DuetGridStatus.GN]: [0, 5],
+      [DuetGridStatus.GG]: [0, 3],
+      [DuetGridStatus.BG]: [0, 1],
+      [DuetGridStatus.BB]: [0, 1],
+      [DuetGridStatus.BN]: [0, 1],
+      [DuetGridStatus.NG]: [0, 5],
+      [DuetGridStatus.NB]: [0, 1],
+      [DuetGridStatus.NN]: [0, 7],
+    };
+  }
+  const statii = Object.keys(counts);
+
+  for (let i = 0; i < cardsCount; i++) {
     let random = Math.random();
 
-    random -= (maxR - r) / (cardsCount - grid.length);
-    if (random < 0) {
-      grid.push(GridStatus.Red);
-      r += 1;
-      continue;
+    for (let s = 0; s < statii.length; s++) {
+      const status = statii[s];
+      let [current, target] = counts[status];
+      random -= (target - current) / (cardsCount - grid.length);
+      if (random < 0) {
+        grid.push(status);
+        counts[status][0] = current + 1;
+        break;
+      }
     }
-
-    random -= (maxB - b) / (cardsCount - grid.length);
-    if (random < 0) {
-      grid.push(GridStatus.Blue);
-      b += 1;
-      continue;
-    }
-
-    random -= (maxBlack - black) / (cardsCount - grid.length);
-    if (random < 0) {
-      grid.push(GridStatus.Black);
-      black += 1;
-      continue;
-    }
-
-    grid.push(GridStatus.Neutral);
   }
 
   return grid;

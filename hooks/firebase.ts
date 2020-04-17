@@ -34,7 +34,11 @@ export default class FirebaseNetwork implements Network {
   }
 
   getPublicGames(callback: GamesHandler) {
-    const ref = this.db.ref("/games");
+    const ref = this.db
+      .ref("/games")
+      .orderByChild("createdAt")
+      .startAt(Date.now() - 10 * 60 * 1000)
+      .limitToFirst(30);
 
     ref.once("value", (event) => {
       const games = Object.values(event.val() || {});

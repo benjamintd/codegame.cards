@@ -10,6 +10,7 @@
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
     "autoprefixer": "^9.7.6",
+    "classnames": "^2.2.6",
     "firebase": "^7.14.0",
     "next": "9.3.5",
     "postcss-import": "^12.0.1",
@@ -17,7 +18,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "tailwindcss": "^1.2.0",
-    "unique-names-generator": "^4.2.0"
+    "unique-names-generator": "^4.2.0",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "@types/react": "^16.9.34",
