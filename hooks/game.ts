@@ -8,6 +8,7 @@ import {
   ClassicGridItem,
   IClassicGrid,
   ICardView,
+  IGame,
 } from "../lib/game";
 import React, { useContext } from "react";
 import { createSelector } from "reselect";
@@ -93,6 +94,7 @@ export function usePushTurn(
       if (isDuplicateTurn(turn, g.turns)) {
         return;
       }
+      addTurnChat(turn, g);
       g.turns.push(turn);
     });
     network.updateGame(newGame);
@@ -106,6 +108,20 @@ function isDuplicateTurn(turn: ITurn, turns: ITurn[]) {
     }
   }
   return false;
+}
+
+function addTurnChat(turn: ITurn, game: IGame) {
+  if (turn.type === "click") {
+    const player = game.players[turn.from];
+    const word = game.words[turn.value];
+    if (player) {
+      game.chat.push({
+        playerId: "",
+        timestamp: Date.now(),
+        message: `${player.name} clicked on ${word}.`,
+      });
+    }
+  }
 }
 
 const chatSelector = (gameView: IGameView): IChatMessage[] =>

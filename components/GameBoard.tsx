@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { useBoardView, usePushTurn, useSelfPlayer } from "../hooks/game";
+import {
+  useBoardView,
+  usePushTurn,
+  useSelfPlayer,
+  useSendChat,
+} from "../hooks/game";
 import { ICardView, ClassicGridItem, ITurn, IPlayer } from "../lib/game";
 import classnames from "classnames";
 
@@ -66,7 +71,7 @@ const Card = ({
           pushTurn({
             type: "click",
             value: index,
-            from: selfPlayer.team,
+            from: selfPlayer.id,
           });
         }
       }}

@@ -45,20 +45,20 @@ export type ITurn = IPassTurn | IClickTurn | IHintTurn;
 
 export interface IPassTurn {
   type: "pass";
-  from: "red" | "blue";
+  from: string;
 }
 
 export interface IClickTurn {
   type: "click";
   value: number;
-  from: "red" | "blue";
+  from: string;
 }
 
 export interface IHintTurn {
   type: "hint";
   value: number;
   hint: string;
-  from: "red" | "blue";
+  from: string;
 }
 
 export enum ClassicGridItem {
