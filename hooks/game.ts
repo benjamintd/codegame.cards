@@ -81,6 +81,33 @@ export function useAddPlayer(
   };
 }
 
+export function usePushTurn(
+  gameView: IGameView = useGameView(),
+  network: Network = useNetwork()
+) {
+  return (turn: ITurn) => {
+    const game = gameView.game;
+    const newGame = produce(game, (g) => {
+      g.turns = g.turns || [];
+
+      if (isDuplicateTurn(turn, g.turns)) {
+        return;
+      }
+      g.turns.push(turn);
+    });
+    network.updateGame(newGame);
+  };
+}
+
+function isDuplicateTurn(turn: ITurn, turns: ITurn[]) {
+  if (turn.type === "click") {
+    if (turns.find((t) => t.type === "click" && t.value === turn.value)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 const chatSelector = (gameView: IGameView): IChatMessage[] =>
   gameView.game?.chat || [];
 
@@ -115,17 +142,22 @@ const boardViewSelector = createSelector(
   (words, grid, turns, selfPlayer): ICardView[] => {
     return words.map((word, i) => {
       const g = grid[i];
+      const cardView: ICardView = {
+        word,
+        color: g,
+        shown: false,
+        revealed: false,
+      };
       if (selfPlayer && selfPlayer.spymaster) {
-        return { word, revealed: true, color: g };
-      } else {
-        if (
-          turns.filter((t) => t.type === "click" && t.value === i).length > 0
-        ) {
-          return { word, revealed: true, color: g };
-        } else {
-          return { word, revealed: false, color: g };
-        }
+        cardView.shown = true;
       }
+
+      if (turns.filter((t) => t.type === "click" && t.value === i).length > 0) {
+        cardView.revealed = true;
+        cardView.shown = true;
+      }
+
+      return cardView;
     });
   }
 );

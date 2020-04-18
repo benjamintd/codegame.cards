@@ -29,9 +29,11 @@ const PlayerChatMessage = ({
   return (
     <>
       <span
-        className={classnames("mr-1", {
-          "text-red-700": player.team === "red",
-          "text-blue-700": player.team === "blue",
+        className={classnames("mr-1 font-bold", {
+          "text-red-700": player.team === "red" && player.spymaster,
+          "text-blue-700": player.team === "blue" && player.spymaster,
+          "text-red-500": player.team === "red" && !player.spymaster,
+          "text-blue-500": player.team === "blue" && !player.spymaster,
         })}
       >
         {player.name}

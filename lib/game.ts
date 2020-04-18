@@ -92,5 +92,6 @@ export const defaultOptions: IGameOptions = {
 export interface ICardView {
   word: string;
   revealed: boolean;
+  shown: boolean; // for spymasters to see unrevealed cards
   color: ClassicGridItem; // @todo take duet into account here
 }
