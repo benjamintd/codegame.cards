@@ -21,7 +21,9 @@ export default () => {
   return (
     <div className="border rounded bg-white shadow-md w-full h-full flex flex-col text-gray-800">
       <div className="w-full flex flex-col p-2">
-        <h2 className="h2 text-center pb-2">In the room</h2>
+        <h2 className="h2 text-center pb-2 sr-only md:not-sr-only">
+          In the room
+        </h2>
         <Team
           players={teams["red"]}
           team="red"
@@ -52,8 +54,8 @@ const Team = ({
   maxScore: number;
 }) => {
   return (
-    <div className="pb-6">
-      <div className="w-full py-1 border-t border-b flex justify-between">
+    <div className="pb-2">
+      <div className="w-full py-1 border-t border-b flex justify-between mb-1">
         <h3 className="capitalize">{team} team</h3>
         <span className="text-sm font-light text-gray-600">
           found {score}/{maxScore}

@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 export default ({ player }: { player: IPlayer }) => {
   return (
-    <div className="py-2">
+    <div className="pr-2 inline-block md:block">
       <span
         className={classnames("font-bold", {
           "text-red-500": player.team === "red" && !player.spymaster,

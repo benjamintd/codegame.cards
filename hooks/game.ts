@@ -7,6 +7,7 @@ import {
   IGameMode,
   ClassicGridItem,
   IClassicGrid,
+  ICardView,
 } from "../lib/game";
 import React, { useContext } from "react";
 import { createSelector } from "reselect";
@@ -108,10 +109,24 @@ const selfPlayerSelector = createSelector(
 
 const boardViewSelector = createSelector(
   wordsSelector,
+  gridSelector,
   turnsSelector,
   selfPlayerSelector,
-  (words, turns, selfPlayer) => {
-    return words; // @todo turn this into a ICardView
+  (words, grid, turns, selfPlayer): ICardView[] => {
+    return words.map((word, i) => {
+      const g = grid[i];
+      if (selfPlayer && selfPlayer.spymaster) {
+        return { word, revealed: true, color: g };
+      } else {
+        if (
+          turns.filter((t) => t.type === "click" && t.value === i).length > 0
+        ) {
+          return { word, revealed: true, color: g };
+        } else {
+          return { word, revealed: false, color: g };
+        }
+      }
+    });
   }
 );
 

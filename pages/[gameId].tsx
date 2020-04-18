@@ -56,14 +56,14 @@ export default () => {
           </div>
         )}
       </AnimatePresence>
-      <div className="flex w-screen h-screen">
-        <div className="w-3/12 p-6">
+      <div className="flex w-screen bg-gray-300 max-h-screen h-screen md:flex-row flex-col md:text-base text-sm">
+        <div className="md:w-3/12 md:p-6 p-2">
           <PlayersList />
         </div>
-        <div className="w-6/12 p-6">
+        <div className="md:w-6/12 md:p-6 p-2 flex-grow">
           <GameBoard />
         </div>
-        <div className="w-4/12 p-6">
+        <div className="md:w-4/12 md:p-6 p-2 min-h-0">
           <Chat />
         </div>
       </div>

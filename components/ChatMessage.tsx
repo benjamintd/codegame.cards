@@ -5,7 +5,11 @@ import { motion } from "framer-motion";
 
 export default (props: { chat: IChatMessage; player: IPlayer }) => {
   return (
-    <motion.div className="px-2 pb-1" initial={{ y: 100 }} animate={{ y: 0 }}>
+    <motion.div
+      className="px-2 pb-1"
+      initial={{ y: 50 }}
+      animate={{ y: 0, transition: { stiffness: 2, duration: 0.2 } }}
+    >
       {props.player ? (
         <PlayerChatMessage {...props} />
       ) : (

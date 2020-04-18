@@ -80,8 +80,6 @@ export enum DuetGridItem {
   NN,
 }
 
-export type IColor = "N" | "R" | "B" | "G";
-
 export type IClassicGrid = ClassicGridItem[];
 export type IDuetGrid = DuetGridItem[];
 export type IGrid = IClassicGrid; // @todo add back duet grid when ready | IDuetGrid;
@@ -94,5 +92,5 @@ export const defaultOptions: IGameOptions = {
 export interface ICardView {
   word: string;
   revealed: boolean;
-  color: IColor;
+  color: ClassicGridItem; // @todo take duet into account here
 }
