@@ -9,3 +9,19 @@
 body {
   @apply bg-gray-100 text-gray-900;
 }
+
+.h1 {
+  @apply text-3xl uppercase font-bold tracking-wide;
+}
+
+.h2 {
+  @apply text-xl font-bold;
+}
+
+.text-input {
+  @apply appearance-none border rounded py-2 px-3 leading-tight;
+}
+
+.text-input:focus {
+  @apply outline-none shadow;
+}

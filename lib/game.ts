@@ -1,13 +1,21 @@
 export interface IGame {
-  players: { [key: string]: IPlayer };
+  players: IPlayers;
   words: string[];
-  grid: ClassicGridStatus[] | DuetGridStatus[];
+  grid: IGrid;
   turns: ITurn[];
   status: "lobby" | "started" | "ended";
   id: string;
+  playing: "red" | "blue";
   chat: IChatMessage[];
   options: IGameOptions;
   createdAt: number; // timestamp
+}
+
+export type IPlayers = { [key: string]: IPlayer };
+
+export interface IGameView {
+  playerId: string;
+  game: IGame;
 }
 
 export interface IGameOptions {
@@ -37,30 +45,30 @@ export type ITurn = IPassTurn | IClickTurn | IHintTurn;
 
 export interface IPassTurn {
   type: "pass";
-  from: string; // player id
+  from: "red" | "blue";
 }
 
 export interface IClickTurn {
   type: "click";
   value: number;
-  from: string; // player id
+  from: "red" | "blue";
 }
 
 export interface IHintTurn {
   type: "hint";
   value: number;
   hint: string;
-  from: string; // player id
+  from: "red" | "blue";
 }
 
-export enum ClassicGridStatus {
+export enum ClassicGridItem {
   Neutral = 1,
   Red,
   Blue,
   Black,
 }
 
-export enum DuetGridStatus {
+export enum DuetGridItem {
   GG = 1,
   GB,
   GN,
@@ -72,7 +80,19 @@ export enum DuetGridStatus {
   NN,
 }
 
+export type IColor = "N" | "R" | "B" | "G";
+
+export type IClassicGrid = ClassicGridItem[];
+export type IDuetGrid = DuetGridItem[];
+export type IGrid = IClassicGrid; // @todo add back duet grid when ready | IDuetGrid;
+
 export const defaultOptions: IGameOptions = {
   language: "en",
   mode: "classic",
 };
+
+export interface ICardView {
+  word: string;
+  revealed: boolean;
+  color: IColor;
+}

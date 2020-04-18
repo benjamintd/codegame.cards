@@ -10,11 +10,14 @@ import {
 
 import {
   IGame,
-  ClassicGridStatus,
-  DuetGridStatus,
+  ClassicGridItem,
+  DuetGridItem,
   IGameOptions,
   IGameMode,
   defaultOptions,
+  IDuetGrid,
+  IClassicGrid,
+  IGrid,
 } from "./game";
 
 const dictionnaries = {
@@ -29,21 +32,22 @@ export default (opts?: Partial<IGameOptions>) => {
   };
 
   const randomWords = shuffle(dictionnaries[options.language]).slice(0, 25);
-
+  const randomStart = Math.random() < 0.5 ? "red" : "blue";
   const game: IGame = {
     words: randomWords,
     options,
     players: {},
     status: "lobby",
-    grid: getGrid(options.mode),
+    grid: getGrid(options.mode, randomStart),
     turns: [],
     id: getId(),
     createdAt: Date.now(),
+    playing: randomStart,
     chat: [
       {
         playerId: "",
         timestamp: Date.now(),
-        message: "The game was created!",
+        message: "The game was created",
       },
     ],
   };
@@ -51,31 +55,30 @@ export default (opts?: Partial<IGameOptions>) => {
   return game;
 };
 
-function getGrid(mode: IGameMode): DuetGridStatus[] | ClassicGridStatus[] {
+function getGrid(mode: IGameMode, whoStarts: "red" | "blue"): IGrid {
   const cardsCount = 25;
   let grid = [];
 
   let counts;
 
   if (mode === "classic") {
-    const whoStarts = Math.round(Math.random());
     counts = {
-      [ClassicGridStatus.Red]: [0, 8 + whoStarts],
-      [ClassicGridStatus.Blue]: [0, 8 + (1 - whoStarts)],
-      [ClassicGridStatus.Black]: [0, 1],
-      [ClassicGridStatus.Neutral]: [0, 7],
+      [ClassicGridItem.Red]: [0, 8 + (whoStarts === "red" ? 1 : 0)],
+      [ClassicGridItem.Blue]: [0, 8 + (whoStarts === "blue" ? 1 : 0)],
+      [ClassicGridItem.Black]: [0, 1],
+      [ClassicGridItem.Neutral]: [0, 7],
     };
   } else if (mode === "duet") {
     counts = {
-      [DuetGridStatus.GB]: [0, 1],
-      [DuetGridStatus.GN]: [0, 5],
-      [DuetGridStatus.GG]: [0, 3],
-      [DuetGridStatus.BG]: [0, 1],
-      [DuetGridStatus.BB]: [0, 1],
-      [DuetGridStatus.BN]: [0, 1],
-      [DuetGridStatus.NG]: [0, 5],
-      [DuetGridStatus.NB]: [0, 1],
-      [DuetGridStatus.NN]: [0, 7],
+      [DuetGridItem.GB]: [0, 1],
+      [DuetGridItem.GN]: [0, 5],
+      [DuetGridItem.GG]: [0, 3],
+      [DuetGridItem.BG]: [0, 1],
+      [DuetGridItem.BB]: [0, 1],
+      [DuetGridItem.BN]: [0, 1],
+      [DuetGridItem.NG]: [0, 5],
+      [DuetGridItem.NB]: [0, 1],
+      [DuetGridItem.NN]: [0, 7],
     };
   }
   const statii = Object.keys(counts);

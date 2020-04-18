@@ -9,11 +9,6 @@ export default () => {
   const router = useRouter();
   const [options, setOptions] = useState<IGameOptions>(defaultOptions);
 
-  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const name = e.currentTarget.name;
-    setOptions({ ...options, [name]: e.currentTarget.value });
-  }
-
   return (
     // todo add options and stuff
     <div className="w-screen h-screen p-6 flex flex-col items-center bg-gray-100">

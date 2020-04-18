@@ -15,14 +15,12 @@ const Home = () => {
 
   return (
     <div className="w-screen h-screen p-6 flex flex-col items-center bg-gray-100">
-      <h1 className="text-3xl uppercase font-bold tracking-wide mb-4 mt-6">
-        Codenames
-      </h1>
+      <h1 className="h1 mt-6 mb-4">Codenames</h1>
       <Link href="/new-game">
         <Button>Create game</Button>
       </Link>
 
-      <h2 className="text-xl font-bold mt-6 mb-4">Join a room</h2>
+      <h2 className="h2 mt-6 mb-4">Join a room</h2>
       <div className="grid grid-flow-row grid-cols-1 gap-2">
         {games.map((g) => (
           <LobbyGameRow game={g} />
