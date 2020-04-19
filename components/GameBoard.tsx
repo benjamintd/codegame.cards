@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   useBoardView,
   usePushTurn,
@@ -40,9 +41,20 @@ const Card = ({
   cardView: ICardView;
   index: number;
 }) => {
-  const w = cardView;
+  const [w, setW] = useState(cardView);
+  const [revealing, setRevealing] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (cardView.revealed && !w.revealed) {
+      setRevealing(true);
+      setTimeout(() => setRevealing(false), 300);
+    }
+
+    setW(cardView);
+  }, [w, cardView]);
 
   const colorStyles = {
+    "z-40": revealing,
     "border cursor-pointer": !w.revealed,
     "border-4": w.revealed,
     "border-gray-600 hover:bg-gray-100": !w.shown,
@@ -64,23 +76,33 @@ const Card = ({
       !w.revealed && w.shown && w.color === ClassicGridItem.Black,
   };
 
+  const variants = {
+    initial: { scale: 1 },
+    revealing: { scale: 1.1 },
+  };
+
   return (
-    <div
-      onClick={() => {
-        if (!w.revealed && selfPlayer) {
-          pushTurn({
-            type: "click",
-            value: index,
-            from: selfPlayer.id,
-          });
-        }
-      }}
-      className={classnames(
-        "font-bold rounded w-full h-12 flex flex-col items-center justify-center",
-        colorStyles
-      )}
-    >
-      {w.word}
+    <div className="relative h-12 overflow-visible">
+      <motion.div
+        variants={variants}
+        initial="initial"
+        animate={revealing ? "revealing" : "initial"}
+        onClick={() => {
+          if (!w.revealed && selfPlayer) {
+            pushTurn({
+              type: "click",
+              value: index,
+              from: selfPlayer.id,
+            });
+          }
+        }}
+        className={classnames(
+          "font-bold rounded flex flex-col items-center justify-center absolute w-full h-full",
+          colorStyles
+        )}
+      >
+        {w.word}
+      </motion.div>
     </div>
   );
 };

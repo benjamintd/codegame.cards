@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 import useNetwork from "../hooks/network";
@@ -10,12 +10,13 @@ import Chat from "../components/Chat";
 import { GameViewContext } from "../hooks/game";
 import Loading from "../components/Loading";
 import { AnimatePresence } from "framer-motion";
+import playSounds from "../lib/playSounds";
 
 export default () => {
   const network = useNetwork();
   const router = useRouter();
 
-  const [game, setGame] = useState<IGame>(null);
+  const [game, setGame] = useReducer(reducer, null);
   const [player, setPlayer] = useLocalStorage("player", { id: uuidv4() });
   const [gameView, setGameView] = useState<IGameView>({
     game,
@@ -24,8 +25,9 @@ export default () => {
 
   // subscribe to game updates
   useEffect(() => {
-    network.subscribeToGame(router.query.gameId as string, (game) => {
-      setGame(game);
+    network.subscribeToGame(router.query.gameId as string, (newGame) => {
+      playSounds(newGame, game);
+      setGame(newGame);
     });
   }, [network]);
 
@@ -56,4 +58,9 @@ export default () => {
       </div>
     </GameViewContext.Provider>
   );
+};
+
+const reducer = (game: IGame, newGame: IGame): IGame => {
+  playSounds(newGame, game);
+  return newGame;
 };
