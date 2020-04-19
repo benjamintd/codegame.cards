@@ -1,5 +1,5 @@
 import React from "react";
-
+import Meta from "../components/Meta";
 import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
 import { NetworkContext } from "../hooks/network";
 
@@ -10,6 +10,7 @@ export default ({ Component, pageProps }) => {
 
   return (
     <NetworkContext.Provider value={network}>
+      <Meta />
       <Component {...pageProps} />
     </NetworkContext.Provider>
   );

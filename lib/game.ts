@@ -39,6 +39,7 @@ export interface IChatMessage {
   playerId: string;
   timestamp: number;
   message: string;
+  format?: string;
 }
 
 export type ITurn = IPassTurn | IClickTurn | IHintTurn;
@@ -56,7 +57,7 @@ export interface IClickTurn {
 
 export interface IHintTurn {
   type: "hint";
-  value: number;
+  value?: number;
   hint: string;
   from: string;
 }

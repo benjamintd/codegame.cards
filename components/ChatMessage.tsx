@@ -39,7 +39,7 @@ const PlayerChatMessage = ({
         {player.name}
       </span>
       <span className="text-gray-700 font-light">:</span>
-      <span className="ml-1">{chat.message}</span>
+      <span className={classnames("ml-1", chat.format)}>{chat.message}</span>
     </>
   );
 };

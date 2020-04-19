@@ -9,11 +9,13 @@ import {
   IClassicGrid,
   ICardView,
   IGame,
+  IHintTurn,
 } from "../lib/game";
 import React, { useContext } from "react";
 import { createSelector } from "reselect";
 import produce from "immer";
 import useNetwork, { Network } from "./network";
+import { findLast } from "lodash";
 
 export const GameViewContext = React.createContext(null);
 
@@ -53,6 +55,10 @@ export function useScores(gameView: IGameView = useGameView()) {
 
 export function useMaxScores(gameView: IGameView = useGameView()) {
   return maxScoresSelector(gameView);
+}
+
+export function useLastHint(gameView: IGameView = useGameView()) {
+  return lastHintselector(gameView);
 }
 
 export function useSendChat(
@@ -135,6 +141,15 @@ function addTurnChat(turn: ITurn, game: IGame) {
         playerId: "",
         timestamp: Date.now(),
         message: `${player.name} clicked on ${word}. ${reaction}`,
+      });
+    }
+  } else {
+    if (turn.type === "hint") {
+      game.chat.push({
+        playerId: turn.from,
+        timestamp: Date.now(),
+        message: turn.hint,
+        format: "font-bold",
       });
     }
   }
@@ -230,4 +245,10 @@ const maxScoresSelector = createSelector(gridSelector, (grid): {
     },
     { red: 0, blue: 0 }
   );
+});
+
+const lastHintselector = createSelector(turnsSelector, (turns: ITurn[]):
+  | IHintTurn
+  | undefined => {
+  return findLast(turns, (t) => t.type === "hint") as IHintTurn;
 });

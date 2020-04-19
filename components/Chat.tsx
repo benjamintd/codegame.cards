@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { IGameView } from "../lib/game";
-import { useChat, usePlayers, useSendChat, useSelfPlayer } from "../hooks/game";
+import {
+  useChat,
+  usePlayers,
+  useSendChat,
+  useSelfPlayer,
+  usePushTurn,
+} from "../hooks/game";
 import classnames from "classnames";
 import ChatMessage from "./ChatMessage";
 import { EmojiConvertor } from "emoji-js";
@@ -12,19 +18,28 @@ export default () => {
   const selfPlayer = useSelfPlayer();
   const sendChat = useSendChat();
   const players = usePlayers();
+  const pushTurn = usePushTurn();
   const [message, setMessage] = useState("");
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     setMessage(emoji.replace_colons(e.currentTarget.value));
   };
 
-  const send = () => {
+  const send = (hint: boolean = false) => {
     if (message.trim()) {
-      sendChat({
-        playerId: selfPlayer.id,
-        timestamp: Date.now(),
-        message,
-      });
+      if (hint) {
+        pushTurn({
+          type: "hint",
+          hint: message.trim(),
+          from: selfPlayer.id,
+        });
+      } else {
+        sendChat({
+          playerId: selfPlayer.id,
+          timestamp: Date.now(),
+          message,
+        });
+      }
       setMessage("");
     }
   };
@@ -64,6 +79,14 @@ export default () => {
         >
           <SendIcon className="w-4 h-4" />
         </button>
+        {selfPlayer && selfPlayer.spymaster && (
+          <button
+            className="rounded border-2 hover:bg-gray-100 border-gray-400 flex items-center text-xs font-bold justify-center w-10 h-10 cursor-pointer hover:text-blue-700 focus:outline-none"
+            onClick={() => send(true)}
+          >
+            give clue
+          </button>
+        )}
       </div>
     </div>
   );
