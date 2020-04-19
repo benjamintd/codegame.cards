@@ -9,6 +9,7 @@ import JoinGame from "./JoinGame";
 import PlayerCard from "./PlayerCard";
 import { groupBy } from "lodash";
 import { IPlayer } from "../lib/game";
+import ClaimSpymaster from "./ClaimSpymaster";
 
 export default () => {
   const players = usePlayers();
@@ -38,6 +39,7 @@ export default () => {
         />
       </div>
       {!selfPlayer && <JoinGame />}
+      <ClaimSpymaster />
     </div>
   );
 };

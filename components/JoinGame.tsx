@@ -27,11 +27,7 @@ const JoinGame = () => {
     setName(e.currentTarget.value);
   };
 
-  const hasSpymaster = (team) =>
-    Object.values(players).findIndex((p) => p.spymaster && p.team === team) >
-    -1;
-
-  const onClick = ({ team, spymaster }: Partial<IPlayer>) => {
+  const onClick = ({ team }: Partial<IPlayer>) => {
     if (name) {
       setLocalStoragePlayer({
         name,
@@ -41,7 +37,7 @@ const JoinGame = () => {
         name,
         id: selfId,
         team,
-        spymaster,
+        spymaster: false,
         clickedOn: -1,
         host: Object.keys(players).length === 0 ? true : false,
       });
@@ -65,31 +61,11 @@ const JoinGame = () => {
 
       {gameMode === "classic" ? (
         <div className="grid grid-cols-2 gap-2 text-sm">
-          <Button
-            color="red"
-            onClick={() => onClick({ team: "red", spymaster: false })}
-          >
+          <Button color="red" onClick={() => onClick({ team: "red" })}>
             join red
           </Button>
-          <Button
-            color="dark-red"
-            onClick={() => onClick({ team: "red", spymaster: true })}
-            disabled={hasSpymaster("red")}
-          >
-            join red as spymastter
-          </Button>
-          <Button
-            color="blue"
-            onClick={() => onClick({ team: "blue", spymaster: false })}
-          >
-            join blue{" "}
-          </Button>
-          <Button
-            color="dark-blue"
-            onClick={() => onClick({ team: "blue", spymaster: true })}
-            disabled={hasSpymaster("blue")}
-          >
-            join blue as spymaster
+          <Button color="blue" onClick={() => onClick({ team: "blue" })}>
+            join blue
           </Button>
         </div>
       ) : (
