@@ -8,14 +8,19 @@ import { useState } from "react";
 import { IPlayer } from "../lib/game";
 import Button from "./Button";
 import classnames from "classnames";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const JoinGame = () => {
+  const [localStoragePlayer, setLocalStoragePlayer] = useLocalStorage(
+    "player",
+    null
+  );
   const players = usePlayers();
   const gameMode = useGameMode();
   const selfId = useSelfId();
   const addPlayer = useAddPlayer();
 
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>(localStoragePlayer?.name || "");
   const [warnInput, setWarnInput] = useState<boolean>(false);
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -28,6 +33,10 @@ const JoinGame = () => {
 
   const onClick = ({ team, spymaster }: Partial<IPlayer>) => {
     if (name) {
+      setLocalStoragePlayer({
+        name,
+        id: selfId,
+      });
       addPlayer({
         name,
         id: selfId,
@@ -78,7 +87,7 @@ const JoinGame = () => {
           <Button
             color="dark-blue"
             onClick={() => onClick({ team: "blue", spymaster: true })}
-            disabled={hasSpymaster("red")}
+            disabled={hasSpymaster("blue")}
           >
             join blue as spymaster
           </Button>

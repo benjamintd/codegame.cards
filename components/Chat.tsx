@@ -17,7 +17,7 @@ export default () => {
   };
 
   const send = () => {
-    if (message) {
+    if (message.trim()) {
       sendChat({
         playerId: selfPlayer.id,
         timestamp: Date.now(),

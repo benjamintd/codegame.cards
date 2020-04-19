@@ -50,7 +50,7 @@ const Card = ({
       w.revealed && w.shown && w.color === ClassicGridItem.Red,
     "border-blue-800 bg-blue-700 text-blue-300":
       w.revealed && w.shown && w.color === ClassicGridItem.Blue,
-    "border-orange-800 bg-orange-200 text-orange-700":
+    "border-yellow-800 bg-yellow-100 text-yellow-800":
       w.revealed && w.shown && w.color === ClassicGridItem.Neutral,
     "border-gray-800 bg-gray-800 text-gray-200":
       w.revealed && w.shown && w.color === ClassicGridItem.Black,
@@ -58,7 +58,7 @@ const Card = ({
       !w.revealed && w.shown && w.color === ClassicGridItem.Red,
     "border-blue-800 bg-blue-200 text-blue-900 hover:bg-blue-300":
       !w.revealed && w.shown && w.color === ClassicGridItem.Blue,
-    "border-orange-800 bg-orange-100 text-orange-800 hover:bg-orange-200":
+    "border-yellow-800 bg-yellow-100 text-yellow-800 hover:bg-yellow-200":
       !w.revealed && w.shown && w.color === ClassicGridItem.Neutral,
     "border-black bg-gray-700 text-gray-100 hover:bg-gray-600":
       !w.revealed && w.shown && w.color === ClassicGridItem.Black,
@@ -67,7 +67,7 @@ const Card = ({
   return (
     <div
       onClick={() => {
-        if (!w.revealed) {
+        if (!w.revealed && selfPlayer) {
           pushTurn({
             type: "click",
             value: index,

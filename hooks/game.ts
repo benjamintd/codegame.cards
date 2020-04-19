@@ -114,11 +114,27 @@ function addTurnChat(turn: ITurn, game: IGame) {
   if (turn.type === "click") {
     const player = game.players[turn.from];
     const word = game.words[turn.value];
+    const color = +game.grid[turn.value];
     if (player) {
+      let reaction = "";
+
+      if (
+        (color === ClassicGridItem.Red && player.team === "red") ||
+        (color === ClassicGridItem.Blue && player.team === "blue")
+      ) {
+        reaction = "Nice!";
+      } else if (color === ClassicGridItem.Neutral) {
+        reaction = "That's a miss.";
+      } else if (color === ClassicGridItem.Black) {
+        reaction = "You just lost the game!";
+      } else {
+        reaction = "Whoops!";
+      }
+
       game.chat.push({
         playerId: "",
         timestamp: Date.now(),
-        message: `${player.name} clicked on ${word}.`,
+        message: `${player.name} clicked on ${word}. ${reaction}`,
       });
     }
   }

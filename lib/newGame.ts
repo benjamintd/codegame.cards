@@ -47,7 +47,7 @@ export default (opts?: Partial<IGameOptions>) => {
       {
         playerId: "",
         timestamp: Date.now(),
-        message: "The game was created",
+        message: `The game was created. The ${randomStart} team starts.`,
       },
     ],
   };

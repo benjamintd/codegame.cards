@@ -34,19 +34,6 @@ export default () => {
     setGameView({ game, playerId: player.id });
   }, [game, player]);
 
-  // update the player name in the local storage
-  // when it changes in the game
-  useEffect(() => {
-    try {
-      const p = game.players[player.id];
-      if (p.name !== player.name) {
-        setPlayer({ ...player, name });
-      }
-    } catch (error) {
-      // we don't yet have a game, it's fine
-    }
-  }, [game]);
-
   return (
     <GameViewContext.Provider value={gameView}>
       <AnimatePresence>
@@ -56,14 +43,14 @@ export default () => {
           </div>
         )}
       </AnimatePresence>
-      <div className="flex w-screen bg-gray-300 max-h-screen h-screen md:flex-row flex-col md:text-base text-sm">
-        <div className="md:w-3/12 md:p-6 p-2">
+      <div className="flex w-screen bg-gray-300 max-h-screen h-screen lg:flex-row flex-col lg:text-base text-sm">
+        <div className="lg:w-3/12 lg:p-6 p-2">
           <PlayersList />
         </div>
-        <div className="md:w-6/12 md:p-6 p-2 flex-grow">
+        <div className="lg:w-6/12 lg:p-6 p-2 flex-grow">
           <GameBoard />
         </div>
-        <div className="md:w-4/12 md:p-6 p-2 min-h-0">
+        <div className="lg:w-4/12 lg:p-6 p-2 min-h-0">
           <Chat />
         </div>
       </div>
