@@ -3,7 +3,9 @@ import { IGameView } from "../lib/game";
 import { useChat, usePlayers, useSendChat, useSelfPlayer } from "../hooks/game";
 import classnames from "classnames";
 import ChatMessage from "./ChatMessage";
-import { reverse } from "lodash";
+import { EmojiConvertor } from "emoji-js";
+
+const emoji = new EmojiConvertor();
 
 export default () => {
   const chat = useChat();
@@ -13,7 +15,7 @@ export default () => {
   const [message, setMessage] = useState("");
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setMessage(e.currentTarget.value);
+    setMessage(emoji.replace_colons(e.currentTarget.value));
   };
 
   const send = () => {
