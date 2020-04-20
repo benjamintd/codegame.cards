@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import useNetwork from "../hooks/network";
 import { IGame, IGameView } from "../lib/game";
 import useLocalStorage from "../hooks/useLocalStorage";
-import PlayersList from "../components/PlayersList";
+import RoomInfo from "../components/RoomInfo";
 import GameBoard from "../components/GameBoard";
 import Chat from "../components/Chat";
 import { GameViewContext } from "../hooks/game";
@@ -47,7 +47,7 @@ export default () => {
       </AnimatePresence>
       <div className="flex w-screen bg-gray-300 max-h-screen h-screen lg:flex-row flex-col lg:text-base text-sm">
         <div className="lg:w-3/12 lg:p-6 p-2">
-          <PlayersList />
+          <RoomInfo />
         </div>
         <div className="lg:w-6/12 lg:p-6 p-2 lg:flex-grow flex">
           <GameBoard />

@@ -4,6 +4,7 @@ import {
   useSelfPlayer,
   useScores,
   useMaxScores,
+  useGameOver,
 } from "../hooks/game";
 import JoinGame from "./JoinGame";
 import PlayerCard from "./PlayerCard";
@@ -11,12 +12,15 @@ import { groupBy } from "lodash";
 import { IPlayer } from "../lib/game";
 import ClaimSpymasterOrSwitchTeam from "./ClaimSpymasterOrSwitchTeam";
 import classnames from "classnames";
+import Button from "./Button";
+import Link from "next/link";
 
 export default () => {
   const players = usePlayers();
   const selfPlayer = useSelfPlayer();
   const scores = useScores();
   const maxScores = useMaxScores();
+  const gameOver = useGameOver();
 
   const teams = groupBy(Object.values(players), (p) => p.team);
 
@@ -43,6 +47,17 @@ export default () => {
       </div>
       {!selfPlayer && <JoinGame />}
       <ClaimSpymasterOrSwitchTeam />
+      {gameOver.over && (
+        <div className="py-6 px-2 text-center">
+          <p className="h2 pb-2">
+            The game is over. <br />
+            The {gameOver.winner} team wins!
+          </p>
+          <Link href="/">
+            <Button>Back to the lobby</Button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
@@ -63,16 +78,15 @@ const Team = ({
       <div
         className={classnames(
           "w-full px-2 py-1 border-t border-b flex justify-between mb-1",
-          { "bg-red-100": team === "red", "bg-blue-100": team === "blue" }
-        )}
-      >
-        <h3 className="capitalize">{team} team</h3>
-        <span
-          className={classnames("text-sm font-bold text-gray-600", {
+          { "bg-red-100": team === "red", "bg-blue-100": team === "blue" },
+          {
             "text-red-900": team === "red",
             "text-blue-900": team === "blue",
-          })}
-        >
+          }
+        )}
+      >
+        <h3 className="capitalize font-mono font-bold">{team}</h3>
+        <span className="text-sm font-bold">
           {score}/{maxScore} cards
         </span>
       </div>

@@ -10,6 +10,7 @@ import {
   ICardView,
   IGame,
   IHintTurn,
+  ITeam,
 } from "../lib/game";
 import React, { useContext } from "react";
 import { createSelector } from "reselect";
@@ -63,6 +64,10 @@ export function useLastHint(gameView: IGameView = useGameView()) {
 
 export function useTurns(gameView: IGameView = useGameView()) {
   return turnsSelector(gameView);
+}
+
+export function useGameOver(gameView: IGameView = useGameView()) {
+  return gameOverSelector(gameView);
 }
 
 export function useSendChat(
@@ -256,3 +261,36 @@ const lastHintselector = createSelector(turnsSelector, (turns: ITurn[]):
   | undefined => {
   return findLast(turns, (t) => t.type === "hint") as IHintTurn;
 });
+
+const gameOverSelector = createSelector(
+  playersSelector,
+  turnsSelector,
+  scoresSelector,
+  maxScoresSelector,
+  gridSelector,
+  (
+    players,
+    turns,
+    scores,
+    maxScores,
+    grid
+  ): { over: boolean; winner?: ITeam } => {
+    for (const team of ["blue", "red"] as ITeam[]) {
+      if (scores[team] === maxScores[team]) {
+        return { over: true, winner: team };
+      }
+    }
+
+    const blackIndex = grid.findIndex((g) => g === ClassicGridItem.Black);
+    const blackTurn = turns.find(
+      (t) => t.type === "click" && t.value === blackIndex
+    );
+    if (blackTurn) {
+      return {
+        over: true,
+        winner: players[blackTurn.from].team === "red" ? "blue" : "red",
+      };
+    }
+    return { over: false };
+  }
+);

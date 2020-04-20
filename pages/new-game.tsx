@@ -12,9 +12,7 @@ export default () => {
   return (
     // todo add options and stuff
     <div className="w-screen h-screen p-6 flex flex-col items-center bg-gray-100">
-      <h1 className="text-3xl uppercase font-bold tracking-wide mb-4 mt-6">
-        Codenames
-      </h1>
+      <h1 className="h1 font-mono mt-6 mb-4">codenames.cards</h1>
 
       <h2 className="text-xl font-bold mt-6 mb-4">Chose your options</h2>
       <Form className="mb-4" options={options} setOptions={setOptions} />

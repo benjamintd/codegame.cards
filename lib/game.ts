@@ -25,6 +25,7 @@ export interface IGameOptions {
 
 export type IGameMode = "duet" | "classic";
 export type ILanguage = "fr" | "en";
+export type ITeam = "red" | "blue";
 
 export interface IPlayer {
   team: "red" | "blue";

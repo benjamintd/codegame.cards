@@ -62,7 +62,7 @@ export default () => {
       </div>
       <div className="flex">
         <input
-          className={classnames("flex-grow text-input", {
+          className={classnames("flex-grow text-input text-sm", {
             "bg-gray-100": !selfPlayer,
             "bg-white": selfPlayer,
           })}
@@ -84,7 +84,7 @@ export default () => {
             className="rounded border-2 hover:bg-gray-100 border-gray-400 flex items-center text-xs font-bold justify-center w-10 h-10 cursor-pointer hover:text-blue-700 focus:outline-none"
             onClick={() => send(true)}
           >
-            give clue
+            give hint
           </button>
         )}
       </div>
