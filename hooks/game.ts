@@ -61,6 +61,10 @@ export function useLastHint(gameView: IGameView = useGameView()) {
   return lastHintselector(gameView);
 }
 
+export function useTurns(gameView: IGameView = useGameView()) {
+  return turnsSelector(gameView);
+}
+
 export function useSendChat(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()

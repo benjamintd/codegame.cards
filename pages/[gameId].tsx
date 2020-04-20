@@ -49,10 +49,10 @@ export default () => {
         <div className="lg:w-3/12 lg:p-6 p-2">
           <PlayersList />
         </div>
-        <div className="lg:w-6/12 lg:p-6 p-2 flex-grow">
+        <div className="lg:w-6/12 lg:p-6 p-2 lg:flex-grow flex">
           <GameBoard />
         </div>
-        <div className="lg:w-4/12 lg:p-6 p-2 min-h-0">
+        <div className="lg:w-4/12 lg:p-6 p-2 min-h-0 flex-grow lg:flex-grow-0">
           <Chat />
         </div>
       </div>

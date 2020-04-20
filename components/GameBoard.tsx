@@ -14,7 +14,10 @@ export default () => {
   const pushTurn = usePushTurn();
   const lastHint = useLastHint();
   return (
-    <div>
+    <div className="w-full lg:my-auto">
+      <div className="h-6 lg:mb-4 mb-2 text-center font-bold text-xl">
+        {lastHint && lastHint.hint}
+      </div>
       <div className="grid grid-cols-5 md:gap-2 gap-1 max-w-4xl mx-auto">
         {boardView.map((w: ICardView, i: number) => {
           return (
@@ -27,9 +30,6 @@ export default () => {
             />
           );
         })}
-      </div>
-      <div className="h-6 p-2 text-center font-bold">
-        {lastHint && lastHint.hint}
       </div>
     </div>
   );

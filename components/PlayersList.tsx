@@ -9,7 +9,8 @@ import JoinGame from "./JoinGame";
 import PlayerCard from "./PlayerCard";
 import { groupBy } from "lodash";
 import { IPlayer } from "../lib/game";
-import ClaimSpymaster from "./ClaimSpymaster";
+import ClaimSpymasterOrSwitchTeam from "./ClaimSpymasterOrSwitchTeam";
+import classnames from "classnames";
 
 export default () => {
   const players = usePlayers();
@@ -21,25 +22,27 @@ export default () => {
 
   return (
     <div className="border rounded bg-white shadow-md w-full h-full flex flex-col text-gray-800">
-      <div className="w-full flex flex-col p-2">
-        <h2 className="h2 text-center pb-2 sr-only md:not-sr-only">
+      <div className="w-full flex flex-col">
+        <h2 className="h2 text-center sr-only md:not-sr-only leading-loose">
           In the room
         </h2>
-        <Team
-          players={teams["red"]}
-          team="red"
-          score={scores["red"]}
-          maxScore={maxScores["red"]}
-        />
-        <Team
-          players={teams["blue"]}
-          team="blue"
-          score={scores["blue"]}
-          maxScore={maxScores["blue"]}
-        />
+        <div className="grid lg:grid-rows-2 lg:grid-cols-1 grid-cols-2 lg:gap-6 gap-2">
+          <Team
+            players={teams["red"]}
+            team="red"
+            score={scores["red"]}
+            maxScore={maxScores["red"]}
+          />
+          <Team
+            players={teams["blue"]}
+            team="blue"
+            score={scores["blue"]}
+            maxScore={maxScores["blue"]}
+          />
+        </div>
       </div>
       {!selfPlayer && <JoinGame />}
-      <ClaimSpymaster />
+      <ClaimSpymasterOrSwitchTeam />
     </div>
   );
 };
@@ -56,20 +59,32 @@ const Team = ({
   maxScore: number;
 }) => {
   return (
-    <div className="pb-2">
-      <div className="w-full py-1 border-t border-b flex justify-between mb-1">
+    <div className="pb-1">
+      <div
+        className={classnames(
+          "w-full px-2 py-1 border-t border-b flex justify-between mb-1",
+          { "bg-red-100": team === "red", "bg-blue-100": team === "blue" }
+        )}
+      >
         <h3 className="capitalize">{team} team</h3>
-        <span className="text-sm font-light text-gray-600">
-          found {score}/{maxScore}
+        <span
+          className={classnames("text-sm font-bold text-gray-600", {
+            "text-red-900": team === "red",
+            "text-blue-900": team === "blue",
+          })}
+        >
+          {score}/{maxScore} cards
         </span>
       </div>
-      {players && players.length ? (
-        players.map((p) => <PlayerCard key={p.id} player={p} />)
-      ) : (
-        <p className="text-gray-500 text-sm py-2">
-          There are no players in this team yet!
-        </p>
-      )}
+      <div className="px-2 py-1">
+        {players && players.length ? (
+          players.map((p) => <PlayerCard key={p.id} player={p} />)
+        ) : (
+          <p className="text-gray-500 text-sm">
+            There are no players in this team yet!
+          </p>
+        )}
+      </div>
     </div>
   );
 };

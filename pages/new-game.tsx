@@ -71,7 +71,6 @@ const Form = ({
           <option value="fr">Français</option>
         </select>
       </div>
-
       <div className="mb-2 w-64 flex justify-between">
         <label htmlFor="mode" className="font-bold mr-2">
           Mode
@@ -87,6 +86,7 @@ const Form = ({
           {/* <option value="duet">Duet</option> */}
         </select>
       </div>
+      <p className="italic">duet mode is coming soon!</p>
     </form>
   );
 };

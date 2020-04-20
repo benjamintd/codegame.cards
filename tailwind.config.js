@@ -1,7 +1,7 @@
 module.exports = {
   theme: {
     fontFamily: {
-      serif: ["Merriweather", "serif"],
+      mono: ["Courier Prime", "monospace"],
     },
     extend: {
       colors: {
