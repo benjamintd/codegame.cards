@@ -41,7 +41,7 @@ export default class FirebaseNetwork implements Network {
       .limitToFirst(30);
 
     ref.once("value", (event) => {
-      const games = Object.values(event.val() || {});
+      let games = Object.values(event.val() || {});
       callback(games as IGame[]);
     });
   }

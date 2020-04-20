@@ -4,6 +4,7 @@ import useNetwork from "../hooks/network";
 import { IGame } from "../lib/game";
 import LobbyGameRow from "../components/LobbyGameRow";
 import Button from "../components/Button";
+import DiscordButton from "../components/DiscordButton";
 
 const Home = () => {
   const network = useNetwork();
@@ -17,14 +18,17 @@ const Home = () => {
     <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">
       <h1 className="h1 font-mono mt-6">codenames.cards</h1>
       <p className="font-mono mb-4">The popular card game, online. 🕵️‍♂️</p>
-      <Link href="/new-game">
-        <a>
-          <Button>Create game</Button>
-        </a>
-      </Link>
+      <div className="flex">
+        <Link href="/new-game">
+          <a>
+            <Button>Create game</Button>
+          </a>
+        </Link>
+      </div>
 
       <h2 className="h2 mt-6 mb-4">Join a room</h2>
-      <div className="grid grid-flow-row grid-cols-1 gap-2">
+      <DiscordButton />
+      <div className="grid grid-flow-row grid-cols-1 gap-2 pt-2">
         {games.length === 0 && (
           <p className="text-gray-700">
             There are currently no public games. Create one and invite friends!
@@ -34,8 +38,8 @@ const Home = () => {
           <LobbyGameRow key={g.id} game={g} />
         ))}
       </div>
-      <h2 className="h2 mt-6 mb-4 text-center">How to play</h2>
-      <div className="max-w-2xl leading-relaxed border rounded bg-white shadow p-6 text-gray-900">
+      <div className="max-w-2xl leading-relaxed border rounded bg-white shadow p-6 text-gray-900 mt-6 ">
+        <h2 className="h2 mb-4 text-center">How to play</h2>
         <p>
           Codenames is a game of guessing where teams compete to find words
           related to a hint-word given by another player.
@@ -105,6 +109,22 @@ const Home = () => {
             </p>
           </>
         )}
+      </div>
+      <div className="mt-6 text-gray-700">
+        <p>
+          If you like this game, please support the authors and buy a physical
+          version!
+        </p>
+        <p>
+          Made with ♥ during the lockdown. It's{" "}
+          <a
+            className="hover:text-gray-600 underline"
+            href="https://github.com/benjamintd/codenames.cards"
+          >
+            open-source
+          </a>
+          .
+        </p>
       </div>
       <style jsx>{`
         p {
