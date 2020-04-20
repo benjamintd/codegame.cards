@@ -13,6 +13,7 @@ export default () => {
   const boardView = useBoardView();
   const pushTurn = usePushTurn();
   const lastHint = useLastHint();
+
   return (
     <div className="w-full lg:my-auto">
       <div className="h-6 lg:mb-4 mb-2 text-center font-bold text-xl">

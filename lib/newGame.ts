@@ -1,5 +1,6 @@
 import dictionnaryFr from "./dictionnary-fr";
 import dictionnaryEn from "./dictionnary-en";
+import dictionnaryDe from "./dictionnary-de";
 import { shuffle } from "lodash";
 import {
   uniqueNamesGenerator,
@@ -15,14 +16,13 @@ import {
   IGameOptions,
   IGameMode,
   defaultOptions,
-  IDuetGrid,
-  IClassicGrid,
   IGrid,
 } from "./game";
 
 const dictionnaries = {
-  en: dictionnaryEn.split("\n"),
-  fr: dictionnaryFr.split("\n"),
+  en: dictionnaryEn,
+  fr: dictionnaryFr,
+  de: dictionnaryDe,
 };
 
 export default (opts?: Partial<IGameOptions>) => {
@@ -31,7 +31,9 @@ export default (opts?: Partial<IGameOptions>) => {
     ...opts,
   };
 
-  const randomWords = shuffle(dictionnaries[options.language]).slice(0, 25);
+  const randomWords = shuffle(
+    dictionnaries[options.language].split("\n")
+  ).slice(0, 25);
   const randomStart = Math.random() < 0.5 ? "red" : "blue";
   const game: IGame = {
     words: randomWords,
