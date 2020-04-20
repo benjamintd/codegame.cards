@@ -39,7 +39,11 @@ const Home = () => {
           Codenames is a game of guessing where teams compete to find words
           related to a hint-word given by another player.
         </p>
-        <img className="p-6" src="/illustration.svg" />
+        <img
+          className="p-6"
+          src="/illustration.svg"
+          alt="codenames illustration"
+        />
         {!seeMore && (
           <p
             onClick={() => setSeeMore(true)}

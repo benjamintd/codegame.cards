@@ -5,7 +5,11 @@ export default () => {
   return (
     <Head>
       <title>Codenames</title>
-      <link rel="shortcut icon" href="/favicon.png" />
+      <meta
+        name="description"
+        content="Play Codenames online. Guess with friends in this real-time adaptation of the popular tabletop game."
+      />
+      <link rel="shortcut icon" href="/icon-192.png" />
       <meta property="og:title" content="codenames.cards" />
       <meta property="og:description" content="Play Codenames online." />
       <meta
