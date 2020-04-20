@@ -16,7 +16,7 @@ import React, { useContext } from "react";
 import { createSelector } from "reselect";
 import produce from "immer";
 import useNetwork, { Network } from "./network";
-import { findLast } from "lodash";
+import { findLast, shuffle } from "lodash";
 
 export const GameViewContext = React.createContext(null);
 
@@ -142,13 +142,36 @@ function addTurnChat(turn: ITurn, game: IGame) {
         (color === ClassicGridItem.Red && player.team === "red") ||
         (color === ClassicGridItem.Blue && player.team === "blue")
       ) {
-        reaction = "Nice!";
+        reaction = shuffle([
+          "Nice!",
+          "Good job!",
+          "Strong move.",
+          `One point for the ${player.team} team!`,
+          "Yay!",
+          "😎",
+        ])[0];
       } else if (color === ClassicGridItem.Neutral) {
-        reaction = "That's a miss.";
+        reaction = shuffle([
+          "That's a miss.",
+          "Close enough.",
+          "You'll get it next time.",
+          "That was a civilian.",
+          `Almost!`,
+        ])[0];
       } else if (color === ClassicGridItem.Black) {
-        reaction = "You just lost the game!";
+        reaction = shuffle([
+          "You just lost the game!",
+          `The ${player.team === "red" ? "blue" : "red"} team wins!`,
+          "Your team loses ☠️",
+        ])[0];
       } else {
-        reaction = "Whoops!";
+        reaction = shuffle([
+          "Whoops!",
+          "Oh no!",
+          `The ${player.team === "red" ? "blue" : "red"} thanks you.`,
+          "Don't worry you tried your best 💛.",
+          "🤦‍♂️",
+        ])[0];
       }
 
       game.chat.push({
