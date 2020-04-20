@@ -30,7 +30,7 @@ export default () => {
         rel="stylesheet"
       ></link>
       <link rel="apple-touch-icon" href="/icon-512.png"></link>
-      <link rel="manifest" href="/manifest.json"></link>
+      <link rel="manifest" href="/manifest.webmanifest"></link>
     </Head>
   );
 };
