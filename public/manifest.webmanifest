@@ -4,12 +4,12 @@
   "description": "Play codenames online with your friends!",
   "icons": [
     {
-      "src": "https://codenames.cards/static/icon-512.png",
+      "src": "https://codenames.cards/icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "https://codenames.cards/static/icon-192.png",
+      "src": "https://codenames.cards/icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
