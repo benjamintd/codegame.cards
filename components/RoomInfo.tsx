@@ -5,6 +5,8 @@ import {
   useScores,
   useMaxScores,
   useGameOver,
+  useNewGame,
+  useGameView,
 } from "../hooks/game";
 import JoinGame from "./JoinGame";
 import PlayerCard from "./PlayerCard";
@@ -13,14 +15,15 @@ import { IPlayer } from "../lib/game";
 import ClaimSpymasterOrSwitchTeam from "./ClaimSpymasterOrSwitchTeam";
 import classnames from "classnames";
 import Button from "./Button";
-import Link from "next/link";
 
 export default () => {
+  const gameView = useGameView();
   const players = usePlayers();
   const selfPlayer = useSelfPlayer();
   const scores = useScores();
   const maxScores = useMaxScores();
   const gameOver = useGameOver();
+  const newGame = useNewGame();
 
   const teams = groupBy(Object.values(players), (p) => p.team);
 
@@ -53,11 +56,14 @@ export default () => {
             The game is over. <br />
             The {gameOver.winner} team wins!
           </p>
-          <Link href="/">
-            <a>
-              <Button>Back to the lobby</Button>
-            </a>
-          </Link>
+
+          <Button
+            onClick={() => {
+              newGame(gameView.game.options, { forward: true });
+            }}
+          >
+            New game
+          </Button>
         </div>
       )}
     </div>

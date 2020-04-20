@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import useNetwork from "../hooks/network";
 import { IGame } from "../lib/game";
 import LobbyGameRow from "../components/LobbyGameRow";

@@ -9,6 +9,7 @@ export interface IGame {
   chat: IChatMessage[];
   options: IGameOptions;
   createdAt: number; // timestamp
+  nextGameId?: string;
 }
 
 export type IPlayers = { [key: string]: IPlayer };

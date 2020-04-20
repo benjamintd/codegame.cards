@@ -17,6 +17,7 @@ import { createSelector } from "reselect";
 import produce from "immer";
 import useNetwork, { Network } from "./network";
 import { findLast, shuffle } from "lodash";
+import { useRouter } from "next/router";
 
 export const GameViewContext = React.createContext(null);
 
@@ -190,6 +191,35 @@ function addTurnChat(turn: ITurn, game: IGame) {
       });
     }
   }
+}
+
+export function useNewGame(
+  gameView: IGameView = useGameView(),
+  network: Network = useNetwork()
+) {
+  const router = useRouter();
+  return async (gameOptions, options?: { forward: boolean }) => {
+    try {
+      const { game } = await fetch("/api/new-game", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(gameOptions),
+      }).then((res) => res.json());
+      await network.updateGame(game);
+
+      if (options?.forward) {
+        await network.updateGame(
+          produce(gameView.game, (draftGame: IGame) => {
+            draftGame.nextGameId = game.id;
+          })
+        );
+      }
+
+      router.push("/[gameId]", `/${game.id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 const chatSelector = (gameView: IGameView): IChatMessage[] =>

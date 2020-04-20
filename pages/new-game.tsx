@@ -1,12 +1,11 @@
-import useNetwork from "../hooks/network";
-import { useRouter } from "next/router";
 import Button from "../components/Button";
 import { IGameOptions, defaultOptions } from "../lib/game";
 import { useState } from "react";
+import { useNewGame } from "../hooks/game";
 
 export default () => {
-  const network = useNetwork();
-  const router = useRouter();
+  const newGame = useNewGame();
+  const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState<IGameOptions>(defaultOptions);
 
   return (
@@ -19,17 +18,13 @@ export default () => {
 
       <Button
         className="p-6 flex items-center justify-center"
+        disabled={loading}
         onClick={async () => {
+          setLoading(true);
           try {
-            const { game } = await fetch("/api/new-game", {
-              method: "POST",
-              headers: { "content-type": "application/json" },
-              body: JSON.stringify(options),
-            }).then((res) => res.json());
-            await network.updateGame(game);
-            router.push("/[gameId]", `/${game.id}`);
+            await newGame(options);
           } catch (error) {
-            console.log("error");
+            setLoading(false);
           }
         }}
       >

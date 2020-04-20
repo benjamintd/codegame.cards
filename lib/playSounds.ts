@@ -1,7 +1,7 @@
 import { IGame } from "./game";
 
 export default (newGame: IGame, game: IGame) => {
-  if (!game || !newGame) {
+  if (!game || !newGame || game.id !== newGame.id) {
     return;
   }
 
@@ -16,6 +16,7 @@ export default (newGame: IGame, game: IGame) => {
     (game.turns || []).filter((t) => t.type === "click").length !==
     (newGame.turns || []).filter((t) => t.type === "click").length
   ) {
+    console.log("here/");
     return playSound("/reveal.wav");
   }
 

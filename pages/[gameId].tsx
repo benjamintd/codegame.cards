@@ -16,6 +16,23 @@ export default () => {
   const network = useNetwork();
   const router = useRouter();
 
+  // using this for side effects that depend on the previous game state
+  // e.g. sounds or forwarding the player to the next game
+  const reducer = (game: IGame, newGame: IGame): IGame => {
+    playSounds(newGame, game);
+
+    if (
+      game &&
+      game.id === newGame.id &&
+      !game.nextGameId &&
+      newGame.nextGameId
+    ) {
+      router.push("/[gameId]", `/${newGame.nextGameId}`);
+    }
+
+    return newGame;
+  };
+
   const [game, setGame] = useReducer(reducer, null);
   const [player, setPlayer] = useLocalStorage("player", { id: uuidv4() });
   const [gameView, setGameView] = useState<IGameView>({
@@ -58,9 +75,4 @@ export default () => {
       </div>
     </GameViewContext.Provider>
   );
-};
-
-const reducer = (game: IGame, newGame: IGame): IGame => {
-  playSounds(newGame, game);
-  return newGame;
 };
