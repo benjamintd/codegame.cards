@@ -15,6 +15,7 @@ import { IPlayer } from "../lib/game";
 import ClaimSpymasterOrSwitchTeam from "./ClaimSpymasterOrSwitchTeam";
 import classnames from "classnames";
 import Button from "./Button";
+import Link from "next/link";
 
 export default () => {
   const gameView = useGameView();
@@ -58,12 +59,18 @@ export default () => {
           </p>
 
           <Button
+            className="mr-2"
             onClick={() => {
               newGame(gameView.game.options, { forward: true });
             }}
           >
             New game
           </Button>
+          <Link href="/">
+            <a>
+              <Button color="neutral">Back to lobby</Button>
+            </a>
+          </Link>
         </div>
       )}
     </div>

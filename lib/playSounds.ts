@@ -27,7 +27,7 @@ export default (newGame: IGame, game: IGame) => {
 
 const playSound = (path) => {
   const audio = new Audio(path);
-  audio.volume = 0.5;
+  audio.volume = 0.4;
   audio.play().catch((e) => {
     // Playing a sound before any user interaction triggers an error
     // Prevent it from polluting the error logs

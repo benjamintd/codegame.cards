@@ -5,7 +5,7 @@ interface IProps {
   children: React.ReactNode;
   disabled?: boolean;
   className?: string;
-  color?: "blue" | "red" | "dark-red" | "dark-blue";
+  color?: "blue" | "red" | "dark-red" | "dark-blue" | "neutral";
   onClick?: () => void;
 }
 
@@ -27,6 +27,8 @@ const Button = (props: IProps) => {
             color === "red",
           "bg-red-800 hover:bg-red-700 hover:border-red-800 border-red-900":
             color === "dark-red",
+          "text-gray-800 bg-gray-300 hover:bg-gray-200 hover:border-gray-600 border-gray-500":
+            color === "neutral",
         }
       )}
     >
