@@ -19,7 +19,9 @@ const Home = () => {
       <h1 className="h1 font-mono mt-6">codenames.cards</h1>
       <p className="font-mono mb-4">The popular card game, online. 🕵️‍♂️</p>
       <Link href="/new-game">
-        <Button>Create game</Button>
+        <a>
+          <Button>Create game</Button>
+        </a>
       </Link>
 
       <h2 className="h2 mt-6 mb-4">Join a room</h2>

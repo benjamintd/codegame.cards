@@ -7,7 +7,6 @@ interface IProps {
   className?: string;
   color?: "blue" | "red" | "dark-red" | "dark-blue";
   onClick?: () => void;
-  ref: React.Ref<any>;
 }
 
 const Button = (props: IProps) => {
@@ -36,6 +35,4 @@ const Button = (props: IProps) => {
   );
 };
 
-export default React.forwardRef((props: IProps, ref) => (
-  <Button ref={ref} {...props} />
-));
+export default Button;

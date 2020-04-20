@@ -54,7 +54,9 @@ export default () => {
             The {gameOver.winner} team wins!
           </p>
           <Link href="/">
-            <Button>Back to the lobby</Button>
+            <a>
+              <Button>Back to the lobby</Button>
+            </a>
           </Link>
         </div>
       )}
