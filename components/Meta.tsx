@@ -24,10 +24,12 @@ export default () => {
         content="https://codenames.cards/og-image.png"
       />
       <meta name="twitter:card" content="summary_large_image"></meta>
+      <meta name="theme-color" content="#f7fafc"></meta>
       <link
         href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap"
         rel="stylesheet"
       ></link>
+      <link rel="apple-touch-icon" href="/icon-512.png"></link>
     </Head>
   );
 };
