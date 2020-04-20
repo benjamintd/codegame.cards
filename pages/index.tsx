@@ -110,6 +110,22 @@ const Home = () => {
           </>
         )}
       </div>
+      <div className="mt-6 text-gray-700">
+        <p>
+          If you like this game, please support the authors and buy a physical
+          version!
+        </p>
+        <p>
+          Made with ♥ during the lockdown. It's{" "}
+          <a
+            className="hover:text-gray-600 underline"
+            href="https://github.com/benjamintd/codenames.cards"
+          >
+            open-source
+          </a>
+          .
+        </p>
+      </div>
       <style jsx>{`
         p {
           padding: 0.5rem 0 0.5rem 0;
