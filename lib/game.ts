@@ -9,6 +9,7 @@ export interface IGame {
   chat: IChatMessage[];
   options: IGameOptions;
   createdAt: number; // timestamp
+  nextGameId?: string;
 }
 
 export type IPlayers = { [key: string]: IPlayer };
@@ -24,7 +25,7 @@ export interface IGameOptions {
 }
 
 export type IGameMode = "duet" | "classic";
-export type ILanguage = "fr" | "en";
+export type ILanguage = "fr" | "en" | "de";
 export type ITeam = "red" | "blue";
 
 export interface IPlayer {

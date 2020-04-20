@@ -52,7 +52,7 @@ const JoinGame = () => {
       <input
         type="text"
         className={classnames("text-input mb-2", {
-          "border-red-400": warnInput,
+          "border-red-400 shadow-red": warnInput,
         })}
         placeholder="Enter player name"
         value={name}
@@ -74,6 +74,11 @@ const JoinGame = () => {
           <Button>join game</Button>
         </div>
       )}
+      <style jsx>{`
+        .shadow-red {
+          box-shadow: 0px 0px 8px 0px rgba(254, 178, 178, 1);
+        }
+      `}</style>
     </div>
   );
 };

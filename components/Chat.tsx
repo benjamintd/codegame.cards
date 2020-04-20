@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IGameView } from "../lib/game";
 import {
   useChat,
   usePlayers,

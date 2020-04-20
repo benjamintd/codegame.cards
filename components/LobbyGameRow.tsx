@@ -1,5 +1,5 @@
 import React from "react";
-import { IGame } from "../lib/game";
+import { IGame, ILanguage } from "../lib/game";
 import Link from "next/link";
 
 export default ({ game }: { game: IGame }) => {
@@ -12,9 +12,23 @@ export default ({ game }: { game: IGame }) => {
             {Object.keys(game.players || {}).length} players
           </div>
           <div className="mr-2">{game.options.mode}</div>
-          <div>{game.options.language === "en" ? "🇬🇧" : "🇫🇷"}</div>
+          <div>{getFlag(game.options.language)}</div>
         </div>
       </div>
     </Link>
   );
+};
+
+const getFlag = (language: ILanguage) => {
+  switch (language) {
+    case "en":
+      return "🇬🇧";
+    case "fr":
+      return "🇫🇷";
+    case "de":
+      return "🇩🇪";
+    default:
+      // why not.
+      return "🇺🇸";
+  }
 };

@@ -5,13 +5,13 @@ interface IProps {
   children: React.ReactNode;
   disabled?: boolean;
   className?: string;
-  color?: "blue" | "red" | "dark-red" | "dark-blue";
+  color?: "blue" | "red" | "dark-red" | "dark-blue" | "neutral";
   onClick?: () => void;
-  ref: React.Ref<any>;
 }
 
 const Button = (props: IProps) => {
   const { className, children, onClick, color } = props;
+  console.log(color);
   return (
     <button
       {...props}
@@ -20,14 +20,16 @@ const Button = (props: IProps) => {
         className,
         "text-white font-bold py-2 px-4 border-b-4 rounded",
         {
-          "bg-blue-500 hover:bg-blue-400 hover:border-blue-500 border-blue-700":
+          "bg-blue-600 hover:bg-blue-500 hover:border-blue-600 border-blue-800":
             !color || color === "blue",
-          "bg-blue-700 hover:bg-blue-600 hover:border-blue-700 border-blue-900":
+          "bg-blue-800 hover:bg-blue-700 hover:border-blue-800 border-blue-900":
             color === "dark-blue",
-          "bg-red-500 hover:bg-red-400 hover:border-red-500 border-red-700":
+          "bg-red-600 hover:bg-red-500 hover:border-red-600 border-red-800":
             color === "red",
-          "bg-red-700 hover:bg-red-600 hover:border-red-700 border-red-900":
+          "bg-red-800 hover:bg-red-700 hover:border-red-800 border-red-900":
             color === "dark-red",
+          "text-gray-800 bg-gray-400 hover:bg-gray-300 hover:border-gray-400 border-gray-500":
+            color === "neutral",
         }
       )}
     >
@@ -36,6 +38,4 @@ const Button = (props: IProps) => {
   );
 };
 
-export default React.forwardRef((props: IProps, ref) => (
-  <Button ref={ref} {...props} />
-));
+export default Button;

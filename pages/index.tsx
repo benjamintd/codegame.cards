@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import useNetwork from "../hooks/network";
 import { IGame } from "../lib/game";
 import LobbyGameRow from "../components/LobbyGameRow";
@@ -19,7 +18,9 @@ const Home = () => {
       <h1 className="h1 font-mono mt-6">codenames.cards</h1>
       <p className="font-mono mb-4">The popular card game, online. 🕵️‍♂️</p>
       <Link href="/new-game">
-        <Button>Create game</Button>
+        <a>
+          <Button>Create game</Button>
+        </a>
       </Link>
 
       <h2 className="h2 mt-6 mb-4">Join a room</h2>
@@ -30,7 +31,7 @@ const Home = () => {
           </p>
         )}
         {games.map((g) => (
-          <LobbyGameRow game={g} />
+          <LobbyGameRow key={g.id} game={g} />
         ))}
       </div>
       <h2 className="h2 mt-6 mb-4 text-center">How to play</h2>
