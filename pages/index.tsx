@@ -30,7 +30,7 @@ const Home = () => {
           </p>
         )}
         {games.map((g) => (
-          <LobbyGameRow game={g} />
+          <LobbyGameRow key={g.id} game={g} />
         ))}
       </div>
       <h2 className="h2 mt-6 mb-4 text-center">How to play</h2>
