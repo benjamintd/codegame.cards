@@ -11,6 +11,7 @@ interface IProps {
 
 const Button = (props: IProps) => {
   const { className, children, onClick, color } = props;
+  console.log(color);
   return (
     <button
       {...props}
@@ -27,7 +28,7 @@ const Button = (props: IProps) => {
             color === "red",
           "bg-red-800 hover:bg-red-700 hover:border-red-800 border-red-900":
             color === "dark-red",
-          "text-gray-800 bg-gray-300 hover:bg-gray-200 hover:border-gray-600 border-gray-500":
+          "text-gray-800 bg-gray-400 hover:bg-gray-300 hover:border-gray-400 border-gray-500":
             color === "neutral",
         }
       )}
