@@ -8,14 +8,14 @@ import { GameHandler, GamesHandler, Network } from "./network";
 export function setupFirebase() {
   if (!firebase.apps.length) {
     const firebaseConfig = {
-      apiKey: "AIzaSyCxUmqQWsV1qZ7KDuyVXx4Y3C1Uen7Dnew",
-      authDomain: "codenames-5c1a2.firebaseapp.com",
-      databaseURL: "https://codenames-5c1a2.firebaseio.com",
-      projectId: "codenames-5c1a2",
-      storageBucket: "codenames-5c1a2.appspot.com",
-      messagingSenderId: "426387002729",
-      appId: "1:426387002729:web:7f990ab15dbb0a0a06d9f8",
-      measurementId: "G-EZFDE50SDQ",
+      apiKey: process.env.FIREBASE_API_KEY,
+      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      databaseURL: process.env.FIREBASE_DATABASE_URL,
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+      appId: process.env.FIREBASE_APP_ID,
+      measurementId: process.env.FIREBASE_MEASUREMENT_ID,
     };
     firebase.initializeApp(firebaseConfig);
     if (typeof window !== "undefined") {
