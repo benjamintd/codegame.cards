@@ -16,7 +16,8 @@ const Home = () => {
 
   return (
     <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">
-      <h1 className="h1 font-mono mt-6 mb-4">codenames.cards</h1>
+      <h1 className="h1 font-mono mt-6">codenames.cards</h1>
+      <p className="font-mono mb-4">The popular card game, online. 🕵️‍♂️</p>
       <Link href="/new-game">
         <Button>Create game</Button>
       </Link>
