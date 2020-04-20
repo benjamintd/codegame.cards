@@ -11,7 +11,6 @@ interface IProps {
 
 const Button = (props: IProps) => {
   const { className, children, onClick, color } = props;
-  console.log(color);
   return (
     <button
       {...props}

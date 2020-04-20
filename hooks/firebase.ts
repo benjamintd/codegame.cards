@@ -42,7 +42,6 @@ export default class FirebaseNetwork implements Network {
 
     ref.once("value", (event) => {
       let games = Object.values(event.val() || {});
-      games = games.filter((g: IGame) => g.players);
       callback(games as IGame[]);
     });
   }
