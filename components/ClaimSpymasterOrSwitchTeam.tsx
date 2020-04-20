@@ -5,6 +5,7 @@ import {
   usePlayers,
   useSelfPlayer,
   useTurns,
+  useMaxScores,
 } from "../hooks/game";
 import Button from "./Button";
 
@@ -21,6 +22,7 @@ const ClaimSpymaster = () => {
   const network = useNetwork();
   const gameMode = useGameMode();
   const selfId = useSelfId();
+  const maxScores = useMaxScores();
 
   const hasSpymaster = (team) =>
     Object.values(players).findIndex((p) => p.spymaster && p.team === team) >
@@ -46,10 +48,6 @@ const ClaimSpymaster = () => {
 
   return (
     <div className="w-full flex flex-col p-2 text-sm">
-      <p>
-        The game has not started yet. Click on a card or give a hint to get
-        started!
-      </p>
       {gameMode === "classic" ? (
         <div className="mx-auto text-sm mt-2">
           {!hasSpymaster(selfPlayer.team) && (
@@ -76,6 +74,10 @@ const ClaimSpymaster = () => {
               switch teams
             </span>
           )}
+          <p className="pt-4">
+            Click on a card or give a hint to start the game! The{" "}
+            {maxScores.red > maxScores.blue ? "red" : "blue"} team plays first.
+          </p>
         </div>
       ) : null}
     </div>

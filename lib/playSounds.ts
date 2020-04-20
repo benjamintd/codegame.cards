@@ -6,6 +6,13 @@ export default (newGame: IGame, game: IGame) => {
   }
 
   if (
+    Object.keys(game.players || {}).length !==
+    Object.keys(newGame.players || {}).length
+  ) {
+    return playSound("/new-player.wav");
+  }
+
+  if (
     (game.turns || []).filter((t) => t.type === "click").length !==
     (newGame.turns || []).filter((t) => t.type === "click").length
   ) {

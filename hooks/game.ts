@@ -92,6 +92,11 @@ export function useAddPlayer(
     const newGame = produce(game, (g) => {
       g.players = g.players || {};
       g.players[player.id] = player;
+      g.chat.push({
+        playerId: "",
+        timestamp: Date.now(),
+        message: `${player.name} just joined!`,
+      });
     });
     network.updateGame(newGame);
   };
