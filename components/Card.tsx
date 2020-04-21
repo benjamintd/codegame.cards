@@ -1,4 +1,4 @@
-import { ITurn, IPlayer, ICardView, ClassicGridItem } from "../lib/game";
+import { ITurn, IPlayer, ICardView, ClassicGridItem, Color } from "../lib/game";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import classnames from "classnames";
@@ -32,21 +32,25 @@ const Card = ({
     "border-4": w.revealed,
     "border-gray-600 bg-gray-200 hover:bg-gray-100": !w.shown,
     "border-red-800 bg-red-700 text-red-300":
-      w.revealed && w.shown && w.color === ClassicGridItem.Red,
+      w.revealed && w.shown && w.color === Color.Red,
     "border-blue-800 bg-blue-700 text-blue-300":
-      w.revealed && w.shown && w.color === ClassicGridItem.Blue,
+      w.revealed && w.shown && w.color === Color.Blue,
     "border-yellow-800 bg-yellow-100 text-yellow-800":
-      w.revealed && w.shown && w.color === ClassicGridItem.Neutral,
+      w.revealed && w.shown && w.color === Color.Neutral,
     "border-black bg-gray-800 text-gray-200":
-      w.revealed && w.shown && w.color === ClassicGridItem.Black,
+      w.revealed && w.shown && w.color === Color.Black,
+    "border-green-800 bg-green-700 text-green-300":
+      w.revealed && w.shown && w.color === Color.Green,
     "border-red-800 bg-red-200 text-red-900 hover:bg-red-300":
-      !w.revealed && w.shown && w.color === ClassicGridItem.Red,
+      !w.revealed && w.shown && w.color === Color.Red,
     "border-blue-800 bg-blue-200 text-blue-900 hover:bg-blue-300":
-      !w.revealed && w.shown && w.color === ClassicGridItem.Blue,
+      !w.revealed && w.shown && w.color === Color.Blue,
     "border-yellow-800 bg-yellow-100 text-yellow-800 hover:bg-yellow-200":
-      !w.revealed && w.shown && w.color === ClassicGridItem.Neutral,
+      !w.revealed && w.shown && w.color === Color.Neutral,
     "border-black bg-gray-700 text-gray-100 hover:bg-gray-600":
-      !w.revealed && w.shown && w.color === ClassicGridItem.Black,
+      !w.revealed && w.shown && w.color === Color.Black,
+    "border-green-800 bg-green-200 text-green-800 hover:bg-green-300":
+      !w.revealed && w.shown && w.color === Color.Green,
     "lg:text-base text-xs": w.word.length > 7,
   };
 
@@ -76,6 +80,9 @@ const Card = ({
         )}
       >
         {w.word}
+        {w.duetMarker && (
+          <div className="absolute top-0 right-0 m-2 rounded-full w-3 h-3 border-2 border-yellow-800 bg-yellow-300"></div>
+        )}
       </motion.div>
     </div>
   );

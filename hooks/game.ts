@@ -2,22 +2,32 @@ import {
   IGameView,
   IChatMessage,
   ITurn,
-  IPlayers,
   IPlayer,
-  IGameMode,
   ClassicGridItem,
-  IClassicGrid,
-  ICardView,
   IGame,
-  IHintTurn,
-  ITeam,
+  isClassicGame,
+  isDuetGame,
+  DuetGridItem,
 } from "../lib/game";
 import React, { useContext } from "react";
-import { createSelector } from "reselect";
 import produce from "immer";
 import useNetwork, { Network } from "./network";
-import { findLast, shuffle } from "lodash";
+import { shuffle } from "lodash";
 import { useRouter } from "next/router";
+import {
+  chatSelector,
+  boardViewSelector,
+  playersSelector,
+  selfPlayerSelector,
+  gameModeSelector,
+  selfIdSelector,
+  scoresSelector,
+  maxScoresSelector,
+  lastHintselector,
+  turnsSelector,
+  gameOverSelector,
+  duetTurnsSelector,
+} from "../lib/selectors";
 
 export const GameViewContext = React.createContext(null);
 
@@ -71,6 +81,10 @@ export function useGameOver(gameView: IGameView = useGameView()) {
   return gameOverSelector(gameView);
 }
 
+export function useDuetTurns(gameView: IGameView = useGameView()) {
+  return duetTurnsSelector(gameView);
+}
+
 export function useSendChat(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
@@ -112,23 +126,11 @@ export function usePushTurn(
     const newGame = produce(game, (g) => {
       g.turns = g.turns || [];
 
-      if (isDuplicateTurn(turn, g.turns)) {
-        return;
-      }
       addTurnChat(turn, g);
       g.turns.push(turn);
     });
     network.updateGame(newGame);
   };
-}
-
-function isDuplicateTurn(turn: ITurn, turns: ITurn[]) {
-  if (turn.type === "click") {
-    if (turns.find((t) => t.type === "click" && t.value === turn.value)) {
-      return true;
-    }
-  }
-  return false;
 }
 
 function addTurnChat(turn: ITurn, game: IGame) {
@@ -138,41 +140,12 @@ function addTurnChat(turn: ITurn, game: IGame) {
     const color = +game.grid[turn.value];
     if (player) {
       let reaction = "";
+      if (isClassicGame(game)) {
+        reaction = getClassicReaction(color, player);
+      }
 
-      if (
-        (color === ClassicGridItem.Red && player.team === "red") ||
-        (color === ClassicGridItem.Blue && player.team === "blue")
-      ) {
-        reaction = shuffle([
-          "Nice!",
-          "Good job!",
-          "Strong move.",
-          `One point for the ${player.team} team!`,
-          "Yay!",
-          "😎",
-        ])[0];
-      } else if (color === ClassicGridItem.Neutral) {
-        reaction = shuffle([
-          "That's a miss.",
-          "Close enough.",
-          "You'll get it next time.",
-          "That was a civilian.",
-          `Almost!`,
-        ])[0];
-      } else if (color === ClassicGridItem.Black) {
-        reaction = shuffle([
-          "You just lost the game!",
-          `The ${player.team === "red" ? "blue" : "red"} team wins!`,
-          "Your team loses ☠️",
-        ])[0];
-      } else {
-        reaction = shuffle([
-          "Whoops!",
-          "Oh no!",
-          `The ${player.team === "red" ? "blue" : "red"} thanks you.`,
-          "Don't worry you tried your best 💛.",
-          "🤦‍♂️",
-        ])[0];
+      if (isDuetGame(game)) {
+        reaction = getDuetReaction(color, player);
       }
 
       game.chat.push({
@@ -222,133 +195,91 @@ export function useNewGame(
   };
 }
 
-const chatSelector = (gameView: IGameView): IChatMessage[] =>
-  gameView.game?.chat || [];
+function getClassicReaction(g: ClassicGridItem, player: IPlayer): string {
+  let reaction = "";
 
-const gridSelector = (gameView: IGameView): IClassicGrid =>
-  gameView.game?.grid.map((e) => +e) || [];
-
-const wordsSelector = (gameView: IGameView): string[] =>
-  gameView.game?.words || [];
-
-const turnsSelector = (gameView: IGameView): ITurn[] =>
-  gameView.game?.turns || [];
-
-const playersSelector = (gameView: IGameView): IPlayers =>
-  gameView.game?.players || {};
-
-const selfIdSelector = (gameView: IGameView): string => gameView.playerId;
-
-const gameModeSelector = (gameView: IGameView): IGameMode =>
-  gameView.game?.options?.mode || "classic";
-
-const selfPlayerSelector = createSelector(
-  playersSelector,
-  selfIdSelector,
-  (players, id) => players[id]
-);
-
-const boardViewSelector = createSelector(
-  wordsSelector,
-  gridSelector,
-  turnsSelector,
-  selfPlayerSelector,
-  (words, grid, turns, selfPlayer): ICardView[] => {
-    return words.map((word, i) => {
-      const g = grid[i];
-      const cardView: ICardView = {
-        word,
-        color: g,
-        shown: false,
-        revealed: false,
-      };
-      if (selfPlayer && selfPlayer.spymaster) {
-        cardView.shown = true;
-      }
-
-      if (turns.filter((t) => t.type === "click" && t.value === i).length > 0) {
-        cardView.revealed = true;
-        cardView.shown = true;
-      }
-
-      return cardView;
-    });
+  if (
+    (g === ClassicGridItem.Red && player.team === "red") ||
+    (g === ClassicGridItem.Blue && player.team === "blue")
+  ) {
+    reaction = shuffle([
+      "Nice!",
+      "Good job!",
+      "Strong move.",
+      `One point for the ${player.team} team!`,
+      "Yay!",
+      "😎",
+    ])[0];
+  } else if (g === ClassicGridItem.Neutral) {
+    reaction = shuffle([
+      "That's a miss.",
+      "Close enough.",
+      "You'll get it next time.",
+      "That was a civilian.",
+      `Almost!`,
+    ])[0];
+  } else if (g === ClassicGridItem.Black) {
+    reaction = shuffle([
+      "You just lost the game!",
+      `The ${player.team === "red" ? "blue" : "red"} team wins!`,
+      "Your team loses ☠️",
+    ])[0];
+  } else {
+    reaction = shuffle([
+      "Whoops!",
+      "Oh no!",
+      `The ${player.team === "red" ? "blue" : "red"} team thanks you.`,
+      "Don't worry you tried your best 💛.",
+      "🤦‍♂️",
+    ])[0];
   }
-);
 
-const scoresSelector = createSelector(
-  turnsSelector,
-  gridSelector,
-  (turns, grid): { red: number; blue: number } => {
-    return turns.reduce(
-      (acc, turn) => {
-        if (turn.type === "click") {
-          if (grid[turn.value] === ClassicGridItem.Red) {
-            acc.red = acc.red + 1;
-          } else if (grid[turn.value] === ClassicGridItem.Blue) {
-            acc.blue = acc.blue + 1;
-          }
-        }
-        return acc;
-      },
-      { red: 0, blue: 0 }
-    );
-  }
-);
+  return reaction;
+}
 
-const maxScoresSelector = createSelector(gridSelector, (grid): {
-  red: number;
-  blue: number;
-} => {
-  return grid.reduce(
-    (acc, value) => {
-      if (value === ClassicGridItem.Red) {
-        acc.red = acc.red + 1;
-      } else if (value === ClassicGridItem.Blue) {
-        acc.blue = acc.blue + 1;
+function getDuetReaction(g: DuetGridItem, player: IPlayer): string {
+  const positive = shuffle([
+    "Nice!",
+    "Good job!",
+    "Strong move.",
+    "Yay!",
+    "😎",
+  ])[0];
+
+  const negative = shuffle([
+    "That's a miss.",
+    "Close enough.",
+    "You'll get it next time.",
+    "That was an innocent bypasser.",
+    `Almost!`,
+  ])[0];
+
+  const lost = shuffle([
+    "You just lost the game!",
+    "Oh no, you clicked on an assassin ☠️",
+  ])[0];
+
+  switch (player.team) {
+    case "duetB":
+      if ([DuetGridItem.GB, DuetGridItem.GG, DuetGridItem.GN].indexOf(g) > -1) {
+        return positive;
+      } else if (
+        [DuetGridItem.NB, DuetGridItem.NG, DuetGridItem.NN].indexOf(g) > -1
+      ) {
+        return negative;
+      } else {
+        return lost;
       }
 
-      return acc;
-    },
-    { red: 0, blue: 0 }
-  );
-});
-
-const lastHintselector = createSelector(turnsSelector, (turns: ITurn[]):
-  | IHintTurn
-  | undefined => {
-  return findLast(turns, (t) => t.type === "hint") as IHintTurn;
-});
-
-const gameOverSelector = createSelector(
-  playersSelector,
-  turnsSelector,
-  scoresSelector,
-  maxScoresSelector,
-  gridSelector,
-  (
-    players,
-    turns,
-    scores,
-    maxScores,
-    grid
-  ): { over: boolean; winner?: ITeam } => {
-    for (const team of ["blue", "red"] as ITeam[]) {
-      if (scores[team] === maxScores[team]) {
-        return { over: true, winner: team };
+    case "duetA":
+      if ([DuetGridItem.BG, DuetGridItem.NG, DuetGridItem.GG].indexOf(g) > -1) {
+        return positive;
+      } else if (
+        [DuetGridItem.BN, DuetGridItem.GN, DuetGridItem.NN].indexOf(g) > -1
+      ) {
+        return negative;
+      } else {
+        return lost;
       }
-    }
-
-    const blackIndex = grid.findIndex((g) => g === ClassicGridItem.Black);
-    const blackTurn = turns.find(
-      (t) => t.type === "click" && t.value === blackIndex
-    );
-    if (blackTurn) {
-      return {
-        over: true,
-        winner: players[blackTurn.from].team === "red" ? "blue" : "red",
-      };
-    }
-    return { over: false };
   }
-);
+}

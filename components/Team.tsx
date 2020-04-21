@@ -1,4 +1,4 @@
-import { IPlayer } from "../lib/game";
+import { IPlayer, ITeam } from "../lib/game";
 import PlayerCard from "./PlayerCard";
 import classnames from "classnames";
 
@@ -9,25 +9,28 @@ const Team = ({
   maxScore,
 }: {
   players: IPlayer[] | undefined;
-  team: "red" | "blue";
-  score: number;
-  maxScore: number;
+  team: ITeam;
+  score?: number;
+  maxScore?: number;
 }) => {
   return (
     <div className="pb-1">
       <div
         className={classnames(
           "w-full px-2 py-1 border-t border-b flex justify-between mb-1",
-          { "bg-red-100": team === "red", "bg-blue-100": team === "blue" },
           {
-            "text-red-900": team === "red",
-            "text-blue-900": team === "blue",
+            "bg-red-100 text-red-900": team === "red",
+            "bg-blue-100 text-blue-900": team === "blue",
+            "bg-green-100 text-green-900":
+              ["duetA", "duetB"].indexOf(team) > -1,
           }
         )}
       >
-        <h3 className="capitalize font-mono font-bold">{team}</h3>
+        <h3 className="capitalize font-mono font-bold">
+          {formattedTeam[team]}
+        </h3>
         <span className="text-sm font-bold">
-          {score}/{maxScore} cards
+          {maxScore && `${score}/${maxScore} cards`}
         </span>
       </div>
       <div className="px-2 py-1">
@@ -41,6 +44,13 @@ const Team = ({
       </div>
     </div>
   );
+};
+
+const formattedTeam = {
+  red: "red",
+  blue: "blue",
+  duetA: "Side A",
+  duetB: "Side B",
 };
 
 export default Team;

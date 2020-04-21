@@ -27,7 +27,7 @@ const JoinGame = () => {
     setName(e.currentTarget.value);
   };
 
-  const onClick = ({ team }: Partial<IPlayer>) => {
+  const onClick = ({ team, spymaster = false }: Partial<IPlayer>) => {
     if (name) {
       setLocalStoragePlayer({
         name,
@@ -37,9 +37,8 @@ const JoinGame = () => {
         name,
         id: selfId,
         team,
-        spymaster: false,
+        spymaster,
         clickedOn: -1,
-        host: Object.keys(players).length === 0 ? true : false,
       });
     } else {
       setWarnInput(true);
@@ -69,9 +68,19 @@ const JoinGame = () => {
           </Button>
         </div>
       ) : (
-        <div>
-          {/* todo handle duet mode */}
-          <Button>join game</Button>
+        <div className="grid grid-cols-2 gap-2 text-sm">
+          <Button
+            color="dark-blue"
+            onClick={() => onClick({ team: "duetA", spymaster: true })}
+          >
+            join side A
+          </Button>
+          <Button
+            color="blue"
+            onClick={() => onClick({ team: "duetB", spymaster: true })}
+          >
+            join side B
+          </Button>
         </div>
       )}
       <style jsx>{`

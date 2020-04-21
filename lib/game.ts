@@ -1,18 +1,30 @@
-export interface IGame {
+export type IGame = IClassicGame | IDuetGame;
+
+export interface IClassicGame {
   players: IPlayers;
   words: string[];
-  grid: IGrid;
+  grid: IClassicGrid;
   turns: ITurn[];
-  status: "lobby" | "started" | "ended";
   id: string;
-  playing: "red" | "blue";
   chat: IChatMessage[];
-  options: IGameOptions;
+  options: { mode: "classic"; language: ILanguage };
   createdAt: number; // timestamp
   nextGameId?: string;
 }
 
-export type IPlayers = { [key: string]: IPlayer };
+export interface IDuetGame {
+  players: IPlayers;
+  words: string[];
+  grid: IDuetGrid;
+  turns: ITurn[];
+  id: string;
+  chat: IChatMessage[];
+  options: { mode: "duet"; language: ILanguage };
+  createdAt: number; // timestamp
+  nextGameId?: string;
+}
+
+export type IGrid = IClassicGrid | IDuetGrid;
 
 export interface IGameView {
   playerId: string;
@@ -26,16 +38,17 @@ export interface IGameOptions {
 
 export type IGameMode = "duet" | "classic";
 export type ILanguage = "fr" | "en" | "de";
-export type ITeam = "red" | "blue";
+export type ITeam = "red" | "blue" | "duetA" | "duetB";
 
 export interface IPlayer {
-  team: "red" | "blue";
+  team: ITeam;
   spymaster: boolean;
   name: string;
   id: string;
   clickedOn: number;
-  host: boolean;
 }
+
+export type IPlayers = { [key: string]: IPlayer };
 
 export interface IChatMessage {
   playerId: string;
@@ -83,9 +96,16 @@ export enum DuetGridItem {
   NN,
 }
 
+export enum Color {
+  Neutral,
+  Red,
+  Blue,
+  Black,
+  Green,
+}
+
 export type IClassicGrid = ClassicGridItem[];
 export type IDuetGrid = DuetGridItem[];
-export type IGrid = IClassicGrid; // @todo add back duet grid when ready | IDuetGrid;
 
 export const defaultOptions: IGameOptions = {
   language: "en",
@@ -96,5 +116,22 @@ export interface ICardView {
   word: string;
   revealed: boolean;
   shown: boolean; // for spymasters to see unrevealed cards
-  color: ClassicGridItem; // @todo take duet into account here
+  color: Color;
+  duetMarker?: boolean;
+}
+
+export function isDuetGame(game: IGame): game is IDuetGame {
+  return game?.options?.mode === "duet";
+}
+
+export function isClassicGame(game: IGame): game is IClassicGame {
+  return game?.options?.mode === "classic";
+}
+
+export function isClassicGrid(grid: IGrid): grid is IClassicGrid {
+  return grid.findIndex((e) => e === DuetGridItem.NN) === -1;
+}
+
+export function isDuetGrid(grid: IGrid): grid is IDuetGrid {
+  return grid.findIndex((e) => e === DuetGridItem.NN) > -1;
 }
