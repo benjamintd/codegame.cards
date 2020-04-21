@@ -164,11 +164,7 @@ export const scoresSelector = createSelector(
   turnsSelector,
   gameSelector,
   playersSelector,
-  (
-    turns,
-    game,
-    players
-  ): { red: number; blue: number; duetA: number; duetB: number } => {
+  (turns, game, players): { red: number; blue: number; duet: number } => {
     // classic game score
     if (isClassicGame(game)) {
       const grid = gridSelector({ playerId: "", game }) as IClassicGrid;
@@ -183,7 +179,7 @@ export const scoresSelector = createSelector(
           }
           return acc;
         },
-        { red: 0, blue: 0, duetA: 0, duetB: 0 }
+        { red: 0, blue: 0, duet: 0 }
       );
     }
 
@@ -198,34 +194,32 @@ export const scoresSelector = createSelector(
                 -1 &&
               players[turn.from].team === "duetB"
             ) {
-              acc.duetB = acc.duetB + 1;
+              acc.duet = acc.duet + 1;
             } else if (
               [DuetGridItem.BG, DuetGridItem.NG].indexOf(grid[turn.value]) >
                 -1 &&
               players[turn.from].team === "duetA"
             ) {
-              acc.duetA = acc.duetA + 1;
+              acc.duet = acc.duet + 1;
             } else if (grid[turn.value] === DuetGridItem.GG) {
-              acc.duetA = acc.duetA + 1;
-              acc.duetB = acc.duetB + 1;
+              acc.duet = acc.duet + 1;
             }
           }
           return acc;
         },
-        { red: 0, blue: 0, duetA: 0, duetB: 0 }
+        { red: 0, blue: 0, duet: 0 }
       );
     }
 
     // default return for empty game
-    return { red: 0, blue: 0, duetA: 0, duetB: 0 };
+    return { red: 0, blue: 0, duet: 0 };
   }
 );
 
 export const maxScoresSelector = createSelector(gridSelector, (grid): {
   red: number;
   blue: number;
-  duetA: number;
-  duetB: number;
+  duet: number;
 } => {
   if (isClassicGrid(grid)) {
     return grid.reduce(
@@ -238,10 +232,10 @@ export const maxScoresSelector = createSelector(gridSelector, (grid): {
 
         return acc;
       },
-      { red: 0, blue: 0, duetA: 0, duetB: 0 }
+      { red: 0, blue: 0, duet: 0 }
     );
   } else {
-    return { red: 0, blue: 0, duetA: 9, duetB: 9 };
+    return { red: 0, blue: 0, duet: 15 };
   }
 });
 
@@ -288,10 +282,7 @@ export const gameOverSelector = createSelector(
 
     if (mode === "duet") {
       // all green cards have been played
-      if (
-        scores.duetA === maxScores.duetA &&
-        scores.duetB === maxScores.duetB
-      ) {
+      if (scores.duet === maxScores.duet) {
         return { over: true, message: "You won!" };
       }
 

@@ -53,14 +53,14 @@ export default () => {
               <Team
                 players={teams["duetA"]}
                 team="duetA"
-                score={scores["duetA"]}
-                maxScore={maxScores["duetA"]}
+                score={scores["duet"]}
+                maxScore={maxScores["duet"]}
               />
               <Team
                 players={teams["duetB"]}
                 team="duetB"
-                score={scores["duetB"]}
-                maxScore={maxScores["duetB"]}
+                score={scores["duet"]}
+                maxScore={maxScores["duet"]}
               />
             </>
           )}

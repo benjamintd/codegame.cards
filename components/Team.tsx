@@ -10,8 +10,8 @@ const Team = ({
 }: {
   players: IPlayer[] | undefined;
   team: ITeam;
-  score: number;
-  maxScore: number;
+  score?: number;
+  maxScore?: number;
 }) => {
   return (
     <div className="pb-1">
@@ -30,7 +30,7 @@ const Team = ({
           {formattedTeam[team]}
         </h3>
         <span className="text-sm font-bold">
-          {score}/{maxScore} cards
+          {maxScore && `${score}/${maxScore} cards`}
         </span>
       </div>
       <div className="px-2 py-1">

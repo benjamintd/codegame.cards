@@ -80,7 +80,6 @@ const Form = ({
           <option value="duet">Duet</option>
         </select>
       </div>
-      <p className="italic">duet mode is coming soon!</p>
     </form>
   );
 };

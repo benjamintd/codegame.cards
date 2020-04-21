@@ -69,10 +69,16 @@ const JoinGame = () => {
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-2 text-sm">
-          <Button color="dark-blue" onClick={() => onClick({ team: "duetA" })}>
+          <Button
+            color="dark-blue"
+            onClick={() => onClick({ team: "duetA", spymaster: true })}
+          >
             join side A
           </Button>
-          <Button color="blue" onClick={() => onClick({ team: "duetB" })}>
+          <Button
+            color="blue"
+            onClick={() => onClick({ team: "duetB", spymaster: true })}
+          >
             join side B
           </Button>
         </div>

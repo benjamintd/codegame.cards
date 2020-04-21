@@ -121,23 +121,11 @@ export function usePushTurn(
     const newGame = produce(game, (g) => {
       g.turns = g.turns || [];
 
-      if (isDuplicateTurn(turn, g.turns)) {
-        return;
-      }
       addTurnChat(turn, g);
       g.turns.push(turn);
     });
     network.updateGame(newGame);
   };
-}
-
-function isDuplicateTurn(turn: ITurn, turns: ITurn[]) {
-  if (turn.type === "click") {
-    if (turns.find((t) => t.type === "click" && t.value === turn.value)) {
-      return true;
-    }
-  }
-  return false;
 }
 
 function addTurnChat(turn: ITurn, game: IGame) {

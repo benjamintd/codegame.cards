@@ -13,6 +13,8 @@ import useNetwork from "../hooks/network";
 import classnames from "classnames";
 import produce from "immer";
 import { IPlayer } from "../lib/game";
+import { useState } from "react";
+import RulesModal from "./RulesModal";
 
 const ClaimSpymaster = () => {
   const gameView = useGameView();
@@ -23,6 +25,8 @@ const ClaimSpymaster = () => {
   const gameMode = useGameMode();
   const selfId = useSelfId();
   const maxScores = useMaxScores();
+
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const hasSpymaster = (team) =>
     Object.values(players).findIndex((p) => p.spymaster && p.team === team) >
@@ -76,10 +80,37 @@ const ClaimSpymaster = () => {
           )}
           <p className="pt-4">
             Click on a card or give a hint to start the game! The{" "}
-            {maxScores.red > maxScores.blue ? "red" : "blue"} team plays first.
+            {maxScores.red > maxScores.blue ? "red" : "blue"} team plays first.{" "}
+            <button
+              className="underline hover:text-gray-700"
+              onClick={() => setShowModal(true)}
+            >
+              See rules
+            </button>
           </p>
         </div>
-      ) : null}
+      ) : (
+        // duet game
+        <div className="mx-auto text-sm mt-2">
+          {!turnsWerePlayed && (
+            <p className="pt-4">
+              Click on a card or give a hint to start the game!{" "}
+              <button
+                className="underline hover:text-gray-700"
+                onClick={() => setShowModal(true)}
+              >
+                See rules
+              </button>
+            </p>
+          )}
+        </div>
+      )}
+
+      <RulesModal
+        open={showModal}
+        onClose={() => setShowModal(false)}
+        mode={gameMode}
+      />
     </div>
   );
 };
