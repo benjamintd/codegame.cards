@@ -26,6 +26,7 @@ import {
   lastHintselector,
   turnsSelector,
   gameOverSelector,
+  duetTurnsSelector,
 } from "../lib/selectors";
 
 export const GameViewContext = React.createContext(null);
@@ -78,6 +79,10 @@ export function useTurns(gameView: IGameView = useGameView()) {
 
 export function useGameOver(gameView: IGameView = useGameView()) {
   return gameOverSelector(gameView);
+}
+
+export function useDuetTurns(gameView: IGameView = useGameView()) {
+  return duetTurnsSelector(gameView);
 }
 
 export function useSendChat(

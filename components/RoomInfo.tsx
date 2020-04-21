@@ -13,6 +13,7 @@ import JoinGame from "./JoinGame";
 import ClaimSpymasterOrSwitchTeam from "./ClaimSpymasterOrSwitchTeam";
 import GameOver from "./GameOver";
 import Team from "./Team";
+import DuetScore from "./DuetScore";
 
 export default () => {
   const players = usePlayers();
@@ -68,6 +69,7 @@ export default () => {
       </div>
       {!selfPlayer && <JoinGame />}
       <ClaimSpymasterOrSwitchTeam />
+      <DuetScore />
       {gameOver.over && <GameOver />}
     </div>
   );

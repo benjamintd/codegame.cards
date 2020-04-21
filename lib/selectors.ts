@@ -245,6 +245,29 @@ export const lastHintselector = createSelector(turnsSelector, (turns: ITurn[]):
   return findLast(turns, (t) => t.type === "hint") as IHintTurn;
 });
 
+export const duetTurnsSelector = createSelector(
+  playersSelector,
+  turnsSelector,
+  gameModeSelector,
+  gridSelector,
+  (players, turns, mode, grid) => {
+    if (mode !== "duet") {
+      return 0;
+    }
+
+    return turns.filter((t) => {
+      if (t.type === "click") {
+        const color = getDuetClickTurnColor(t, players, grid);
+        if (color === Color.Neutral) {
+          return true;
+        }
+      } else if (t.type === "hint") {
+        return true;
+      }
+    }).length;
+  }
+);
+
 export const gameOverSelector = createSelector(
   playersSelector,
   turnsSelector,
@@ -252,13 +275,15 @@ export const gameOverSelector = createSelector(
   maxScoresSelector,
   gridSelector,
   gameModeSelector,
+  duetTurnsSelector,
   (
     players,
     turns,
     scores,
     maxScores,
     grid,
-    mode
+    mode,
+    duetTurns
   ): { over: boolean; winner?: ITeam; message?: string } => {
     if (mode === "classic") {
       for (const team of ["blue", "red"] as ITeam[]) {
@@ -304,17 +329,7 @@ export const gameOverSelector = createSelector(
       }
 
       // There were more than 9 turns + misclicks
-      const timerTurns = turns.filter((t) => {
-        if (t.type === "click") {
-          const color = getDuetClickTurnColor(t, players, grid);
-          if (color === Color.Neutral) {
-            return true;
-          }
-        } else if (t.type === "hint") {
-          return true;
-        }
-      }).length;
-      if (timerTurns >= 9) {
+      if (duetTurns >= 9) {
         return {
           over: true,
           message: "You ran out of time!",
