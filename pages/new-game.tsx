@@ -77,7 +77,7 @@ const Form = ({
           onChange={handleChange}
         >
           <option value="classic">Classic</option>
-          {/* <option value="duet">Duet</option> */}
+          <option value="duet">Duet</option>
         </select>
       </div>
       <p className="italic">duet mode is coming soon!</p>

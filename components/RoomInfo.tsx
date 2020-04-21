@@ -7,6 +7,7 @@ import {
   useScores,
   useMaxScores,
   useGameOver,
+  useGameMode,
 } from "../hooks/game";
 import JoinGame from "./JoinGame";
 import ClaimSpymasterOrSwitchTeam from "./ClaimSpymasterOrSwitchTeam";
@@ -15,6 +16,7 @@ import Team from "./Team";
 
 export default () => {
   const players = usePlayers();
+  const gameMode = useGameMode();
   const selfPlayer = useSelfPlayer();
   const scores = useScores();
   const maxScores = useMaxScores();
@@ -29,18 +31,39 @@ export default () => {
           In the room
         </h2>
         <div className="grid lg:grid-rows-2 lg:grid-cols-1 grid-cols-2 lg:gap-6 gap-2">
-          <Team
-            players={teams["red"]}
-            team="red"
-            score={scores["red"]}
-            maxScore={maxScores["red"]}
-          />
-          <Team
-            players={teams["blue"]}
-            team="blue"
-            score={scores["blue"]}
-            maxScore={maxScores["blue"]}
-          />
+          {gameMode === "classic" && (
+            <>
+              <Team
+                players={teams["red"]}
+                team="red"
+                score={scores["red"]}
+                maxScore={maxScores["red"]}
+              />
+              <Team
+                players={teams["blue"]}
+                team="blue"
+                score={scores["blue"]}
+                maxScore={maxScores["blue"]}
+              />
+            </>
+          )}
+
+          {gameMode === "duet" && (
+            <>
+              <Team
+                players={teams["duetA"]}
+                team="duetA"
+                score={scores["duetA"]}
+                maxScore={maxScores["duetA"]}
+              />
+              <Team
+                players={teams["duetB"]}
+                team="duetB"
+                score={scores["duetB"]}
+                maxScore={maxScores["duetB"]}
+              />
+            </>
+          )}
         </div>
       </div>
       {!selfPlayer && <JoinGame />}

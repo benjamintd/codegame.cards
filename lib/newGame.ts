@@ -10,13 +10,12 @@ import {
 } from "unique-names-generator";
 
 import {
-  IGame,
   ClassicGridItem,
   DuetGridItem,
   IGameOptions,
-  IGameMode,
   defaultOptions,
-  IGrid,
+  IClassicGrid,
+  IDuetGrid,
 } from "./game";
 
 const dictionnaries = {
@@ -26,65 +25,99 @@ const dictionnaries = {
 };
 
 export default (opts?: Partial<IGameOptions>) => {
-  const options: IGameOptions = {
+  let options: IGameOptions = {
     ...defaultOptions,
     ...opts,
   };
 
-  const randomWords = shuffle(
-    dictionnaries[options.language].split("\n")
-  ).slice(0, 25);
-  const randomStart = Math.random() < 0.5 ? "red" : "blue";
-  const game: IGame = {
-    words: randomWords,
-    options,
-    players: {},
-    status: "lobby",
-    grid: getGrid(options.mode, randomStart),
-    turns: [],
-    id: getId(),
-    createdAt: Date.now(),
-    playing: randomStart,
-    chat: [
-      {
-        playerId: "",
-        timestamp: Date.now(),
-        message: `The game was created. The ${randomStart} team starts.`,
-      },
-    ],
-  };
+  const words = shuffle(dictionnaries[options.language].split("\n")).slice(
+    0,
+    25
+  );
 
-  return game;
-};
+  const id = getId();
+  const createdAt = Date.now();
 
-function getGrid(mode: IGameMode, whoStarts: "red" | "blue"): IGrid {
-  const cardsCount = 25;
-  let grid = [];
+  if (options.mode === "classic") {
+    const randomStart = Math.random() < 0.5 ? "red" : "blue";
 
-  let counts;
-
-  if (mode === "classic") {
-    counts = {
-      [ClassicGridItem.Red]: [0, 8 + (whoStarts === "red" ? 1 : 0)],
-      [ClassicGridItem.Blue]: [0, 8 + (whoStarts === "blue" ? 1 : 0)],
-      [ClassicGridItem.Black]: [0, 1],
-      [ClassicGridItem.Neutral]: [0, 7],
-    };
-  } else if (mode === "duet") {
-    counts = {
-      [DuetGridItem.GB]: [0, 1],
-      [DuetGridItem.GN]: [0, 5],
-      [DuetGridItem.GG]: [0, 3],
-      [DuetGridItem.BG]: [0, 1],
-      [DuetGridItem.BB]: [0, 1],
-      [DuetGridItem.BN]: [0, 1],
-      [DuetGridItem.NG]: [0, 5],
-      [DuetGridItem.NB]: [0, 1],
-      [DuetGridItem.NN]: [0, 7],
+    return {
+      words,
+      options,
+      players: {},
+      grid: getClassicGrid(randomStart),
+      turns: [],
+      id,
+      createdAt,
+      chat: [
+        {
+          playerId: "",
+          timestamp: Date.now(),
+          message: `The game was created. The ${randomStart} team starts.`,
+        },
+      ],
     };
   }
-  const statii = Object.keys(counts);
 
+  if (options.mode === "duet") {
+    return {
+      words,
+      options,
+      players: {},
+      grid: getDuetGrid(),
+      turns: [],
+      id,
+      createdAt,
+      chat: [
+        {
+          playerId: "",
+          timestamp: Date.now(),
+          message: `The game was created. Give a hint to get started.`,
+        },
+      ],
+    };
+  }
+};
+
+function getClassicGrid(whoStarts: "red" | "blue"): IClassicGrid {
+  const counts = {
+    [ClassicGridItem.Red]: [0, 8 + (whoStarts === "red" ? 1 : 0)],
+    [ClassicGridItem.Blue]: [0, 8 + (whoStarts === "blue" ? 1 : 0)],
+    [ClassicGridItem.Black]: [0, 1],
+    [ClassicGridItem.Neutral]: [0, 7],
+  };
+
+  return getRandomGrid(counts);
+}
+
+function getDuetGrid(): IDuetGrid {
+  const counts = {
+    [DuetGridItem.GB]: [0, 1],
+    [DuetGridItem.GN]: [0, 5],
+    [DuetGridItem.GG]: [0, 3],
+    [DuetGridItem.BG]: [0, 1],
+    [DuetGridItem.BB]: [0, 1],
+    [DuetGridItem.BN]: [0, 1],
+    [DuetGridItem.NG]: [0, 5],
+    [DuetGridItem.NB]: [0, 1],
+    [DuetGridItem.NN]: [0, 7],
+  };
+
+  return getRandomGrid(counts);
+}
+
+const getId = () =>
+  uniqueNamesGenerator({
+    dictionaries: [adjectives, adjectives, colors, animals],
+    length: 4,
+    separator: "",
+    style: "capital",
+  });
+
+const getRandomGrid = (counts) => {
+  const cardsCount = 25;
+  const statii = Object.keys(counts);
+  let grid = [];
   for (let i = 0; i < cardsCount; i++) {
     let random = Math.random();
 
@@ -99,14 +132,5 @@ function getGrid(mode: IGameMode, whoStarts: "red" | "blue"): IGrid {
       }
     }
   }
-
   return grid;
-}
-
-const getId = () =>
-  uniqueNamesGenerator({
-    dictionaries: [adjectives, adjectives, colors, animals],
-    length: 4,
-    separator: "",
-    style: "capital",
-  });
+};

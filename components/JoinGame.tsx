@@ -39,7 +39,6 @@ const JoinGame = () => {
         team,
         spymaster: false,
         clickedOn: -1,
-        host: Object.keys(players).length === 0 ? true : false,
       });
     } else {
       setWarnInput(true);
@@ -69,9 +68,13 @@ const JoinGame = () => {
           </Button>
         </div>
       ) : (
-        <div>
-          {/* todo handle duet mode */}
-          <Button>join game</Button>
+        <div className="grid grid-cols-2 gap-2 text-sm">
+          <Button color="dark-blue" onClick={() => onClick({ team: "duetA" })}>
+            join side A
+          </Button>
+          <Button color="blue" onClick={() => onClick({ team: "duetB" })}>
+            join side B
+          </Button>
         </div>
       )}
       <style jsx>{`
