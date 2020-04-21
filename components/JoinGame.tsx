@@ -27,7 +27,7 @@ const JoinGame = () => {
     setName(e.currentTarget.value);
   };
 
-  const onClick = ({ team }: Partial<IPlayer>) => {
+  const onClick = ({ team, spymaster = false }: Partial<IPlayer>) => {
     if (name) {
       setLocalStoragePlayer({
         name,
@@ -37,7 +37,7 @@ const JoinGame = () => {
         name,
         id: selfId,
         team,
-        spymaster: false,
+        spymaster,
         clickedOn: -1,
       });
     } else {
