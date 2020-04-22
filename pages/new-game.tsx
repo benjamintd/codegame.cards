@@ -60,9 +60,10 @@ const Form = ({
           value={options.language}
           onChange={handleChange}
         >
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="de">Deutsch</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="es">🇪🇸 Español</option>
         </select>
       </div>
       <div className="mb-2 w-64 flex justify-between">

@@ -1,7 +1,8 @@
 import dictionnaryFr from "./dictionnary-fr";
 import dictionnaryEn from "./dictionnary-en";
 import dictionnaryDe from "./dictionnary-de";
-import { shuffle } from "lodash";
+import dictionnaryEs from "./dictionnary-es";
+
 import {
   uniqueNamesGenerator,
   adjectives,
@@ -22,6 +23,7 @@ const dictionnaries = {
   en: dictionnaryEn,
   fr: dictionnaryFr,
   de: dictionnaryDe,
+  es: dictionnaryEs,
 };
 
 export default (opts?: Partial<IGameOptions>) => {
@@ -30,10 +32,7 @@ export default (opts?: Partial<IGameOptions>) => {
     ...opts,
   };
 
-  const words = shuffle(dictionnaries[options.language].split("\n")).slice(
-    0,
-    25
-  );
+  const words = getRandom(dictionnaries[options.language].split("\n"), 25);
 
   const id = getId();
   const createdAt = Date.now();
@@ -134,3 +133,17 @@ const getRandomGrid = (counts) => {
   }
   return grid;
 };
+
+function getRandom(arr, n) {
+  var result = new Array(n),
+    len = arr.length,
+    taken = new Array(len);
+  if (n > len)
+    throw new RangeError("getRandom: more elements taken than available");
+  while (n--) {
+    var x = Math.floor(Math.random() * len);
+    result[n] = arr[x in taken ? taken[x] : x];
+    taken[x] = --len in taken ? taken[len] : len;
+  }
+  return result;
+}

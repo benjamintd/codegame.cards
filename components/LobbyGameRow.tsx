@@ -27,6 +27,8 @@ const getFlag = (language: ILanguage) => {
       return "🇫🇷";
     case "de":
       return "🇩🇪";
+    case "es":
+      return "🇪🇸";
     default:
       // why not.
       return "🇺🇸";
