@@ -70,4 +70,12 @@ export default class FirebaseNetwork implements Network {
   async updateGame(game: IGame) {
     await this.db.ref(`/games/${game.id}`).set(game);
   }
+
+  async updateKey(key: string, value: any) {
+    await this.db.ref().update({ [key]: value });
+  }
+
+  async update(obj) {
+    await this.db.ref().update(obj);
+  }
 }

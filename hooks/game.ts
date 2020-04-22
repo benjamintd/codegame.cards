@@ -94,7 +94,8 @@ export function useSendChat(
     const newGame = produce(game, (g) => {
       g.chat.push(chat);
     });
-    network.updateGame(newGame);
+
+    network.updateKey(`/games/${newGame.id}/chat`, newGame.chat);
   };
 }
 
@@ -129,7 +130,11 @@ export function usePushTurn(
       addTurnChat(turn, g);
       g.turns.push(turn);
     });
-    network.updateGame(newGame);
+
+    network.update({
+      [`/games/${newGame.id}/chat`]: newGame.chat,
+      [`/games/${newGame.id}/turns`]: newGame.turns,
+    });
   };
 }
 
@@ -181,10 +186,9 @@ export function useNewGame(
       await network.updateGame(game);
 
       if (options?.forward) {
-        await network.updateGame(
-          produce(gameView.game, (draftGame: IGame) => {
-            draftGame.nextGameId = game.id;
-          })
+        await network.updateKey(
+          `/games/${gameView.game.id}/nextGameId`,
+          game.id
         );
       }
 

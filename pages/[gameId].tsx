@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useReducer } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 import useNetwork from "../hooks/network";
 import { IGame, IGameView } from "../lib/game";
@@ -11,6 +10,7 @@ import { GameViewContext } from "../hooks/game";
 import Loading from "../components/Loading";
 import { AnimatePresence } from "framer-motion";
 import playSounds from "../lib/playSounds";
+import shortid from "shortid";
 
 export default () => {
   const network = useNetwork();
@@ -34,7 +34,9 @@ export default () => {
   };
 
   const [game, setGame] = useReducer(reducer, null);
-  const [player, setPlayer] = useLocalStorage("player", { id: uuidv4() });
+  const [player, setPlayer] = useLocalStorage("localPlayer", {
+    id: shortid.generate(),
+  });
   const [gameView, setGameView] = useState<IGameView>({
     game,
     playerId: player.id,
