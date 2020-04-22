@@ -19,7 +19,10 @@ export default (newGame: IGame, game: IGame) => {
     return playSound("/reveal.wav");
   }
 
-  if (game.chat?.length !== newGame.chat?.length) {
+  if (
+    Object.values(game.chat || []).length !==
+    Object.values(newGame.chat || []).length
+  ) {
     return playSound("/chat.wav");
   }
 };
