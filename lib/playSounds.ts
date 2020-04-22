@@ -1,6 +1,6 @@
 import { IGame } from "./game";
 
-export default (newGame: IGame, game: IGame) => {
+export default (newGame: IGame, game: IGame): boolean => {
   if (!game || !newGame || game.id !== newGame.id) {
     return;
   }
@@ -9,22 +9,27 @@ export default (newGame: IGame, game: IGame) => {
     Object.keys(game.players || {}).length !==
     Object.keys(newGame.players || {}).length
   ) {
-    return playSound("/new-player.wav");
+    playSound("/new-player.wav");
+    return true;
   }
 
   if (
     Object.values(game.turns || []).filter((t) => t.type === "click").length !==
     Object.values(newGame.turns || []).filter((t) => t.type === "click").length
   ) {
-    return playSound("/reveal.wav");
+    playSound("/reveal.wav");
+    return true;
   }
 
   if (
     Object.values(game.chat || []).length <
     Object.values(newGame.chat || []).length
   ) {
-    return playSound("/chat.wav");
+    playSound("/chat.wav");
+    return true;
   }
+
+  return false;
 };
 
 const playSound = (path) => {
