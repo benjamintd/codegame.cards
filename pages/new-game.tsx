@@ -2,6 +2,7 @@ import Button from "../components/Button";
 import { IGameOptions, defaultOptions } from "../lib/game";
 import { useState } from "react";
 import { useNewGame } from "../hooks/game";
+import classnames from "classnames";
 
 export default () => {
   const newGame = useNewGame();
@@ -43,44 +44,72 @@ const Form = ({
   options: IGameOptions;
   setOptions: (options: IGameOptions) => void;
 }) => {
-  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const name = e.currentTarget.name;
-    setOptions({ ...options, [name]: e.currentTarget.value });
-  }
   return (
     <form className={className}>
-      <div className="mb-2 w-64 flex justify-between">
-        <label htmlFor="language" className="font-bold mr-2">
-          Dictionnary
-        </label>
-        <select
-          name="language"
-          id="language"
-          className="border bg-white w-32"
-          value={options.language}
-          onChange={handleChange}
-        >
-          <option value="en">🇬🇧 English</option>
-          <option value="fr">🇫🇷 Français</option>
-          <option value="de">🇩🇪 Deutsch</option>
-          <option value="es">🇪🇸 Español</option>
-        </select>
+      <div className="mb-2 w-64">
+        <h2 className="mb-2">Dictionnary</h2>
+        <MultipleChoice
+          options={[
+            {
+              label: "🇬🇧 English",
+              value: "en",
+            },
+            {
+              label: "🇫🇷 Français",
+              value: "fr",
+            },
+            {
+              label: "🇩🇪 Deutsch",
+              value: "de",
+            },
+            {
+              label: "🇪🇸 Español",
+              value: "es",
+            },
+          ]}
+          onClick={(language) => setOptions({ ...options, language })}
+          selected={options.language}
+        />
       </div>
-      <div className="mb-2 w-64 flex justify-between">
-        <label htmlFor="mode" className="font-bold mr-2">
-          Mode
-        </label>
-        <select
-          name="mode"
-          id="mode"
-          className="border bg-white w-32"
-          value={options.mode}
-          onChange={handleChange}
-        >
-          <option value="classic">Classic</option>
-          <option value="duet">Duet</option>
-        </select>
+      <div className="mb-2 w-64">
+        <h2 className="mb-2">Mode</h2>
+        <MultipleChoice
+          options={[
+            { value: "duet", label: "👥 Duet" },
+            { value: "classic", label: "👨‍👩‍👧‍👦 Classic" },
+          ]}
+          onClick={(mode) => setOptions({ ...options, mode })}
+          selected={options.mode}
+        />
       </div>
     </form>
+  );
+};
+
+interface IMultipleChoice {
+  options: Array<{ value: string; label: string }>;
+  onChange: (value: string) => void;
+  selected: string;
+}
+
+const MultipleChoice = ({ options, onClick, selected }) => {
+  return (
+    <div className="grid gap-2 grid-cols-2">
+      {options.map((opt) => (
+        <div
+          className={classnames(
+            "rounded px-2 py-1 cursor-pointer w-32 text-center font-bold text-white border-b-4 ",
+            {
+              "bg-green-600 border-green-800": selected === opt.value,
+              "bg-blue-600 border-blue-800 hover:bg-blue-500 hover:border-blue-700":
+                selected !== opt.value,
+            }
+          )}
+          onClick={() => onClick(opt.value)}
+        >
+          {opt.label}
+        </div>
+      ))}
+    </div>
   );
 };
