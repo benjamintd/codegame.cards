@@ -21,7 +21,9 @@ const Home = () => {
           const players = Object.values(g.players || {});
 
           if (players.length === 0) {
-            return null;
+            return false;
+          } else {
+            return true;
           }
         })
       );
