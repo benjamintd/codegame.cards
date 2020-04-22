@@ -16,7 +16,15 @@ const Home = () => {
 
   useEffect(() => {
     network.getPublicGames((games) => {
-      setGames(games);
+      setGames(
+        games.filter((g) => {
+          const players = Object.values(g.players || {});
+
+          if (players.length === 0) {
+            return null;
+          }
+        })
+      );
     });
   }, []);
 

@@ -3,12 +3,6 @@ import { IGame, ILanguage } from "../lib/game";
 import Link from "next/link";
 
 export default React.memo(({ game }: { game: IGame }) => {
-  const players = Object.values(game.players || {});
-
-  if (players.length === 0) {
-    return null;
-  }
-
   return (
     <Link href="/[gameId]" as={`/${game.id}`}>
       <div className="border-b-4 border-gray-300 border border-gray-600 rounded p-2 cursor-pointer w-84 hover:bg-white hover:shadow-md">
@@ -22,7 +16,9 @@ export default React.memo(({ game }: { game: IGame }) => {
         {game.players && (
           <div className="mb-2">
             👤
-            {players.map((p) => p.name).join(", ")}
+            {Object.values(game.players)
+              .map((p) => p.name)
+              .join(", ")}
           </div>
         )}
         <div className="inline-block rounded-full border border-gray-600 text-gray-600 px-2">
