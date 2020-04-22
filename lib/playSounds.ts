@@ -20,7 +20,7 @@ export default (newGame: IGame, game: IGame) => {
   }
 
   if (
-    Object.values(game.chat || []).length !==
+    Object.values(game.chat || []).length <
     Object.values(newGame.chat || []).length
   ) {
     return playSound("/chat.wav");

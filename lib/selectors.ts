@@ -22,8 +22,8 @@ import {
 import { createSelector } from "reselect";
 import { findLast } from "lodash";
 
-export const chatSelector = (gameView: IGameView): IChatMessage[] =>
-  Object.values(gameView.game?.chat || []);
+export const chatSelector = (gameView: IGameView): string[] =>
+  Object.keys(gameView.game?.chat || {});
 
 export const gridSelector = (gameView: IGameView): IClassicGrid | IDuetGrid => {
   if (isClassicGame(gameView.game)) {

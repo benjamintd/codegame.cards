@@ -9,7 +9,7 @@ import {
   isDuetGame,
   DuetGridItem,
 } from "../lib/game";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import produce from "immer";
 import useNetwork, { Network } from "./network";
 import { shuffle } from "lodash";
@@ -86,6 +86,23 @@ export function useDuetTurns(gameView: IGameView = useGameView()) {
   return duetTurnsSelector(gameView);
 }
 
+export function useChatMessage(id: string, network: Network = useNetwork()) {
+  const [message, setMessage] = useState<IChatMessage>(null);
+
+  useEffect(() => {
+    if (!message) {
+      network.db.ref(`/chats/${id}`).once("value", (event) => {
+        let chat = event.val();
+        if (chat) {
+          setMessage(chat);
+        }
+      });
+    }
+  }, [message, id]);
+
+  return message;
+}
+
 export function useSendChat(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
@@ -93,7 +110,8 @@ export function useSendChat(
   return async (chat: IChatMessage) => {
     const game = gameView.game;
     const chatRef = network.db.ref(`/games/${game.id}/chat`).push();
-    await chatRef.set(chat);
+    await network.updateKey(`/chats/${(await chatRef).key}`, chat);
+    await chatRef.set(true);
   };
 }
 
@@ -125,13 +143,17 @@ export function usePushTurn(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
 ) {
-  const sendChat = useSendChat(gameView, network);
-
   return async (turn: ITurn) => {
     const game = gameView.game;
-    sendChat(getTurnChat(turn, game));
+    const chat = getTurnChat(turn, game);
+    const chatRef = network.db.ref(`/games/${game.id}/chat`).push();
     const turnRef = network.db.ref(`/games/${game.id}/turns`).push();
-    await turnRef.set(turn);
+
+    await network.update({
+      [`/chats/${(await chatRef).key}`]: chat,
+      [`/games/${game.id}/chat/${chatRef.key}`]: true,
+      [`/games/${game.id}/turns/${turnRef.key}`]: turn,
+    });
   };
 }
 
@@ -181,6 +203,14 @@ export function useNewGame(
         body: JSON.stringify(gameOptions),
       }).then((res) => res.json());
       await network.updateGame(game);
+
+      const sendChat = useSendChat({ playerId: "", game: game }, network);
+
+      await sendChat({
+        playerId: "",
+        timestamp: Date.now(),
+        message: `The game was created. Give a hint to get started.`,
+      });
 
       if (options?.forward) {
         await network.updateKey(

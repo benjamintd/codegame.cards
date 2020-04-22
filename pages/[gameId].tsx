@@ -44,9 +44,14 @@ export default () => {
 
   // subscribe to game updates
   useEffect(() => {
-    network.subscribeToGame(router.query.gameId as string, (newGame) => {
-      setGame(newGame);
-    });
+    if (network) {
+      return network.subscribeToGame(
+        router.query.gameId as string,
+        (newGame) => {
+          setGame(newGame);
+        }
+      );
+    }
   }, [network]);
 
   // update the game view when the game or the player changes

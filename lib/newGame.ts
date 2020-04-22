@@ -48,13 +48,7 @@ export default (opts?: Partial<IGameOptions>) => {
       turns: [],
       id,
       createdAt,
-      chat: [
-        {
-          playerId: "",
-          timestamp: Date.now(),
-          message: `The game was created. The ${randomStart} team starts.`,
-        },
-      ],
+      chat: [],
     };
   }
 
@@ -67,13 +61,7 @@ export default (opts?: Partial<IGameOptions>) => {
       turns: [],
       id,
       createdAt,
-      chat: [
-        {
-          playerId: "",
-          timestamp: Date.now(),
-          message: `The game was created. Give a hint to get started.`,
-        },
-      ],
+      chat: [],
     };
   }
 };
