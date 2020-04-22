@@ -15,11 +15,17 @@ import shortid from "shortid";
 export default () => {
   const network = useNetwork();
   const router = useRouter();
+  const [lastSound, setLastSound] = useState<number>(0);
 
   // using this for side effects that depend on the previous game state
   // e.g. sounds or forwarding the player to the next game
   const reducer = (game: IGame, newGame: IGame): IGame => {
-    playSounds(newGame, game);
+    if (Date.now() - lastSound > 20) {
+      const soundWasPlayed = playSounds(newGame, game);
+      if (soundWasPlayed) {
+        setLastSound(Date.now());
+      }
+    }
 
     if (
       game &&
