@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import useNetwork from "../hooks/network";
 import { IGame, IGameMode } from "../lib/game";
@@ -13,9 +13,12 @@ const Home = () => {
   const [games, setGames] = useState<IGame[]>([]);
   const [seeMore, setSeeMore] = useState<boolean>(false);
   const [rulesMode, setRulesMode] = useState<IGameMode>("classic");
-  network.getPublicGames((games) => {
-    setGames(games);
-  });
+
+  useEffect(() => {
+    network.getPublicGames((games) => {
+      setGames(games);
+    });
+  }, []);
 
   return (
     <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">

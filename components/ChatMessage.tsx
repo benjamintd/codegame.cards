@@ -2,22 +2,34 @@ import React from "react";
 import { IChatMessage, IPlayer } from "../lib/game";
 import classnames from "classnames";
 import { motion } from "framer-motion";
+import { useChatMessage, usePlayers } from "../hooks/game";
 
-export default (props: { chat: IChatMessage; player: IPlayer }) => {
+export default React.memo(({ id }: { id: string }) => {
+  const chat: IChatMessage | null = useChatMessage(id);
+  const players = usePlayers();
+  if (!chat) {
+    return null;
+  }
+
+  const player = players[chat.playerId];
+
   return (
     <motion.div
       className="px-2 pb-1"
       initial={{ y: 50 }}
-      animate={{ y: 0, transition: { stiffness: 2, duration: 0.2 } }}
+      animate={{
+        y: 0,
+        transition: { stiffness: 2, duration: 0.3 },
+      }}
     >
-      {props.player ? (
-        <PlayerChatMessage {...props} />
+      {player ? (
+        <PlayerChatMessage chat={chat} player={player} />
       ) : (
-        <SystemChatMessage chat={props.chat} />
+        <SystemChatMessage chat={chat} />
       )}
     </motion.div>
   );
-};
+});
 
 const PlayerChatMessage = ({
   chat,

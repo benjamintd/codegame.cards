@@ -46,17 +46,6 @@ export default class FirebaseNetwork implements Network {
     });
   }
 
-  subscribeToOnGoingGames(callback: GamesHandler) {
-    const ref = this.db.ref("/games");
-
-    ref.on("value", (event) => {
-      const games = Object.values(event.val() || {});
-      callback(games as IGame[]);
-    });
-
-    return () => ref.off();
-  }
-
   subscribeToGame(gameId: string, callback: GameHandler) {
     const ref = this.db.ref(`/games/${gameId}`);
 
@@ -69,5 +58,13 @@ export default class FirebaseNetwork implements Network {
 
   async updateGame(game: IGame) {
     await this.db.ref(`/games/${game.id}`).set(game);
+  }
+
+  async updateKey(key: string, value: any) {
+    await this.db.ref().update({ [key]: value });
+  }
+
+  async update(obj) {
+    await this.db.ref().update(obj);
   }
 }

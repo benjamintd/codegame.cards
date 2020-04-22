@@ -12,7 +12,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 const JoinGame = () => {
   const [localStoragePlayer, setLocalStoragePlayer] = useLocalStorage(
-    "player",
+    "localPlayer",
     null
   );
   const players = usePlayers();

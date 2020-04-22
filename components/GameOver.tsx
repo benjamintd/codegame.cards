@@ -22,7 +22,7 @@ export default () => {
       </p>
 
       <Button
-        className="mr-2"
+        className="mr-2 mb-2"
         onClick={() => {
           if (!gameView.game.nextGameId) {
             newGame(gameView.game.options, { forward: true });
@@ -35,7 +35,9 @@ export default () => {
       </Button>
       <Link href="/">
         <a>
-          <Button color="neutral">Back to lobby</Button>
+          <Button className="mb-2" color="neutral">
+            Back to lobby
+          </Button>
         </a>
       </Link>
     </div>

@@ -25,9 +25,9 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "reselect": "^4.0.0",
+    "shortid": "^2.2.15",
     "tailwindcss": "^1.2.0",
-    "unique-names-generator": "^4.2.0",
-    "uuid": "^7.0.3"
+    "unique-names-generator": "^4.2.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.34",

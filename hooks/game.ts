@@ -9,7 +9,7 @@ import {
   isDuetGame,
   DuetGridItem,
 } from "../lib/game";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import produce from "immer";
 import useNetwork, { Network } from "./network";
 import { shuffle } from "lodash";
@@ -28,6 +28,7 @@ import {
   gameOverSelector,
   duetTurnsSelector,
 } from "../lib/selectors";
+import FirebaseNetwork from "./firebase";
 
 export const GameViewContext = React.createContext(null);
 
@@ -85,16 +86,32 @@ export function useDuetTurns(gameView: IGameView = useGameView()) {
   return duetTurnsSelector(gameView);
 }
 
+export function useChatMessage(id: string, network: Network = useNetwork()) {
+  const [message, setMessage] = useState<IChatMessage>(null);
+
+  useEffect(() => {
+    if (!message) {
+      network.db.ref(`/chats/${id}`).once("value", (event) => {
+        let chat = event.val();
+        if (chat) {
+          setMessage(chat);
+        }
+      });
+    }
+  }, [message, id]);
+
+  return message;
+}
+
 export function useSendChat(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
 ) {
-  return (chat: IChatMessage) => {
+  return async (chat: IChatMessage) => {
     const game = gameView.game;
-    const newGame = produce(game, (g) => {
-      g.chat.push(chat);
-    });
-    network.updateGame(newGame);
+    const chatRef = network.db.ref(`/games/${game.id}/chat`).push();
+    await network.updateKey(`/chats/${(await chatRef).key}`, chat);
+    await chatRef.set(true);
   };
 }
 
@@ -102,18 +119,23 @@ export function useAddPlayer(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
 ) {
-  return (player: IPlayer) => {
+  const sendChat = useSendChat(gameView, network);
+
+  return async (player: IPlayer) => {
     const game = gameView.game;
+
+    await sendChat({
+      playerId: "",
+      timestamp: Date.now(),
+      message: `${player.name} just joined!`,
+    });
+
     const newGame = produce(game, (g) => {
       g.players = g.players || {};
       g.players[player.id] = player;
-      g.chat.push({
-        playerId: "",
-        timestamp: Date.now(),
-        message: `${player.name} just joined!`,
-      });
     });
-    network.updateGame(newGame);
+
+    await network.updateGame(newGame);
   };
 }
 
@@ -121,19 +143,21 @@ export function usePushTurn(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
 ) {
-  return (turn: ITurn) => {
+  return async (turn: ITurn) => {
     const game = gameView.game;
-    const newGame = produce(game, (g) => {
-      g.turns = g.turns || [];
+    const chat = getTurnChat(turn, game);
+    const chatRef = network.db.ref(`/games/${game.id}/chat`).push();
+    const turnRef = network.db.ref(`/games/${game.id}/turns`).push();
 
-      addTurnChat(turn, g);
-      g.turns.push(turn);
+    await network.update({
+      [`/chats/${(await chatRef).key}`]: chat,
+      [`/games/${game.id}/chat/${chatRef.key}`]: true,
+      [`/games/${game.id}/turns/${turnRef.key}`]: turn,
     });
-    network.updateGame(newGame);
   };
 }
 
-function addTurnChat(turn: ITurn, game: IGame) {
+function getTurnChat(turn: ITurn, game: IGame) {
   if (turn.type === "click") {
     const player = game.players[turn.from];
     const word = game.words[turn.value];
@@ -148,20 +172,20 @@ function addTurnChat(turn: ITurn, game: IGame) {
         reaction = getDuetReaction(color, player);
       }
 
-      game.chat.push({
+      return {
         playerId: "",
         timestamp: Date.now(),
         message: `${player.name} clicked on ${word}. ${reaction}`,
-      });
+      };
     }
   } else {
     if (turn.type === "hint") {
-      game.chat.push({
+      return {
         playerId: turn.from,
         timestamp: Date.now(),
         message: turn.hint,
         format: "font-bold",
-      });
+      };
     }
   }
 }
@@ -180,11 +204,18 @@ export function useNewGame(
       }).then((res) => res.json());
       await network.updateGame(game);
 
+      const sendChat = useSendChat({ playerId: "", game: game }, network);
+
+      await sendChat({
+        playerId: "",
+        timestamp: Date.now(),
+        message: `The game was created. Give a hint to get started.`,
+      });
+
       if (options?.forward) {
-        await network.updateGame(
-          produce(gameView.game, (draftGame: IGame) => {
-            draftGame.nextGameId = game.id;
-          })
+        await network.updateKey(
+          `/games/${gameView.game.id}/nextGameId`,
+          game.id
         );
       }
 

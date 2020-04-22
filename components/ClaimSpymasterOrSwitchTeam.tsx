@@ -64,7 +64,7 @@ const ClaimSpymaster = () => {
           )}
 
           {!turnsWerePlayed && !selfPlayer.spymaster && (
-            <span
+            <div
               onClick={() =>
                 onClick({
                   team: selfPlayer.team === "red" ? "blue" : "red",
@@ -76,7 +76,7 @@ const ClaimSpymaster = () => {
               })}
             >
               switch teams
-            </span>
+            </div>
           )}
           <p className="pt-4">
             Click on a card or give a hint to start the game! The{" "}

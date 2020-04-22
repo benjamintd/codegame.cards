@@ -13,13 +13,16 @@ export default (newGame: IGame, game: IGame) => {
   }
 
   if (
-    (game.turns || []).filter((t) => t.type === "click").length !==
-    (newGame.turns || []).filter((t) => t.type === "click").length
+    Object.values(game.turns || []).filter((t) => t.type === "click").length !==
+    Object.values(newGame.turns || []).filter((t) => t.type === "click").length
   ) {
     return playSound("/reveal.wav");
   }
 
-  if (game.chat?.length !== newGame.chat?.length) {
+  if (
+    Object.values(game.chat || []).length <
+    Object.values(newGame.chat || []).length
+  ) {
     return playSound("/chat.wav");
   }
 };
