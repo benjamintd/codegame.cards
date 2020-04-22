@@ -4,6 +4,7 @@ import {
   usePushTurn,
   useSelfPlayer,
   useLastHint,
+  useGameMode,
 } from "../hooks/game";
 import { ICardView } from "../lib/game";
 import Card from "./Card";
@@ -13,6 +14,7 @@ export default () => {
   const boardView = useBoardView();
   const pushTurn = usePushTurn();
   const lastHint = useLastHint();
+  const mode = useGameMode();
 
   return (
     <div className="w-full lg:my-auto">
@@ -28,6 +30,7 @@ export default () => {
               cardView={w}
               index={i}
               key={i}
+              mode={mode}
             />
           );
         })}
