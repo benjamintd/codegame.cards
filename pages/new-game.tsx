@@ -97,6 +97,7 @@ const MultipleChoice = ({ options, onClick, selected }) => {
     <div className="grid gap-2 grid-cols-2">
       {options.map((opt) => (
         <div
+          key={opt.value}
           className={classnames(
             "rounded px-2 py-1 cursor-pointer w-32 text-center font-bold text-white border-b-4 ",
             {

@@ -45,7 +45,6 @@ export default () => {
   // subscribe to game updates
   useEffect(() => {
     network.subscribeToGame(router.query.gameId as string, (newGame) => {
-      playSounds(newGame, game);
       setGame(newGame);
     });
   }, [network]);

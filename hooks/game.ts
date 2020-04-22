@@ -28,6 +28,7 @@ import {
   gameOverSelector,
   duetTurnsSelector,
 } from "../lib/selectors";
+import FirebaseNetwork from "./firebase";
 
 export const GameViewContext = React.createContext(null);
 
@@ -89,13 +90,10 @@ export function useSendChat(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
 ) {
-  return (chat: IChatMessage) => {
+  return async (chat: IChatMessage) => {
     const game = gameView.game;
-    const newGame = produce(game, (g) => {
-      g.chat.push(chat);
-    });
-
-    network.updateKey(`/games/${newGame.id}/chat`, newGame.chat);
+    const chatRef = network.db.ref(`/games/${game.id}/chat`).push();
+    await chatRef.set(chat);
   };
 }
 
@@ -103,18 +101,23 @@ export function useAddPlayer(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
 ) {
-  return (player: IPlayer) => {
+  const sendChat = useSendChat(gameView, network);
+
+  return async (player: IPlayer) => {
     const game = gameView.game;
+
+    await sendChat({
+      playerId: "",
+      timestamp: Date.now(),
+      message: `${player.name} just joined!`,
+    });
+
     const newGame = produce(game, (g) => {
       g.players = g.players || {};
       g.players[player.id] = player;
-      g.chat.push({
-        playerId: "",
-        timestamp: Date.now(),
-        message: `${player.name} just joined!`,
-      });
     });
-    network.updateGame(newGame);
+
+    await network.updateGame(newGame);
   };
 }
 
@@ -122,23 +125,17 @@ export function usePushTurn(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
 ) {
-  return (turn: ITurn) => {
+  const sendChat = useSendChat(gameView, network);
+
+  return async (turn: ITurn) => {
     const game = gameView.game;
-    const newGame = produce(game, (g) => {
-      g.turns = g.turns || [];
-
-      addTurnChat(turn, g);
-      g.turns.push(turn);
-    });
-
-    network.update({
-      [`/games/${newGame.id}/chat`]: newGame.chat,
-      [`/games/${newGame.id}/turns`]: newGame.turns,
-    });
+    sendChat(getTurnChat(turn, game));
+    const turnRef = network.db.ref(`/games/${game.id}/turns`).push();
+    await turnRef.set(turn);
   };
 }
 
-function addTurnChat(turn: ITurn, game: IGame) {
+function getTurnChat(turn: ITurn, game: IGame) {
   if (turn.type === "click") {
     const player = game.players[turn.from];
     const word = game.words[turn.value];
@@ -153,20 +150,20 @@ function addTurnChat(turn: ITurn, game: IGame) {
         reaction = getDuetReaction(color, player);
       }
 
-      game.chat.push({
+      return {
         playerId: "",
         timestamp: Date.now(),
         message: `${player.name} clicked on ${word}. ${reaction}`,
-      });
+      };
     }
   } else {
     if (turn.type === "hint") {
-      game.chat.push({
+      return {
         playerId: turn.from,
         timestamp: Date.now(),
         message: turn.hint,
         format: "font-bold",
-      });
+      };
     }
   }
 }

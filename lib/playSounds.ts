@@ -13,8 +13,8 @@ export default (newGame: IGame, game: IGame) => {
   }
 
   if (
-    (game.turns || []).filter((t) => t.type === "click").length !==
-    (newGame.turns || []).filter((t) => t.type === "click").length
+    Object.values(game.turns || []).filter((t) => t.type === "click").length !==
+    Object.values(newGame.turns || []).filter((t) => t.type === "click").length
   ) {
     return playSound("/reveal.wav");
   }

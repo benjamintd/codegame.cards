@@ -46,17 +46,6 @@ export default class FirebaseNetwork implements Network {
     });
   }
 
-  subscribeToOnGoingGames(callback: GamesHandler) {
-    const ref = this.db.ref("/games");
-
-    ref.on("value", (event) => {
-      const games = Object.values(event.val() || {});
-      callback(games as IGame[]);
-    });
-
-    return () => ref.off();
-  }
-
   subscribeToGame(gameId: string, callback: GameHandler) {
     const ref = this.db.ref(`/games/${gameId}`);
 

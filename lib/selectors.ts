@@ -23,7 +23,7 @@ import { createSelector } from "reselect";
 import { findLast } from "lodash";
 
 export const chatSelector = (gameView: IGameView): IChatMessage[] =>
-  gameView.game?.chat || [];
+  Object.values(gameView.game?.chat || []);
 
 export const gridSelector = (gameView: IGameView): IClassicGrid | IDuetGrid => {
   if (isClassicGame(gameView.game)) {
@@ -41,7 +41,7 @@ export const wordsSelector = (gameView: IGameView): string[] =>
   gameView.game?.words || [];
 
 export const turnsSelector = (gameView: IGameView): ITurn[] =>
-  gameView.game?.turns || [];
+  Object.values(gameView.game?.turns || []);
 
 export const playersSelector = (gameView: IGameView): IPlayers =>
   gameView.game?.players || {};
@@ -87,7 +87,9 @@ export const boardViewSelector = createSelector(
         }
 
         if (
-          turns.filter((t) => t.type === "click" && t.value === i).length > 0
+          Object.values(turns).filter(
+            (t) => t.type === "click" && t.value === i
+          ).length > 0
         ) {
           cardView.revealed = true;
           cardView.shown = true;

@@ -9,7 +9,7 @@ export default ({ game }: { game: IGame }) => {
         <div className="flex mb-2 text-sm">
           <span className="tracking-wide font-mono">{game.id}</span>
 
-          {(game.turns || []).length > 0 && (
+          {Object.values(game.turns || []).length > 0 && (
             <span className="ml-auto text-green-500">started</span>
           )}
         </div>

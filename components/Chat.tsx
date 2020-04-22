@@ -53,7 +53,7 @@ export default () => {
     <div className="border rounded bg-gray-200 w-full h-full flex flex-col text-gray-800 p-1 shadow-md">
       <div className="overflow-y-scroll flex-grow mb-1 border bg-white rounded leading-normal text-sm flex flex-col-reverse">
         {/* we reverse the chat and add a flex-col-reverse to keep the scroll down by default */}
-        {chat
+        {Object.values(chat)
           .map((c, i) => (
             <ChatMessage key={i} chat={c} player={players[c.playerId]} />
           ))

@@ -13,6 +13,8 @@ export type ChatHandler = (chat: IChatMessage) => void;
 export type UnsubscribeHandler = () => void;
 
 export interface Network {
+  db: firebase.database.Database;
+
   getPublicGames(callback: GamesHandler): void;
 
   subscribeToGame(gameId: string, callback: GameHandler): UnsubscribeHandler;
