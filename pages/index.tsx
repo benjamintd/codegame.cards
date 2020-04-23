@@ -7,6 +7,8 @@ import Button from "../components/Button";
 import DiscordButton from "../components/DiscordButton";
 import Rules from "../components/Rules";
 import classnames from "classnames";
+import { sortBy } from "lodash";
+import { gameOverSelector } from "../lib/selectors";
 
 const Home = () => {
   const network = useNetwork();
@@ -30,6 +32,15 @@ const Home = () => {
     });
   }, []);
 
+  const sortedGamesList = sortBy(games, [
+    (g) => (g?.turns || []).length, // sort unstarted games first
+    (g) => -g.createdAt, // then more recent games first
+  ]).filter(
+    (g) =>
+      g?.options?.private === "public" &&
+      !gameOverSelector({ playerId: "", game: g }).over
+  ); // only public games that aren't over
+
   return (
     <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">
       <h1 className="h1 font-mono mt-6">codenames.cards</h1>
@@ -43,17 +54,17 @@ const Home = () => {
       </div>
 
       <h2 className="h2 mt-6 mb-4">Join a room</h2>
-      <DiscordButton />
-      <div className="grid grid-flow-row grid-cols-1 gap-2 pt-2">
-        {games.length === 0 && (
+      <div className="grid grid-flow-row grid-cols-1 gap-2 pb-6">
+        {sortedGamesList.length === 0 && (
           <p className="text-gray-700">
             There are currently no public games. Create one and invite friends!
           </p>
         )}
-        {games.map((g) => (
+        {sortedGamesList.map((g) => (
           <LobbyGameRow key={g.id} game={g} />
         ))}
       </div>
+      <DiscordButton />
       <div className="max-w-2xl leading-relaxed border rounded bg-white shadow p-6 text-gray-900 mt-6 ">
         <h2 className="h2 mb-4 text-center">How to play</h2>
         <p>

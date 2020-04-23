@@ -37,7 +37,7 @@ export default class FirebaseNetwork implements Network {
     const ref = this.db
       .ref("/games")
       .orderByChild("createdAt")
-      .startAt(Date.now() - 20 * 60 * 1000) // last 20 minutes
+      .startAt(Date.now() - 7 * 60 * 1000) // last 7 minutes
       .limitToFirst(30);
 
     ref.once("value", (event) => {

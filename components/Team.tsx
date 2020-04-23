@@ -19,7 +19,7 @@ const Team = ({
     <div className="pb-1">
       <div
         className={classnames(
-          "w-full px-2 py-1 border-t border-b flex justify-between mb-1",
+          "w-full px-2 py-1 lg:border-t border-b flex justify-between mb-1",
           {
             "bg-red-100 text-red-900": team === "red",
             "bg-blue-100 text-blue-900": team === "blue",

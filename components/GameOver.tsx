@@ -14,8 +14,8 @@ export default () => {
   }
 
   return (
-    <div className="py-6 px-2 text-center">
-      <p className="h2 pb-2">
+    <div className="lg:py-6 py-4 px-2 text-center">
+      <p className="lg:text-xl text-lg pb-2">
         The game is over. <br />
         {gameOver.winner && `The ${gameOver.winner} team wins!`}
         {gameOver.message}
