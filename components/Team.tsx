@@ -7,11 +7,13 @@ const Team = ({
   team,
   score,
   maxScore,
+  presences,
 }: {
   players: IPlayer[] | undefined;
   team: ITeam;
   score?: number;
   maxScore?: number;
+  presences: { [key: string]: boolean }; // a timestamp for each player
 }) => {
   return (
     <div className="pb-1">
@@ -35,7 +37,9 @@ const Team = ({
       </div>
       <div className="px-2 py-1">
         {players && players.length ? (
-          players.map((p) => <PlayerCard key={p.id} player={p} />)
+          players.map((p) => (
+            <PlayerCard key={p.id} player={p} isPresent={!!presences[p.id]} />
+          ))
         ) : (
           <p className="text-gray-500 text-sm">
             There are no players in this team yet!

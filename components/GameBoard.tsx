@@ -5,6 +5,7 @@ import {
   useSelfPlayer,
   useLastHint,
   useGameMode,
+  usePresence,
 } from "../hooks/game";
 import { ICardView } from "../lib/game";
 import Card from "./Card";
@@ -15,6 +16,7 @@ export default () => {
   const pushTurn = usePushTurn();
   const lastHint = useLastHint();
   const mode = useGameMode();
+  usePresence();
 
   return (
     <div className="w-full lg:my-auto">

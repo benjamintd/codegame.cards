@@ -11,6 +11,8 @@ import ChatMessage from "./ChatMessage";
 import { EmojiConvertor } from "emoji-js";
 
 const emoji = new EmojiConvertor();
+emoji.replace_mode = "unified";
+emoji.allow_native = true;
 
 export default () => {
   const chat = useChat();

@@ -8,6 +8,7 @@ import {
   useMaxScores,
   useGameOver,
   useGameMode,
+  usePlayersPresences,
 } from "../hooks/game";
 import JoinGame from "./JoinGame";
 import ClaimSpymasterOrSwitchTeam from "./ClaimSpymasterOrSwitchTeam";
@@ -22,6 +23,7 @@ export default () => {
   const scores = useScores();
   const maxScores = useMaxScores();
   const gameOver = useGameOver();
+  const presences = usePlayersPresences();
 
   const teams = groupBy(Object.values(players), (p) => p.team);
 
@@ -39,12 +41,14 @@ export default () => {
                 team="red"
                 score={scores["red"]}
                 maxScore={maxScores["red"]}
+                presences={presences}
               />
               <Team
                 players={teams["blue"]}
                 team="blue"
                 score={scores["blue"]}
                 maxScore={maxScores["blue"]}
+                presences={presences}
               />
             </>
           )}
@@ -56,12 +60,14 @@ export default () => {
                 team="duetA"
                 score={scores["duet"]}
                 maxScore={maxScores["duet"]}
+                presences={presences}
               />
               <Team
                 players={teams["duetB"]}
                 team="duetB"
                 score={scores["duet"]}
                 maxScore={maxScores["duet"]}
+                presences={presences}
               />
             </>
           )}
