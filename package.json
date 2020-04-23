@@ -24,6 +24,7 @@
     "prettier": "^2.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-ga": "^2.7.0",
     "reselect": "^4.0.0",
     "shortid": "^2.2.15",
     "tailwindcss": "^1.2.0",
