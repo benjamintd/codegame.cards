@@ -11,9 +11,7 @@ Router.events.on("routeChangeComplete", () => logPageView());
 
 export default ({ Component, pageProps }) => {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      initGA();
-    }
+    initGA();
   }, []);
 
   const network = new FirebaseNetwork(setupFirebase());
