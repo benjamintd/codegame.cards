@@ -30,6 +30,8 @@ import {
   duetTurnsSelector,
 } from "../lib/selectors";
 
+import { logEvent } from "../lib/analytics";
+
 export const GameViewContext = React.createContext(null);
 
 export function useGameView(): IGameView {
@@ -112,6 +114,7 @@ export function useSendChat(
     const chatRef = network.db.ref(`/games/${game.id}/chat`).push();
     await network.updateKey(`/chats/${(await chatRef).key}`, chat);
     await chatRef.set(true);
+    logEvent("sendchat", chat.playerId || "system");
   };
 }
 
@@ -225,6 +228,7 @@ export function useAddPlayer(
       timestamp: Date.now(),
       message: `${player.name} just joined!`,
     });
+    logEvent("addplayer", player.id);
   };
 }
 
@@ -243,6 +247,8 @@ export function usePushTurn(
       [`/games/${game.id}/chat/${chatRef.key}`]: true,
       [`/games/${game.id}/turns/${turnRef.key}`]: turn,
     });
+
+    logEvent("playturn", turn.from);
   };
 }
 
@@ -308,6 +314,10 @@ export function useNewGame(
         );
       }
 
+      logEvent(
+        "newgame",
+        `${gameOptions?.language}-${gameOptions?.mode}-${gameOptions?.private}`
+      );
       router.push("/[gameId]", `/${game.id}`);
     } catch (error) {
       console.log(error);
