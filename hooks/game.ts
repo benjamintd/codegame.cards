@@ -8,11 +8,12 @@ import {
   isClassicGame,
   isDuetGame,
   DuetGridItem,
+  IPlayers,
 } from "../lib/game";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useReducer } from "react";
 import produce from "immer";
 import useNetwork, { Network } from "./network";
-import { shuffle } from "lodash";
+import { shuffle, mapValues, mapKeys } from "lodash";
 import { useRouter } from "next/router";
 import {
   chatSelector,
@@ -28,7 +29,6 @@ import {
   gameOverSelector,
   duetTurnsSelector,
 } from "../lib/selectors";
-import FirebaseNetwork from "./firebase";
 
 export const GameViewContext = React.createContext(null);
 
@@ -113,6 +113,96 @@ export function useSendChat(
     await network.updateKey(`/chats/${(await chatRef).key}`, chat);
     await chatRef.set(true);
   };
+}
+
+export function usePresence(
+  gameView: IGameView = useGameView(),
+  network: Network = useNetwork()
+) {
+  // update our presence every second
+  return useEffect(() => {
+    if (typeof window !== "undefined" && gameView.playerId) {
+      network.updateKey(`/presence/${gameView.playerId}`, Date.now());
+
+      const interval = window.setInterval(() => {
+        network.updateKey(`/presence/${gameView.playerId}`, Date.now());
+      }, 2000); // ping the server every second
+
+      return () => window.clearInterval(interval);
+    }
+  }, [gameView.playerId]);
+}
+
+export function usePlayersPresences(
+  gameView: IGameView = useGameView(),
+  network: Network = useNetwork()
+) {
+  // update a state {[playerId]: something } with a new object
+  const presenceReducer = (
+    state,
+    { type, ids }: { type?: "init" | "update"; ids: { [key: string]: any } }
+  ) => {
+    if (type === "init") {
+      return { ...ids, ...state };
+    } else {
+      return { ...state, ...ids };
+    }
+  };
+
+  // we need to store the remote timestamps to check if they change
+  const [remoteTs, updateRemoteTs] = useReducer(
+    presenceReducer,
+    {} as { [key: string]: number }
+  );
+
+  // we store our own timestamps in case the server and the client have different clocks
+  const [presTs, updateTs] = useReducer(
+    presenceReducer,
+    {} as { [key: string]: number }
+  );
+
+  // the reduced true/false object that is used by the UI
+  const [presences, updatePresences] = useReducer(
+    presenceReducer,
+    {} as { [key: string]: boolean }
+  );
+
+  const players = gameView?.game?.players;
+
+  // update the presence timestamp anytime we get an update from the server
+  // which gives a different timestamp than last time
+  useEffect(() => {
+    if (!players) {
+      return;
+    }
+    // fill the missing values with now.
+    updateTs({ type: "init", ids: mapValues(players, Date.now) });
+
+    const refs = Object.keys(players).map((id: string) => {
+      const ref = network.db.ref(`/presence/${id}`);
+      ref.on("value", (val) => {
+        if (remoteTs[id] !== val.val()) {
+          updateTs({ ids: { [id]: Date.now() } });
+          updateRemoteTs({ ids: { [id]: val.val() } });
+        }
+      });
+      return ref;
+    });
+
+    return () => refs.map((ref) => ref.off());
+  }, [players]);
+
+  // update the true/false presence values every second
+  useEffect(() => {
+    // fill missing values with true
+    updatePresences({ type: "init", ids: mapValues(players, () => true) });
+    const now = Date.now();
+    updatePresences({
+      ids: mapValues(presTs, (ts) => now - ts < 6000),
+    });
+  }, [players, presTs]);
+
+  return presences;
 }
 
 export function useAddPlayer(

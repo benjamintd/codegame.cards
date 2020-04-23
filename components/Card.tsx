@@ -1,21 +1,33 @@
-import { ITurn, IPlayer, ICardView, ClassicGridItem, Color } from "../lib/game";
+import {
+  ITurn,
+  IPlayer,
+  ICardView,
+  ClassicGridItem,
+  Color,
+  IGameMode,
+} from "../lib/game";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import classnames from "classnames";
+import Button from "./Button";
 
 const Card = ({
   pushTurn,
   selfPlayer,
   cardView,
   index,
+  mode,
 }: {
   pushTurn: (turn: ITurn) => void;
   selfPlayer: IPlayer;
   cardView: ICardView;
   index: number;
+  mode: IGameMode;
 }) => {
   const [w, setW] = useState(cardView);
   const [revealing, setRevealing] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const showConfirmationModal = selfPlayer?.spymaster && mode === "classic";
 
   useEffect(() => {
     if (cardView.revealed && !w.revealed) {
@@ -25,6 +37,18 @@ const Card = ({
 
     setW(cardView);
   }, [w, cardView]);
+
+  const onConfirm = () => {
+    if (!w.revealed && selfPlayer) {
+      pushTurn({
+        type: "click",
+        value: index,
+        from: selfPlayer.id,
+      });
+    }
+  };
+
+  const onClick = () => {};
 
   const colorStyles = {
     "z-40": revealing,
@@ -66,12 +90,10 @@ const Card = ({
         initial="initial"
         animate={revealing ? "revealing" : "initial"}
         onClick={() => {
-          if (!w.revealed && selfPlayer) {
-            pushTurn({
-              type: "click",
-              value: index,
-              from: selfPlayer.id,
-            });
+          if (showConfirmationModal) {
+            setModalOpen(true);
+          } else {
+            onConfirm();
           }
         }}
         className={classnames(
@@ -84,8 +106,49 @@ const Card = ({
           <div className="absolute top-0 right-0 m-2 rounded-full w-3 h-3 border-2 border-yellow-800 bg-yellow-300"></div>
         )}
       </motion.div>
+      {modalOpen && (
+        <ConfirmationModal
+          onConfirm={() => onConfirm()}
+          onClose={() => setModalOpen(false)}
+        />
+      )}
     </div>
   );
 };
 
 export default Card;
+
+const ConfirmationModal = ({
+  onConfirm,
+  onClose,
+}: {
+  onConfirm: () => void;
+  onClose: () => void;
+}) => {
+  return (
+    <div
+      className="fixed h-screen w-screen top-0 left-0 z-50 lg:p-6 p-4 flex items-center justify-center"
+      style={{ backgroundColor: "rgba(74, 85, 104, 0.4)" }}
+      onClick={onClose}
+    >
+      <div
+        className="bg-white p-4 rounded shadow-lg overflow-y-scroll max-w-3xl mx-auto text-base"
+        onClick={(e) => e.stopPropagation()}
+      >
+        Are you sure you want to reveal this card?
+        <Button
+          className="ml-2"
+          onClick={() => {
+            onConfirm();
+            onClose();
+          }}
+        >
+          Yes
+        </Button>
+        <Button className="ml-2" color="red" onClick={onClose}>
+          Cancel
+        </Button>
+      </div>
+    </div>
+  );
+};
