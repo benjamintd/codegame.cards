@@ -9,8 +9,10 @@ import Rules from "../components/Rules";
 import classnames from "classnames";
 import { sortBy } from "lodash";
 import { gameOverSelector } from "../lib/selectors";
+import { useRouter } from "next/router";
 
 const Home = () => {
+  const router = useRouter();
   const network = useNetwork();
   const [games, setGames] = useState<IGame[]>([]);
   const [seeMore, setSeeMore] = useState<boolean>(false);
@@ -37,9 +39,9 @@ const Home = () => {
     (g) => -g.createdAt, // then more recent games first
   ]).filter(
     (g) =>
-      g?.options?.private === "public" &&
+      (g?.options?.private === "public" || router.query.admin === "true") &&
       !gameOverSelector({ playerId: "", game: g }).over
-  ); // only public games that aren't over
+  ); // only public games that aren't over (unless ?admin=true)
 
   return (
     <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">
