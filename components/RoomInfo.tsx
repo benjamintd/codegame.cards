@@ -9,12 +9,14 @@ import {
   useGameOver,
   useGameMode,
   usePlayersPresences,
+  useTurns,
 } from "../hooks/game";
 import JoinGame from "./JoinGame";
 import ClaimSpymasterOrSwitchTeam from "./ClaimSpymasterOrSwitchTeam";
 import GameOver from "./GameOver";
 import Team from "./Team";
 import DuetScore from "./DuetScore";
+import CopyLink from "./CopyLink";
 
 export default () => {
   const players = usePlayers();
@@ -24,8 +26,12 @@ export default () => {
   const maxScores = useMaxScores();
   const gameOver = useGameOver();
   const presences = usePlayersPresences();
+  const turns = useTurns();
 
   const teams = groupBy(Object.values(players), (p) => p.team);
+
+  const turnsWerePlayed =
+    turns.filter((t) => t.type === "click" || t.type === "hint").length > 0;
 
   return (
     <div className="border rounded bg-white shadow-md w-full h-full flex flex-col text-gray-800">
@@ -73,9 +79,10 @@ export default () => {
           )}
         </div>
       </div>
-      {!selfPlayer && <JoinGame />}
-      <ClaimSpymasterOrSwitchTeam />
       <DuetScore />
+      {!selfPlayer && <JoinGame />}
+      {!turnsWerePlayed && <ClaimSpymasterOrSwitchTeam />}
+      {!turnsWerePlayed && <CopyLink />}
       {gameOver.over && <GameOver />}
     </div>
   );

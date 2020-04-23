@@ -82,6 +82,17 @@ const Form = ({
           selected={options.mode}
         />
       </div>
+      <div className="mb-2 w-64">
+        <h2 className="mb-2">Public game</h2>
+        <MultipleChoice
+          options={[
+            { value: "private", label: "🔒 Private" },
+            { value: "public", label: "🖖 Public" },
+          ]}
+          onClick={(p) => setOptions({ ...options, private: p })}
+          selected={options.private}
+        />
+      </div>
     </form>
   );
 };

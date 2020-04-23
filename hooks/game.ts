@@ -209,16 +209,10 @@ export function useAddPlayer(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
 ) {
-  const sendChat = useSendChat(gameView, network);
+  const sendChat = useSendChat();
 
   return async (player: IPlayer) => {
     const game = gameView.game;
-
-    await sendChat({
-      playerId: "",
-      timestamp: Date.now(),
-      message: `${player.name} just joined!`,
-    });
 
     const newGame = produce(game, (g) => {
       g.players = g.players || {};
@@ -226,6 +220,11 @@ export function useAddPlayer(
     });
 
     await network.updateGame(newGame);
+    await sendChat({
+      playerId: "",
+      timestamp: Date.now(),
+      message: `${player.name} just joined!`,
+    });
   };
 }
 

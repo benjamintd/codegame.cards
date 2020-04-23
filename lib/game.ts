@@ -7,7 +7,7 @@ export interface IClassicGame {
   turns: ITurn[];
   id: string;
   chat: IChatMessage[];
-  options: { mode: "classic"; language: ILanguage };
+  options: { mode: "classic"; language: ILanguage; private: IPrivate };
   createdAt: number; // timestamp
   nextGameId?: string;
 }
@@ -19,7 +19,7 @@ export interface IDuetGame {
   turns: ITurn[];
   id: string;
   chat: IChatMessage[];
-  options: { mode: "duet"; language: ILanguage };
+  options: { mode: "duet"; language: ILanguage; private: IPrivate };
   createdAt: number; // timestamp
   nextGameId?: string;
 }
@@ -34,8 +34,10 @@ export interface IGameView {
 export interface IGameOptions {
   mode: IGameMode;
   language: ILanguage;
+  private: IPrivate;
 }
 
+export type IPrivate = "public" | "private";
 export type IGameMode = "duet" | "classic";
 export type ILanguage = "fr" | "en" | "de" | "es";
 export type ITeam = "red" | "blue" | "duetA" | "duetB";
@@ -110,6 +112,7 @@ export type IDuetGrid = DuetGridItem[];
 export const defaultOptions: IGameOptions = {
   language: "en",
   mode: "classic",
+  private: "public",
 };
 
 export interface ICardView {
