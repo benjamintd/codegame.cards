@@ -131,7 +131,7 @@ export function usePresence(
 
       const interval = window.setInterval(() => {
         network.updateKey(`/presence/${gameView.playerId}`, Date.now());
-      }, 15000); // ping the server every 15 seconds
+      }, 10000); // ping the server every 10 seconds
 
       return () => window.clearInterval(interval);
     }
@@ -183,27 +183,35 @@ export function usePlayersPresences(
     // fill the missing values with now.
     updateTs({ type: "init", ids: mapValues(players, Date.now) });
 
-    const refs = Object.keys(players).map((id: string) => {
-      const ref = network.db.ref(`/presence/${id}`);
-      ref.on("value", (val) => {
-        if (remoteTs[id] !== val.val()) {
-          updateTs({ ids: { [id]: Date.now() } });
-          updateRemoteTs({ ids: { [id]: val.val() } });
-        }
-      });
-      return ref;
-    });
+    const interval = setInterval(async () => {
+      const promises = Object.keys(players).map(
+        (id: string) =>
+          new Promise((resolve) => {
+            const ref = network.db.ref(`/presence/${id}`);
+            ref.once("value", (val) => {
+              if (remoteTs[id] !== val.val()) {
+                updateTs({ ids: { [id]: Date.now() } });
+                updateRemoteTs({ ids: { [id]: val.val() } });
+              }
+              resolve();
+            });
+          })
+      );
 
-    return () => refs.map((ref) => ref.off());
-  }, [players]);
+      await Promise.all(promises);
+    }, 10000);
 
-  // update the true/false presence values every second
+    return () => clearInterval(interval);
+  }, [players, remoteTs]);
+
+  // update the true/false presence anytime the presTs changes
   useEffect(() => {
+    console.log(presTs);
     // fill missing values with true
     updatePresences({ type: "init", ids: mapValues(players, () => true) });
     const now = Date.now();
     updatePresences({
-      ids: mapValues(presTs, (ts) => now - ts < 60000),
+      ids: mapValues(presTs, (ts) => now - ts < 25000),
     });
   }, [players, presTs]);
 
