@@ -112,8 +112,10 @@ export function useSendChat(
   return async (chat: IChatMessage) => {
     const game = gameView.game;
     const chatRef = network.db.ref(`/games/${game.id}/chat`).push();
-    await network.updateKey(`/chats/${(await chatRef).key}`, chat);
-    await chatRef.set(true);
+    await network.update({
+      [`/chats/${chatRef.key}`]: chat,
+      [`/games/${game.id}/chat/${chatRef.key}`]: true,
+    });
     logEvent("sendchat", chat.playerId || "system");
   };
 }
@@ -212,22 +214,22 @@ export function useAddPlayer(
   gameView: IGameView = useGameView(),
   network: Network = useNetwork()
 ) {
-  const sendChat = useSendChat();
-
   return async (player: IPlayer) => {
     const game = gameView.game;
 
-    const newGame = produce(game, (g) => {
-      g.players = g.players || {};
-      g.players[player.id] = player;
-    });
-
-    await network.updateGame(newGame);
-    await sendChat({
+    const chat = {
       playerId: "",
       timestamp: Date.now(),
       message: `${player.name} just joined!`,
+    };
+    const chatRef = network.db.ref(`/games/${game.id}/chat`).push();
+
+    await network.update({
+      [`/chats/${chatRef.key}`]: chat,
+      [`/games/${game.id}/chat/${chatRef.key}`]: true,
+      [`/games/${game.id}/players/${player.id}`]: player,
     });
+
     logEvent("addplayer", player.id);
   };
 }
@@ -297,6 +299,7 @@ export function useNewGame(
         headers: { "content-type": "application/json" },
         body: JSON.stringify(gameOptions),
       }).then((res) => res.json());
+
       await network.updateGame(game);
 
       const sendChat = useSendChat({ playerId: "", game: game }, network);
