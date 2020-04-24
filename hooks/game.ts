@@ -129,7 +129,7 @@ export function usePresence(
 
       const interval = window.setInterval(() => {
         network.updateKey(`/presence/${gameView.playerId}`, Date.now());
-      }, 2000); // ping the server every second
+      }, 15000); // ping the server every 15 seconds
 
       return () => window.clearInterval(interval);
     }
@@ -201,7 +201,7 @@ export function usePlayersPresences(
     updatePresences({ type: "init", ids: mapValues(players, () => true) });
     const now = Date.now();
     updatePresences({
-      ids: mapValues(presTs, (ts) => now - ts < 6000),
+      ids: mapValues(presTs, (ts) => now - ts < 60000),
     });
   }, [players, presTs]);
 
