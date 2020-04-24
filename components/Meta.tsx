@@ -4,7 +4,7 @@ import Head from "next/head";
 export default () => {
   return (
     <Head>
-      <title>Codenames</title>
+      <title>Codenames - Play Online</title>
       <meta
         name="description"
         content="Play Codenames online. Guess with friends in this real-time adaptation of the popular tabletop game."

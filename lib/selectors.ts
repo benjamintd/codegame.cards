@@ -331,7 +331,7 @@ export const gameOverSelector = createSelector(
       }
 
       // There were more than 9 turns + misclicks
-      if (duetTurns >= 9) {
+      if (duetTurns > 9) {
         return {
           over: true,
           message: "You ran out of time!",
