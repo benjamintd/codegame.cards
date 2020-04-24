@@ -76,7 +76,7 @@ const Home = () => {
         <img
           className="p-6"
           src="/illustration.svg"
-          alt="codenames illustration"
+          alt="Codenames illustration"
         />
         {!seeMore && (
           <p
@@ -87,7 +87,12 @@ const Home = () => {
           </p>
         )}
         {seeMore && (
-          <div>
+          <div
+            className={classnames({
+              "sr-only": !seeMore,
+              "not-sr-only": seeMore,
+            })}
+          >
             <div className="flex">
               {(["classic", "duet"] as IGameMode[]).map((mode) => (
                 <button

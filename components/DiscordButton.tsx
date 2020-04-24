@@ -8,7 +8,7 @@ export default function DiscordButton() {
       rel="noopener noreferrer"
       target="_blank"
     >
-      <img src="/discord.svg" className="h-8" />
+      <img src="/discord.svg" className="h-8" alt="Discord" />
     </a>
   );
 }
