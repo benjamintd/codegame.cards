@@ -199,6 +199,7 @@ export function usePlayersPresences(
       );
 
       await Promise.all(promises);
+      updateTs({ ids: [] }); // update no matter what to trigger
     }, 10000);
 
     return () => clearInterval(interval);
@@ -206,7 +207,6 @@ export function usePlayersPresences(
 
   // update the true/false presence anytime the presTs changes
   useEffect(() => {
-    console.log(presTs);
     // fill missing values with true
     updatePresences({ type: "init", ids: mapValues(players, () => true) });
     const now = Date.now();
