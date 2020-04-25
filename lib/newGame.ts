@@ -2,6 +2,7 @@ import dictionnaryFr from "./dictionnary-fr";
 import dictionnaryEn from "./dictionnary-en";
 import dictionnaryDe from "./dictionnary-de";
 import dictionnaryEs from "./dictionnary-es";
+import dictionnaryEmoji from "./dictionnary-emoji";
 
 import {
   uniqueNamesGenerator,
@@ -24,6 +25,7 @@ const dictionnaries = {
   fr: dictionnaryFr,
   de: dictionnaryDe,
   es: dictionnaryEs,
+  emoji: dictionnaryEmoji,
 };
 
 export default (opts?: Partial<IGameOptions>) => {

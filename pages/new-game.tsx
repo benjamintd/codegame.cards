@@ -66,6 +66,10 @@ const Form = ({
               label: "🇪🇸 Español",
               value: "es",
             },
+            {
+              label: "🔥 Emoji",
+              value: "emoji",
+            }
           ]}
           onClick={(language) => setOptions({ ...options, language })}
           selected={options.language}
