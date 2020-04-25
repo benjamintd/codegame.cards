@@ -14,7 +14,11 @@ const emoji = new EmojiConvertor();
 emoji.replace_mode = "unified";
 emoji.allow_native = true;
 
-export default () => {
+export default ({
+  setIsKeyboardOpen,
+}: {
+  setIsKeyboardOpen: (b: boolean) => void;
+}) => {
   const chat = useChat();
   const selfPlayer = useSelfPlayer();
   const sendChat = useSendChat();
@@ -58,6 +62,7 @@ export default () => {
       </div>
       <div className="flex">
         <input
+          inputMode="text"
           className={classnames("flex-grow text-input text-sm", {
             "bg-gray-100": !selfPlayer,
             "bg-white": selfPlayer,
@@ -68,6 +73,8 @@ export default () => {
           value={message}
           onChange={onChange}
           onKeyDown={onKeyDown}
+          onFocus={() => setIsKeyboardOpen(true)}
+          onBlur={() => setIsKeyboardOpen(false)}
         />
         <button
           className="flex items-center justify-center w-10 h-10 cursor-pointer hover:text-blue-700 focus:outline-none"

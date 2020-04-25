@@ -156,7 +156,6 @@ function getDuetColor(g: DuetGridItem, team: IPlayer["team"]) {
       } else {
         return Color.Neutral;
       }
-      break;
     default:
       return Color.Neutral;
   }

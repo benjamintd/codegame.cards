@@ -11,6 +11,9 @@ import Loading from "../components/Loading";
 import { AnimatePresence } from "framer-motion";
 import playSounds from "../lib/playSounds";
 import shortid from "shortid";
+import { motion } from "framer-motion";
+import useWindowSize from "../hooks/useWindowSize";
+import useMobileDetect from "../hooks/useMobileDetect";
 
 export default () => {
   const network = useNetwork();
@@ -48,6 +51,9 @@ export default () => {
     playerId: player.id,
   });
 
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState<boolean>(false);
+  const mobileDetect = useMobileDetect();
+
   // subscribe to game updates
   useEffect(() => {
     if (network) {
@@ -74,15 +80,27 @@ export default () => {
           </div>
         )}
       </AnimatePresence>
+
       <div className="flex w-screen bg-gray-300 max-h-screen h-screen lg:flex-row flex-col lg:text-base text-sm">
-        <div className="lg:w-3/12 lg:p-6 p-2">
-          <RoomInfo />
-        </div>
+        <AnimatePresence>
+          {!(mobileDetect.isMobile() && isKeyboardOpen) && (
+            <motion.div
+              initial={{ height: "auto", opacity: 1 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+            >
+              <div className="lg:w-3/12 lg:p-6 p-2">
+                <RoomInfo />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <div className="lg:w-6/12 lg:p-6 p-2 lg:flex-grow flex">
           <GameBoard />
         </div>
         <div className="lg:w-4/12 lg:p-6 p-2 h-12 lg:h-full flex-grow lg:flex-grow-0">
-          <Chat />
+          <Chat setIsKeyboardOpen={setIsKeyboardOpen} />
         </div>
       </div>
     </GameViewContext.Provider>
