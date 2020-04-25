@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import classnames from "classnames";
 import Button from "./Button";
+import { useGameView } from "../hooks/game";
 
 const Card = ({
   pushTurn,
@@ -24,6 +25,7 @@ const Card = ({
   index: number;
   mode: IGameMode;
 }) => {
+  const gameView = useGameView()
   const [w, setW] = useState(cardView);
   const [revealing, setRevealing] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -48,7 +50,7 @@ const Card = ({
     }
   };
 
-  const onClick = () => {};
+  const onClick = () => { };
 
   const colorStyles = {
     "z-40": revealing,
@@ -76,6 +78,7 @@ const Card = ({
     "border-green-800 bg-green-200 text-green-800 hover:bg-green-300":
       !w.revealed && w.shown && w.color === Color.Green,
     "lg:text-base text-xs": w.word.length > 7,
+    "text-4xl": gameView.game.options.language === 'emoji'
   };
 
   const variants = {

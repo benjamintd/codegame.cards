@@ -39,7 +39,7 @@ export interface IGameOptions {
 
 export type IPrivate = "public" | "private";
 export type IGameMode = "duet" | "classic";
-export type ILanguage = "fr" | "en" | "de" | "es";
+export type ILanguage = "fr" | "en" | "de" | "es" | "emoji";
 export type ITeam = "red" | "blue" | "duetA" | "duetB";
 
 export interface IPlayer {

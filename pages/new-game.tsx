@@ -14,7 +14,7 @@ export default () => {
     <div className="w-screen h-screen p-6 flex flex-col items-center bg-gray-100">
       <h1 className="h1 font-mono mt-6 mb-4">codenames.cards</h1>
 
-      <h2 className="text-xl font-bold mt-6 mb-4">Chose your options</h2>
+      <h2 className="text-xl font-bold mt-6 mb-4">Choose your options</h2>
       <Form className="mb-4" options={options} setOptions={setOptions} />
 
       <Button
@@ -66,6 +66,10 @@ const Form = ({
               label: "🇪🇸 Español",
               value: "es",
             },
+            {
+              label: "🔥 Emoji",
+              value: "emoji",
+            }
           ]}
           onClick={(language) => setOptions({ ...options, language })}
           selected={options.language}
