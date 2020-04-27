@@ -88,6 +88,25 @@ const ClaimSpymaster = () => {
       ) : (
         // duet game
         <>
+        {!selfPlayer.spymaster && (
+            <div
+              onClick={() =>
+                onClick({
+                  team: selfPlayer.team === "red" ? "blue" : "red",
+                })
+              }
+              className={classnames(
+                "text-center ml-2 underline cursor-pointer",
+                {
+                  "text-blue-800 hover:text-blue-700":
+                    selfPlayer.team === "red",
+                  "text-red-800 hover:text-red-700": selfPlayer.team === "blue",
+                }
+              )}
+            >
+              switch teams
+            </div>
+          )}
           <p className="text-center pt-4">
             Click on a card or give a hint to start the game!{" "}
             <button

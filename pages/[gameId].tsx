@@ -12,7 +12,6 @@ import { AnimatePresence } from "framer-motion";
 import playSounds from "../lib/playSounds";
 import shortid from "shortid";
 import { motion } from "framer-motion";
-import useWindowSize from "../hooks/useWindowSize";
 import useMobileDetect from "../hooks/useMobileDetect";
 
 export default () => {
@@ -88,8 +87,9 @@ export default () => {
               initial={{ height: "auto", opacity: 1 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
+              className="lg:w-3/12 lg:h-screen flex"
             >
-              <div className="lg:w-3/12 lg:p-6 p-2">
+              <div className="lg:p-6 p-2">
                 <RoomInfo />
               </div>
             </motion.div>
