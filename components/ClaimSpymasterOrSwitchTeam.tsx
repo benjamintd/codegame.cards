@@ -75,8 +75,8 @@ const ClaimSpymaster = () => {
             </div>
           )}
           <p className="text-center pt-4">
-            Click on a card or give a hint to start the game! The{" "}
-            {maxScores.red > maxScores.blue ? "red" : "blue"} team plays first.{" "}
+            The {maxScores.red > maxScores.blue ? "red" : "blue"} spymaster
+            gives a hint to start the game!
             <button
               className="underline hover:text-gray-700"
               onClick={() => setShowModal(true)}
@@ -88,7 +88,7 @@ const ClaimSpymaster = () => {
       ) : (
         // duet game
         <>
-        {!selfPlayer.spymaster && (
+          {!selfPlayer.spymaster && (
             <div
               onClick={() =>
                 onClick({

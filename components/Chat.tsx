@@ -63,6 +63,7 @@ export default ({
       <div className="flex">
         <input
           inputMode="text"
+          autoComplete="off"
           className={classnames("flex-grow text-input text-sm", {
             "bg-gray-100": !selfPlayer,
             "bg-white": selfPlayer,

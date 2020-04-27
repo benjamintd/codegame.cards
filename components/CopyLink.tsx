@@ -30,11 +30,11 @@ export default () => {
   return (
     <div className="p-4 flex flex-col items-center">
       <div
-        className="flex text-gray-800 hover:text-gray-600 cursor-pointer mt-2"
+        className="flex text-gray-800 hover:text-gray-600 cursor-pointer mt-2 w-full"
         onClick={copyToClipboard}
       >
         <input
-          className="outline-none truncate text-xs w-64 mr-2 cursor-pointer"
+          className="outline-none truncate text-xs flex-grow mr-2 cursor-pointer"
           readOnly
           ref={ref}
           value={shareLink}

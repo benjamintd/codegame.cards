@@ -89,7 +89,7 @@ export default () => {
               exit={{ height: 0, opacity: 0 }}
               className="lg:w-3/12 lg:h-screen flex"
             >
-              <div className="lg:p-6 p-2">
+              <div className="w-full h-full lg:p-6 p-2">
                 <RoomInfo />
               </div>
             </motion.div>
