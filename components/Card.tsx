@@ -83,7 +83,7 @@ const Card = ({
   };
 
   return (
-    <div className="relative lg:h-16 md:h-12 h-10 overflow-visible">
+    <div className="relative lg:h-16 md:h-12 h-10 overflow-visible select-none">
       <motion.div
         variants={variants}
         initial="initial"
