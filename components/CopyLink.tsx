@@ -46,7 +46,7 @@ export default () => {
       <AnimatePresence>
         {copied && (
           <motion.div
-            className="absolute mx-auto border rounded bg-yellow-100 text-yellow-600 border-yellow-600 w-24 p-2 text-xs text-center font-bold mt-2"
+            className="absolute mx-auto border rounded bg-yellow-100 text-yellow-600 border-yellow-600 w-24 p-2 text-xs text-center font-bold mt-2 z-50"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 50 }}
             exit={{ opacity: 0, y: -50 }}

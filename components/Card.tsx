@@ -1,16 +1,14 @@
-import {
-  ITurn,
-  IPlayer,
-  ICardView,
-  ClassicGridItem,
-  Color,
-  IGameMode,
-} from "../lib/game";
+import { ITurn, IPlayer, ICardView, Color, IGameMode } from "../lib/game";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import classnames from "classnames";
 import Button from "./Button";
 import { useGameView } from "../hooks/game";
+import { EmojiConvertor } from "emoji-js";
+
+const emoji = new EmojiConvertor();
+emoji.replace_mode = "img";
+emoji.img_sets.apple.path = "/emoji-apple-64/";
 
 const Card = ({
   pushTurn,
@@ -25,7 +23,7 @@ const Card = ({
   index: number;
   mode: IGameMode;
 }) => {
-  const gameView = useGameView()
+  const gameView = useGameView();
   const [w, setW] = useState(cardView);
   const [revealing, setRevealing] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -49,8 +47,6 @@ const Card = ({
       });
     }
   };
-
-  const onClick = () => { };
 
   const colorStyles = {
     "z-40": revealing,
@@ -78,7 +74,7 @@ const Card = ({
     "border-green-800 bg-green-200 text-green-800 hover:bg-green-300":
       !w.revealed && w.shown && w.color === Color.Green,
     "lg:text-base text-xs": w.word.length > 7,
-    "text-4xl": gameView.game.options.language === 'emoji'
+    "text-4xl": gameView.game.options.language === "emoji",
   };
 
   const variants = {
@@ -104,7 +100,9 @@ const Card = ({
           colorStyles
         )}
       >
-        {w.word}
+        <div
+          dangerouslySetInnerHTML={{ __html: emoji.replace_unified(w.word) }}
+        />
         {w.duetMarker && (
           <div className="absolute top-0 right-0 m-2 rounded-full w-3 h-3 border-2 border-yellow-800 bg-yellow-300"></div>
         )}
@@ -115,6 +113,15 @@ const Card = ({
           onClose={() => setModalOpen(false)}
         />
       )}
+      <style jsx global>{`
+        .emoji {
+          height: 32px;
+          width: 32px;
+          display: inline-block;
+          background-size: contain;
+          margin-bottom: -3px;
+        }
+      `}</style>
     </div>
   );
 };
