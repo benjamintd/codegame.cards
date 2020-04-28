@@ -1,4 +1,6 @@
 import { IGame } from "./game";
+import { useScores } from "../hooks/game";
+import { findLast } from "lodash";
 
 export default (newGame: IGame, game: IGame): boolean => {
   if (!game || !newGame || game.id !== newGame.id) {
@@ -17,8 +19,37 @@ export default (newGame: IGame, game: IGame): boolean => {
     Object.values(game.turns || []).filter((t) => t.type === "click").length !==
     Object.values(newGame.turns || []).filter((t) => t.type === "click").length
   ) {
-    playSound("/reveal.wav");
-    return true;
+    const lastTurn = findLast(newGame.turns, (t) => t.type === "click");
+    const lastClicker = newGame.players[lastTurn.from];
+
+    if (lastTurn && lastClicker) {
+      let prevScore,
+        newScore = 0;
+
+      const prevScores = useScores({
+        playerId: "",
+        game: game,
+      });
+      const newScores = useScores({
+        playerId: "",
+        game: newGame,
+      });
+
+      if (game.options.mode === "classic") {
+        prevScore = prevScores[lastClicker.team];
+        newScore = newScores[lastClicker.team];
+      } else {
+        prevScore = prevScores.duet;
+        newScore = newScores.duet;
+      }
+
+      if (newScore > prevScore) {
+        playSound("/reveal.wav");
+      } else {
+        playSound("/error.wav");
+      }
+      return true;
+    }
   }
 
   if (
