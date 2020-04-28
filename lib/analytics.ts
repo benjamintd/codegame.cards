@@ -1,8 +1,10 @@
 import ReactGA from "react-ga";
+import { hotjar } from "react-hotjar";
 
 export const initGA = () => {
   if (process.env.NODE_ENV === "production") {
     ReactGA.initialize("UA-72962798-6");
+    hotjar.initialize(1787488, 6);
   }
 };
 
