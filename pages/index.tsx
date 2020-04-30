@@ -111,11 +111,11 @@ const Home = () => {
         )}
       </div>
       <div className="mt-6 text-gray-700">
-        <p>
+        <p className="mb-2">
           If you like this game, please support the authors and buy a physical
           version!
         </p>
-        <p>
+        <p className="mb-2">
           Made with ♥ during the lockdown. It's{" "}
           <a
             className="hover:text-gray-600 underline"
@@ -123,6 +123,13 @@ const Home = () => {
           >
             open-source
           </a>
+          .
+        </p>
+        <p className="mb-2">
+          Check our{" "}
+          <Link href="/privacy-policy">
+            <a className="hover:text-gray-600 underline">privacy policy</a>
+          </Link>
           .
         </p>
       </div>

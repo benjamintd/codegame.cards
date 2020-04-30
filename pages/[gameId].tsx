@@ -22,7 +22,7 @@ export default () => {
   // using this for side effects that depend on the previous game state
   // e.g. sounds or forwarding the player to the next game
   const reducer = (game: IGame, newGame: IGame): IGame => {
-    if (Date.now() - lastSound > 2000) {
+    if (Date.now() - lastSound > 300) {
       const soundWasPlayed = playSounds(newGame, game);
       if (soundWasPlayed) {
         setLastSound(Date.now());
