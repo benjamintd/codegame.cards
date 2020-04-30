@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   useChat,
-  usePlayers,
   useSendChat,
   useSelfPlayer,
   usePushTurn,
@@ -22,7 +21,6 @@ export default ({
   const chat = useChat();
   const selfPlayer = useSelfPlayer();
   const sendChat = useSendChat();
-  const players = usePlayers();
   const pushTurn = usePushTurn();
   const [message, setMessage] = useState("");
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -40,6 +38,7 @@ export default ({
       } else {
         sendChat({
           playerId: selfPlayer.id,
+          type: 'message',
           timestamp: Date.now(),
           message,
         });

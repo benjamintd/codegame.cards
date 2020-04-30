@@ -4,11 +4,7 @@ import { motion } from "framer-motion";
 import classnames from "classnames";
 import Button from "./Button";
 import { useGameView } from "../hooks/game";
-import { EmojiConvertor } from "emoji-js";
-
-const emoji = new EmojiConvertor();
-emoji.replace_mode = "img";
-emoji.img_sets.apple.path = "/emoji-apple-64/";
+import { emoji } from "../lib/emoji"
 
 const Card = ({
   pushTurn,

@@ -8,10 +8,8 @@ import {
   isClassicGame,
   isDuetGame,
   DuetGridItem,
-  IPlayers,
 } from "../lib/game";
 import React, { useContext, useState, useEffect, useReducer } from "react";
-import produce from "immer";
 import useNetwork, { Network } from "./network";
 import { shuffle, mapValues, mapKeys } from "lodash";
 import { useRouter } from "next/router";
@@ -116,7 +114,9 @@ export function useSendChat(
       [`/chats/${chatRef.key}`]: chat,
       [`/games/${game.id}/chat/${chatRef.key}`]: true,
     });
-    logEvent("sendchat", chat.playerId || "system");
+
+    const source = chat.type === 'system' ? 'system' : chat.playerId
+    logEvent("sendchat", source);
   };
 }
 
@@ -226,7 +226,7 @@ export function useAddPlayer(
     const game = gameView.game;
 
     const chat = {
-      playerId: "",
+      type: 'system',
       timestamp: Date.now(),
       message: `${player.name} just joined!`,
     };
@@ -262,36 +262,41 @@ export function usePushTurn(
   };
 }
 
-function getTurnChat(turn: ITurn, game: IGame) {
+function getTurnChat(turn: ITurn, game: IGame): IChatMessage {
   if (turn.type === "click") {
     const player = game.players[turn.from];
     const word = game.words[turn.value];
     const color = +game.grid[turn.value];
-    if (player) {
-      let reaction = "";
-      if (isClassicGame(game)) {
-        reaction = getClassicReaction(color, player);
-      }
 
-      if (isDuetGame(game)) {
-        reaction = getDuetReaction(color, player);
-      }
+    if (!player) {
+      return
+    }
 
-      return {
-        playerId: "",
-        timestamp: Date.now(),
-        message: `${player.name} clicked on ${word}. ${reaction}`,
-      };
+    let reaction = "";
+    if (isClassicGame(game)) {
+      reaction = getClassicReaction(color, player);
     }
-  } else {
-    if (turn.type === "hint") {
-      return {
-        playerId: turn.from,
-        timestamp: Date.now(),
-        message: turn.hint,
-        format: "font-bold",
-      };
+
+    if (isDuetGame(game)) {
+      reaction = getDuetReaction(color, player);
     }
+
+    return {
+      type: 'click',
+      timestamp: Date.now(),
+      playerId: turn.from,
+      word,
+      reaction,
+    };
+  }
+
+  if (turn.type === "hint") {
+    return {
+      type: 'hint',
+      timestamp: Date.now(),
+      playerId: turn.from,
+      hint: turn.hint,
+    };
   }
 }
 
@@ -313,7 +318,7 @@ export function useNewGame(
       const sendChat = useSendChat({ playerId: "", game: game }, network);
 
       await sendChat({
-        playerId: "",
+        type: 'system',
         timestamp: Date.now(),
         message: `The game was created. Give a hint to get started.`,
       });
