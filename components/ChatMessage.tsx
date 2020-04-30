@@ -42,16 +42,23 @@ const PlayerChatMessage = ({
 
   return (
     <div className="flex flex-wrap items-center">
-      <span
-        className={classnames("mr-1 font-bold", {
-          "text-red-700": player.team === "red" && player.spymaster,
-          "text-blue-700": player.team === "blue" && player.spymaster,
-          "text-red-500": player.team === "red" && !player.spymaster,
-          "text-blue-500": player.team === "blue" && !player.spymaster,
-        })}
-      >
-        {player.name}
-      </span>
+      {player && (
+        <span
+          className={classnames("mr-1 font-bold", {
+            "text-red-700": player.team === "red" && player.spymaster,
+            "text-blue-700": player.team === "blue" && player.spymaster,
+            "text-red-500": player.team === "red" && !player.spymaster,
+            "text-blue-500": player.team === "blue" && !player.spymaster,
+          })}
+        >
+          {player.name}
+        </span>
+      )}
+
+      {/* Handles state backwards compatibility */}
+      {!chat.type && (
+        <span>{(chat as any).message}</span>
+      )}
 
       {chat.type === 'click' && (
         <>
