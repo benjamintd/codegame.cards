@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Meta from "../components/Meta";
 import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
 import { NetworkContext } from "../hooks/network";
-import { initGA, logPageView } from "../lib/analytics";
+import { logPageView, initAnalytics } from "../lib/analytics";
 import Router from "next/router";
 
 import "../css/main.css";
@@ -11,7 +11,7 @@ Router.events.on("routeChangeComplete", () => logPageView());
 
 export default ({ Component, pageProps }) => {
   useEffect(() => {
-    initGA();
+    initAnalytics();
   }, []);
 
   const network = new FirebaseNetwork(setupFirebase());
