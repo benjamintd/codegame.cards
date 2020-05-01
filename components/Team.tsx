@@ -55,6 +55,7 @@ const formattedTeam = {
   blue: "blue",
   duetA: "Side A",
   duetB: "Side B",
+  spectator: "spectating",
 };
 
 export default Team;
