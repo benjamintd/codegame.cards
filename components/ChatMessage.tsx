@@ -12,9 +12,12 @@ export default React.memo(({ id }: { id: string }) => {
     return null;
   }
 
-  const message = chat.type === 'system'
-    ? <SystemChatMessage chat={chat} />
-    : <PlayerChatMessage chat={chat} player={players[chat.playerId]} />
+  const message =
+    chat.type === "system" ? (
+      <SystemChatMessage chat={chat} />
+    ) : (
+      <PlayerChatMessage chat={chat} player={players[chat.playerId]} />
+    );
 
   return (
     <motion.div
@@ -37,8 +40,8 @@ const PlayerChatMessage = ({
   chat: IChatMessage;
   player: IPlayer;
 }) => {
-  const gameView = useGameView()
-  const hasEmojis = gameView.game.options.language === 'emoji'
+  const gameView = useGameView();
+  const hasEmojis = gameView.game.options.language === "emoji";
 
   return (
     <div className="flex flex-wrap items-center">
@@ -56,34 +59,35 @@ const PlayerChatMessage = ({
       )}
 
       {/* Handles state backwards compatibility */}
-      {!chat.type && (
-        <span>{(chat as any).message}</span>
-      )}
+      {!chat.type && <span>{(chat as any).message}</span>}
 
-      {chat.type === 'click' && (
+      {chat.type === "click" && (
         <>
           <span>clicked on</span>
           {hasEmojis && (
-            <span className="emoji-small mx-1" dangerouslySetInnerHTML={{ __html: emoji.replace_unified(chat.word) }} />
+            <span
+              className="emoji-small mx-1"
+              dangerouslySetInnerHTML={{
+                __html: emoji.replace_unified(chat.word),
+              }}
+            />
           )}
-          {!hasEmojis && (
-            <span className="ml-1">{chat.word}</span>
-          )}
+          {!hasEmojis && <span className="ml-1">{chat.word}</span>}
           <span>. {chat.reaction}</span>
         </>
       )}
 
-      {chat.type === 'message' && (
+      {chat.type === "message" && (
         <>
           <span className="text-gray-700 font-light">:</span>
           <span className="ml-1">{chat.message}</span>
         </>
       )}
 
-      {chat.type === 'hint' && (
+      {chat.type === "hint" && (
         <>
           <span className="text-gray-700 font-light">:</span>
-          <span className="ml-1 font-semibold">{chat.hint}</span>
+          <span className="ml-1 font-bold">{chat.hint}</span>
         </>
       )}
 
