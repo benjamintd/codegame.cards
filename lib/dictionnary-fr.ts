@@ -249,7 +249,7 @@ Essence
 Étranger
 Éventail
 Évolution
-Explosoin
+Explosion
 Extension
 Face
 Fan
