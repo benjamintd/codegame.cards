@@ -81,12 +81,12 @@ const JoinGame = () => {
           >
             join side B
           </Button>
-          <a
+          <Button
             color="neutral"
             onClick={() => onClick({ team: "spectator", spymaster: false })}
           >
             spectate
-          </a>
+          </Button>
         </div>
       )}
       <style jsx>{`
