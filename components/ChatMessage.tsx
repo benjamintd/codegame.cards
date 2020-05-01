@@ -72,7 +72,7 @@ const PlayerChatMessage = ({
               }}
             />
           )}
-          {!hasEmojis && <span className="ml-1">{chat.word}</span>}
+          {!hasEmojis && <span className="ml-1 font-bold">{chat.word}</span>}
           <span>. {chat.reaction}</span>
         </>
       )}

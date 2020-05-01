@@ -40,7 +40,7 @@ export interface IGameOptions {
 export type IPrivate = "public" | "private";
 export type IGameMode = "duet" | "classic";
 export type ILanguage = "fr" | "en" | "de" | "es" | "emoji";
-export type ITeam = "red" | "blue" | "duetA" | "duetB";
+export type ITeam = "red" | "blue" | "duetA" | "duetB" | "spectator";
 
 export interface IPlayer {
   team: ITeam;
@@ -52,7 +52,11 @@ export interface IPlayer {
 
 export type IPlayers = { [key: string]: IPlayer };
 
-export type IChatMessage = IMessageChatMessage | IClickChatMessage | IHintChatMessage | ISystemChatMessage
+export type IChatMessage =
+  | IMessageChatMessage
+  | IClickChatMessage
+  | IHintChatMessage
+  | ISystemChatMessage;
 
 export interface IMessageChatMessage {
   type: "message";
@@ -62,7 +66,7 @@ export interface IMessageChatMessage {
 }
 
 export interface IClickChatMessage {
-  type: 'click';
+  type: "click";
   timestamp: number;
   playerId: string;
   word: string;
@@ -70,16 +74,16 @@ export interface IClickChatMessage {
 }
 
 export interface IHintChatMessage {
-  type: 'hint',
+  type: "hint";
   timestamp: number;
   playerId: string;
   hint: string;
 }
 
 export interface ISystemChatMessage {
-  type: 'system';
+  type: "system";
   timestamp: number;
-  message: string
+  message: string;
 }
 
 export type ITurn = IPassTurn | IClickTurn | IHintTurn;

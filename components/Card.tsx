@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import classnames from "classnames";
 import Button from "./Button";
 import { useGameView } from "../hooks/game";
-import { emoji } from "../lib/emoji"
+import { emoji } from "../lib/emoji";
 
 const Card = ({
   pushTurn,
@@ -35,7 +35,7 @@ const Card = ({
   }, [w, cardView]);
 
   const onConfirm = () => {
-    if (!w.revealed && selfPlayer) {
+    if (!w.revealed && selfPlayer && selfPlayer.team !== "spectator") {
       pushTurn({
         type: "click",
         value: index,
