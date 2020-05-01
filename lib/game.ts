@@ -52,11 +52,34 @@ export interface IPlayer {
 
 export type IPlayers = { [key: string]: IPlayer };
 
-export interface IChatMessage {
-  playerId: string;
+export type IChatMessage = IMessageChatMessage | IClickChatMessage | IHintChatMessage | ISystemChatMessage
+
+export interface IMessageChatMessage {
+  type: "message";
   timestamp: number;
+  playerId: string;
   message: string;
-  format?: string;
+}
+
+export interface IClickChatMessage {
+  type: 'click';
+  timestamp: number;
+  playerId: string;
+  word: string;
+  reaction: string;
+}
+
+export interface IHintChatMessage {
+  type: 'hint',
+  timestamp: number;
+  playerId: string;
+  hint: string;
+}
+
+export interface ISystemChatMessage {
+  type: 'system';
+  timestamp: number;
+  message: string
 }
 
 export type ITurn = IPassTurn | IClickTurn | IHintTurn;
