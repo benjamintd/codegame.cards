@@ -44,7 +44,7 @@ const PlayerChatMessage = ({
   const hasEmojis = gameView.game.options.language === "emoji";
 
   return (
-    <div className="flex flex-wrap items-center">
+    <div>
       {player && (
         <span
           className={classnames("mr-1 font-bold", {
@@ -72,7 +72,7 @@ const PlayerChatMessage = ({
               }}
             />
           )}
-          {!hasEmojis && <span className="ml-1">{chat.word}</span>}
+          {!hasEmojis && <span className="ml-1 font-bold">{chat.word}</span>}
           <span>. {chat.reaction}</span>
         </>
       )}

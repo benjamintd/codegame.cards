@@ -115,7 +115,7 @@ export function useSendChat(
       [`/games/${game.id}/chat/${chatRef.key}`]: true,
     });
 
-    const source = chat.type === 'system' ? 'system' : chat.playerId
+    const source = chat.type === "system" ? "system" : chat.playerId;
     logEvent("sendchat", source);
   };
 }
@@ -226,7 +226,7 @@ export function useAddPlayer(
     const game = gameView.game;
 
     const chat = {
-      type: 'system',
+      type: "system",
       timestamp: Date.now(),
       message: `${player.name} just joined!`,
     };
@@ -269,7 +269,7 @@ function getTurnChat(turn: ITurn, game: IGame): IChatMessage {
     const color = +game.grid[turn.value];
 
     if (!player) {
-      return
+      return;
     }
 
     let reaction = "";
@@ -282,7 +282,7 @@ function getTurnChat(turn: ITurn, game: IGame): IChatMessage {
     }
 
     return {
-      type: 'click',
+      type: "click",
       timestamp: Date.now(),
       playerId: turn.from,
       word,
@@ -292,7 +292,7 @@ function getTurnChat(turn: ITurn, game: IGame): IChatMessage {
 
   if (turn.type === "hint") {
     return {
-      type: 'hint',
+      type: "hint",
       timestamp: Date.now(),
       playerId: turn.from,
       hint: turn.hint,
@@ -318,7 +318,7 @@ export function useNewGame(
       const sendChat = useSendChat({ playerId: "", game: game }, network);
 
       await sendChat({
-        type: 'system',
+        type: "system",
         timestamp: Date.now(),
         message: `The game was created. Give a hint to get started.`,
       });

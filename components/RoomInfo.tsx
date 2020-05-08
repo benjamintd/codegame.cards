@@ -75,6 +75,13 @@ export default () => {
                 maxScore={maxScores["duet"]}
                 presences={presences}
               />
+              {teams.spectator && (
+                <Team
+                  players={teams["spectator"]}
+                  team="spectator"
+                  presences={presences}
+                />
+              )}
             </>
           )}
         </div>
