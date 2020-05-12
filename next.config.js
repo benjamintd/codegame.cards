@@ -12,6 +12,7 @@ const env = {
   FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
   GA_ID: process.env.GA_ID,
   HOTJAR_ID: process.env.HOTJAR_ID,
+  SENTRY_DSN: process.env.SENTRY_DSN,
 };
 
 const nextConfig = {

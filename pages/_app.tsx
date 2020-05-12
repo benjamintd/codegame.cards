@@ -9,7 +9,13 @@ import * as Sentry from "@sentry/browser";
 
 import "../css/main.css";
 
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  environment: process.env.NODE_ENV,
+});
+
 Router.events.on("routeChangeComplete", () => logPageView());
+
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
@@ -49,6 +55,8 @@ class MyApp extends App {
     );
   }
 }
+
+export default MyApp;
 
 export function reportWebVitals({ id, name, label, value }) {
   logEvent(`${label} metric`, name, {
