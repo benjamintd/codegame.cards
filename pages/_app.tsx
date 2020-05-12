@@ -27,6 +27,14 @@ class MyApp extends App {
     return { pageProps };
   }
 
+  static reportWebVitals({ id, name, label, value }) {
+    logEvent(`${label} metric`, name, {
+      eventValue: Math.round(name === "CLS" ? value * 1000 : value),
+      eventLabel: id,
+      nonInteraction: true,
+    });
+  }
+
   componentDidMount() {
     initAnalytics();
   }
@@ -57,11 +65,3 @@ class MyApp extends App {
 }
 
 export default MyApp;
-
-export function reportWebVitals({ id, name, label, value }) {
-  logEvent(`${label} metric`, name, {
-    eventValue: Math.round(name === "CLS" ? value * 1000 : value),
-    eventLabel: id,
-    nonInteraction: true,
-  });
-}
