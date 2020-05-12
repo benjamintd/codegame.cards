@@ -2,24 +2,58 @@ import React, { useEffect } from "react";
 import Meta from "../components/Meta";
 import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
 import { NetworkContext } from "../hooks/network";
-import { logPageView, initAnalytics } from "../lib/analytics";
+import { logPageView, initAnalytics, logEvent } from "../lib/analytics";
 import Router from "next/router";
+import App from "next/app";
+import * as Sentry from "@sentry/browser";
 
 import "../css/main.css";
 
 Router.events.on("routeChangeComplete", () => logPageView());
+class MyApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    let pageProps = {};
 
-export default ({ Component, pageProps }) => {
-  useEffect(() => {
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+
+    return { pageProps };
+  }
+
+  componentDidMount() {
     initAnalytics();
-  }, []);
+  }
 
-  const network = new FirebaseNetwork(setupFirebase());
+  componentDidCatch(error, errorInfo) {
+    Sentry.withScope((scope) => {
+      Object.keys(errorInfo).forEach((key) => {
+        scope.setExtra(key, errorInfo[key]);
+      });
 
-  return (
-    <NetworkContext.Provider value={network}>
-      <Meta />
-      <Component {...pageProps} />
-    </NetworkContext.Provider>
-  );
-};
+      Sentry.captureException(error);
+    });
+
+    super.componentDidCatch(error, errorInfo);
+  }
+
+  render() {
+    const network = new FirebaseNetwork(setupFirebase());
+    const { Component, pageProps } = this.props;
+
+    return (
+      <NetworkContext.Provider value={network}>
+        <Meta />
+        <Component {...pageProps} />
+      </NetworkContext.Provider>
+    );
+  }
+}
+
+export function reportWebVitals({ id, name, label, value }) {
+  logEvent(`${label} metric`, name, {
+    eventValue: Math.round(name === "CLS" ? value * 1000 : value),
+    eventLabel: id,
+    nonInteraction: true,
+  });
+}
