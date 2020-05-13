@@ -13,9 +13,9 @@ export const logPageView = () => {
   ReactGA.pageview(window.location.pathname);
 };
 
-export const logEvent = (category: string, action: string) => {
+export const logEvent = (category: string, action: string, options = {}) => {
   if (category && action) {
-    ReactGA.event({ category, action });
+    ReactGA.event({ category, action, ...options });
   }
 };
 export const logException = (description: string, fatal = false) => {

@@ -1,4 +1,5 @@
 const withOffline = require("next-offline");
+const withSourceMaps = require("@zeit/next-source-maps")();
 
 const env = {
   FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
@@ -11,6 +12,7 @@ const env = {
   FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
   GA_ID: process.env.GA_ID,
   HOTJAR_ID: process.env.HOTJAR_ID,
+  SENTRY_DSN: process.env.SENTRY_DSN,
 };
 
 const nextConfig = {
@@ -42,4 +44,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withOffline(nextConfig);
+module.exports = withSourceMaps(withOffline(nextConfig));
