@@ -66,14 +66,18 @@ export default (newGame: IGame, game: IGame): boolean => {
 const playSound = (path) => {
   const audio = new Audio(path);
   audio.volume = 0.4;
-  audio.play().catch((e) => {
-    // Playing a sound before any user interaction triggers an error
-    // Prevent it from polluting the error logs
-    // @see https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
-    if (e.name === "NotAllowedError") {
-      return;
-    }
+  const prom = audio.play();
 
-    throw e;
-  });
+  if (prom) {
+    prom.catch((e) => {
+      // Playing a sound before any user interaction triggers an error
+      // Prevent it from polluting the error logs
+      // @see https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
+      if (e.name === "NotAllowedError") {
+        return;
+      }
+
+      throw e;
+    });
+  }
 };
