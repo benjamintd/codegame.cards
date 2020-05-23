@@ -488,7 +488,7 @@ Tip
 Shell
 Peanut
 House
-Univerity
+University
 Camp
 Mohawk
 Anthem
