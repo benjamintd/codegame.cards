@@ -380,7 +380,7 @@ Copper
 Beach
 Bell
 Leprechaun
-Pheonix
+Phoenix
 Force
 Boom
 Fork
