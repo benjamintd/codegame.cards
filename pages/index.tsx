@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import useNetwork from "../hooks/network";
 import { IGame, IGameMode } from "../lib/game";
 import LobbyGameRow from "../components/LobbyGameRow";
 import Button from "../components/Button";
@@ -9,39 +8,16 @@ import Rules from "../components/Rules";
 import classnames from "classnames";
 import { sortBy } from "lodash";
 import { gameOverSelector } from "../lib/selectors";
-import { useRouter } from "next/router";
+import { GetStaticProps } from "next";
+import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
 
-const Home = () => {
-  const router = useRouter();
-  const network = useNetwork();
-  const [games, setGames] = useState<IGame[]>([]);
+interface IProps {
+  games: IGame[];
+}
+
+const Home = ({ games }: IProps) => {
   const [seeMore, setSeeMore] = useState<boolean>(false);
   const [rulesMode, setRulesMode] = useState<IGameMode>("classic");
-
-  useEffect(() => {
-    network.getPublicGames((games) => {
-      setGames(
-        games.filter((g) => {
-          const players = Object.values(g.players || {});
-
-          if (players.length === 0) {
-            return false;
-          } else {
-            return true;
-          }
-        })
-      );
-    });
-  }, []);
-
-  const sortedGamesList = sortBy(games, [
-    (g) => (g?.turns || []).length, // sort unstarted games first
-    (g) => -g.createdAt, // then more recent games first
-  ]).filter(
-    (g) =>
-      (g?.options?.private === "public" || router.query.admin === "true") &&
-      !gameOverSelector({ playerId: "", game: g }).over
-  ); // only public games that aren't over (unless ?admin=true)
 
   return (
     <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">
@@ -57,12 +33,12 @@ const Home = () => {
 
       <h2 className="h2 mt-6 mb-4">Join a room</h2>
       <div className="grid grid-flow-row grid-cols-1 gap-2 pb-6">
-        {sortedGamesList.length === 0 && (
+        {games.length === 0 && (
           <p className="text-gray-700">
             There are currently no public games. Create one and invite friends!
           </p>
         )}
-        {sortedGamesList.map((g) => (
+        {games.map((g) => (
           <LobbyGameRow key={g.id} game={g} />
         ))}
       </div>
@@ -138,3 +114,27 @@ const Home = () => {
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps<IProps> = async () => {
+  const firebase = new FirebaseNetwork(setupFirebase());
+  let games = await firebase.getPublicGames();
+
+  games = games.filter(
+    (g) =>
+      Object.values(g.players || {}).length > 0 &&
+      g?.options?.private === "public" &&
+      !gameOverSelector({ playerId: "", game: g }).over
+  );
+
+  games = sortBy(games, [
+    (g) => (g?.turns || []).length, // sort unstarted games first
+    (g) => -g.createdAt, // then more recent games first
+  ]);
+
+  return {
+    props: {
+      games,
+    },
+    unstable_revalidate: 1,
+  };
+};
