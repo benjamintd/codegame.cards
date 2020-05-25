@@ -380,7 +380,7 @@ Copper
 Beach
 Bell
 Leprechaun
-Pheonix
+Phoenix
 Force
 Boom
 Fork
@@ -488,7 +488,7 @@ Tip
 Shell
 Peanut
 House
-Univerity
+University
 Camp
 Mohawk
 Anthem
