@@ -16,7 +16,7 @@ export default React.memo(({ game }: { game: IGame }) => {
           </div>
         )}
         <div className="flex">
-          <div className="inline-block rounded-full border border-gray-600 text-gray-600 px-2">
+          <div className="inline-block rounded-full border border-gray-600 text-gray-800 px-2">
             {game.options.mode}{" "}
             <span className="inline-block text-lg align-middle">
               {getFlag(game.options.language)}
@@ -41,6 +41,8 @@ const getFlag = (language: ILanguage) => {
       return "🇩🇪";
     case "es":
       return "🇪🇸";
+    case "emoji":
+      return "💎";
     default:
       // why not.
       return "🇺🇸";

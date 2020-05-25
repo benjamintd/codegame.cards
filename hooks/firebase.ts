@@ -33,16 +33,18 @@ export default class FirebaseNetwork implements Network {
     this.db = db || setupFirebase();
   }
 
-  getPublicGames(callback: GamesHandler) {
-    const ref = this.db
-      .ref("/games")
-      .orderByChild("createdAt")
-      .startAt(Date.now() - 7 * 60 * 1000) // last 7 minutes
-      .limitToFirst(30);
+  getPublicGames(): Promise<IGame[]> {
+    return new Promise((resolve, reject) => {
+      const ref = this.db
+        .ref("/games")
+        .orderByChild("createdAt")
+        .startAt(Date.now() - 7 * 60 * 1000) // last 7 minutes
+        .limitToFirst(30);
 
-    ref.once("value", (event) => {
-      let games = Object.values(event.val() || {});
-      callback(games as IGame[]);
+      ref.once("value", (event) => {
+        let games = Object.values(event.val() || {});
+        resolve(games as IGame[]);
+      });
     });
   }
 
