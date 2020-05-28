@@ -93,4 +93,10 @@ export default {
   "rules-duet-grid": `Vingt-cinq mots sont disposés au hasard en grille. Certains de ces mots représentent des agents <1>verts</1>, certains mots des <3>assassins</3>, les autres des <5>civils innocents</5>. Chaque joueur connaît 9 mots <7>verts</7>, certains étant en commun avec l'autre joueur.`,
   "rules-duet-hints": `Les joueurs donnent alternativement des indices pour faire deviner ses mots verts à son partenaire. Chaque indice ne peut consister que d'un mot, et du nombre de carte auquel il fait référence. Le joueur dont c'est le tour donne un indice qui se rapporte au plus possible de mots verts, mais à aucun des autres – il pourrait accidentellement mener son partenaire à choisir une carte qui représente un civil innocent ou un assassin.`,
   "rules-duet-game-end": `Le jeu se termine lorsque les 15 agents verts ont été identifiés (🏅), ou lorsqu'un des joueurs clique sur un <1>assassin</1> (☠️). Le jeu est chronométré : les joueurs disposent d'un total de 9 tours pour trouver tous les mots. Cliquer sur un <3>civil innocent</span> consomme un tour supplémentaire.`,
+  "long-story-short": "En résumé",
+  "privacy-tldr": `
+  <p>Nous gardons les parties et les messages du chat dans une base de données temporaires, mais ils peuvent être supprimés à n'importe quel moment. C'est la seule information que nous stockons.</p>
+  <p>Nous utilisons des cookies pour savoir comment le site est utilisé (audience, longueur des sessions, types de parties jouées). Ces statistiques ne comportent pas de données personnellement identifiables.</p>
+  <p>Pour cela, nous utilisons Hotjar et Google Analytics.</p>
+`,
 };

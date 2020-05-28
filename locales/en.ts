@@ -93,4 +93,10 @@ export default {
   "rules-duet-grid": `Twenty-five word cards are randomly laid out in a grid. A number of these words represent <1>green</1> agents, a number represent <3>assassins</3>, and the others represent <5>innocent bystanders</5>. Each player knows 9 <7>green</7> words, some of them overlapping with the other side.`,
   "rules-duet-hints": `Players alternatively give hints to make the other player find their green cards. Each hint may only consist of one single word and a number of cards it relates to. The spymaster gives a hint that is related to as many of the words on his/her own agents' cards as possible, but not to any others – they might accidentally lead the other player to choose a card representing an innocent bystander, or an assassin.`,
   "rules-duet-game-end": `The game ends when all of the 15 green agents are identified (🏅), or when one player has identified an <1>assassin</1> (☠️). The game is timed, which means that players get a total of 9 turns to find all the words. Clicking on an <3>innocent bystander</span> consumes one extra turn.`,
+  "long-story-short": "Long story short",
+  "privacy-tldr": `
+  <p>We keep games and chats in our database for some period of time, but they may be deleted at any moment. This is the only information we store.</p>
+  <p>We use cookies to be able to see analytics about the site's usage (demographics, length of sessions, types of games played). Those analytics do not contain personally identifiable information.</p>
+  <p>Our analytics providers are Hotjar and Google Analytics.</p>
+`,
 };

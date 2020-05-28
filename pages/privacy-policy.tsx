@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import { useTranslation, Trans } from "react-i18next";
 
 export default () => {
+  const { t } = useTranslation();
   return (
     <div className="max-w-3xl mx-auto p-6">
       <Link href="/">
@@ -9,18 +11,20 @@ export default () => {
       </Link>
 
       <div className="mv-6 rounded-lg border-2 border-blue-500 bg-blue-200 p-4">
-        <strong>Long story short</strong>
-        <p>
-          We keep games and chats in our database for some period of time, but
-          they may be deleted at any moment. This is the only information we
-          store.
-        </p>
-        <p>
-          We use cookies to be able to see analytics about the site's usage
-          (demographics, length of sessions, types of games played). Those
-          analytics do not contain personally identifiable information.
-        </p>
-        <p>Our analytics providers are Hotjar and Google Analytics.</p>
+        <strong>{t("long-story-short", "Long story short")}</strong>
+        <Trans i18nKey="privacy-tldr">
+          <p>
+            We keep games and chats in our database for some period of time, but
+            they may be deleted at any moment. This is the only information we
+            store.
+          </p>
+          <p>
+            We use cookies to be able to see analytics about the site's usage
+            (demographics, length of sessions, types of games played). Those
+            analytics do not contain personally identifiable information.
+          </p>
+          <p>Our analytics providers are Hotjar and Google Analytics.</p>
+        </Trans>
       </div>
 
       <div className="text-sm">
