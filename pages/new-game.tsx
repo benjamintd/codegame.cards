@@ -3,18 +3,22 @@ import { IGameOptions, defaultOptions } from "../lib/game";
 import { useState } from "react";
 import { useNewGame } from "../hooks/game";
 import classnames from "classnames";
+import { useTranslation } from "react-i18next";
 
 export default () => {
   const newGame = useNewGame();
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState<IGameOptions>(defaultOptions);
+  const { t } = useTranslation();
 
   return (
     // todo add options and stuff
     <div className="w-screen h-screen p-6 flex flex-col items-center bg-gray-100">
       <h1 className="h1 font-mono mt-6 mb-4">codenames.cards</h1>
 
-      <h2 className="text-xl font-bold mt-6 mb-4">Choose your options</h2>
+      <h2 className="text-xl font-bold mt-6 mb-4">
+        {t("choose-options", "Choose your options")}
+      </h2>
       <Form className="mb-4" options={options} setOptions={setOptions} />
 
       <Button
@@ -29,7 +33,7 @@ export default () => {
           }
         }}
       >
-        Create game
+        {t("create-game", "Create game")}
       </Button>
     </div>
   );
@@ -44,10 +48,12 @@ const Form = ({
   options: IGameOptions;
   setOptions: (options: IGameOptions) => void;
 }) => {
+  const { t } = useTranslation();
+
   return (
     <form className={className}>
       <div className="mb-2 w-64">
-        <h2 className="mb-2">Dictionnary</h2>
+        <h2 className="mb-2">{t("dictionnary", "Dictionnary")}</h2>
         <MultipleChoice
           options={[
             {
@@ -69,7 +75,7 @@ const Form = ({
             {
               label: "🔥 Emoji",
               value: "emoji",
-            }
+            },
           ]}
           onClick={(language) => setOptions({ ...options, language })}
           selected={options.language}
@@ -79,19 +85,19 @@ const Form = ({
         <h2 className="mb-2">Mode</h2>
         <MultipleChoice
           options={[
-            { value: "duet", label: "👥 Duet" },
-            { value: "classic", label: "👨‍👩‍👧‍👦 Classic" },
+            { value: "duet", label: `👥 ${t("duet", "Duet")}` },
+            { value: "classic", label: `👨‍👩‍👧‍👦 ${t("classic", "Classic")}` },
           ]}
           onClick={(mode) => setOptions({ ...options, mode })}
           selected={options.mode}
         />
       </div>
       <div className="mb-2 w-64">
-        <h2 className="mb-2">Public game</h2>
+        <h2 className="mb-2">{t("public-game", "Public game")}</h2>
         <MultipleChoice
           options={[
-            { value: "private", label: "🔒 Private" },
-            { value: "public", label: "🖖 Public" },
+            { value: "private", label: `🔒 ${t("private", "Private")}` },
+            { value: "public", label: `🖖 ${t("public", "Public")}` },
           ]}
           onClick={(p) => setOptions({ ...options, private: p })}
           selected={options.private}

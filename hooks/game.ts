@@ -115,8 +115,7 @@ export function useSendChat(
       [`/games/${game.id}/chat/${chatRef.key}`]: true,
     });
 
-    const source = chat.type === "system" ? "system" : chat.playerId;
-    logEvent("sendchat", source);
+    logEvent("sendchat", chat.type);
   };
 }
 
@@ -226,9 +225,9 @@ export function useAddPlayer(
     const game = gameView.game;
 
     const chat = {
-      type: "system",
+      type: "player-joined",
       timestamp: Date.now(),
-      message: `${player.name} just joined!`,
+      playerName: player.name,
     };
     const chatRef = network.db.ref(`/games/${game.id}/chat`).push();
 
@@ -318,9 +317,8 @@ export function useNewGame(
       const sendChat = useSendChat({ playerId: "", game: game }, network);
 
       await sendChat({
-        type: "system",
+        type: "game-created",
         timestamp: Date.now(),
-        message: `The game was created. Give a hint to get started.`,
       });
 
       if (options?.forward) {
@@ -349,34 +347,35 @@ function getClassicReaction(g: ClassicGridItem, player: IPlayer): string {
     (g === ClassicGridItem.Blue && player.team === "blue")
   ) {
     reaction = shuffle([
-      "Nice!",
-      "Good job!",
-      "Strong move.",
-      `One point for the ${player.team} team!`,
-      "Yay!",
-      "😎",
+      "positive-reaction-1",
+      "positive-reaction-2",
+      "positive-reaction-3",
+      "positive-reaction-4",
+      "positive-reaction-5",
+      "positive-reaction-6",
     ])[0];
   } else if (g === ClassicGridItem.Neutral) {
     reaction = shuffle([
-      "That's a miss.",
-      "Close enough.",
-      "You'll get it next time.",
-      "That was a civilian.",
-      `Almost!`,
+      "neutral-reaction-1",
+      "neutral-reaction-2",
+      "neutral-reaction-3",
+      "neutral-reaction-4",
+      "neutral-reaction-5",
+      "neutral-reaction-6",
     ])[0];
   } else if (g === ClassicGridItem.Black) {
     reaction = shuffle([
-      "You just lost the game!",
-      `The ${player.team === "red" ? "blue" : "red"} team wins!`,
-      "Your team loses ☠️",
+      "black-reaction-1",
+      "black-reaction-2",
+      "black-reaction-3",
     ])[0];
   } else {
     reaction = shuffle([
-      "Whoops!",
-      "Oh no!",
-      `The ${player.team === "red" ? "blue" : "red"} team thanks you.`,
-      "Don't worry you tried your best 💛.",
-      "🤦‍♂️",
+      "negative-reaction-1",
+      "negative-reaction-2",
+      "negative-reaction-3",
+      "negative-reaction-4",
+      "negative-reaction-5",
     ])[0];
   }
 
@@ -385,25 +384,24 @@ function getClassicReaction(g: ClassicGridItem, player: IPlayer): string {
 
 function getDuetReaction(g: DuetGridItem, player: IPlayer): string {
   const positive = shuffle([
-    "Nice!",
-    "Good job!",
-    "Strong move.",
-    "Yay!",
-    "😎",
+    "positive-reaction-1",
+    "positive-reaction-2",
+    "positive-reaction-3",
+    "positive-reaction-4",
+    "positive-reaction-5",
+    "positive-reaction-6",
   ])[0];
 
   const negative = shuffle([
-    "That's a miss.",
-    "Close enough.",
-    "You'll get it next time.",
-    "That was an innocent bypasser.",
-    `Almost!`,
+    "neutral-reaction-1",
+    "neutral-reaction-2",
+    "neutral-reaction-3",
+    "neutral-reaction-4",
+    "neutral-reaction-5",
+    "neutral-reaction-6",
   ])[0];
 
-  const lost = shuffle([
-    "You just lost the game!",
-    "Oh no, you clicked on an assassin ☠️",
-  ])[0];
+  const lost = shuffle(["black-reaction-1", "black-reaction-4"])[0];
 
   switch (player.team) {
     case "duetB":

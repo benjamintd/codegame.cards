@@ -2,12 +2,14 @@ import { useGameView, useGameOver, useNewGame } from "../hooks/game";
 import { useRouter } from "next/router";
 import Button from "./Button";
 import Link from "next/link";
+import { useTranslation, Trans } from "react-i18next";
 
 export default () => {
   const gameView = useGameView();
   const gameOver = useGameOver();
   const newGame = useNewGame();
   const router = useRouter();
+  const { t } = useTranslation();
 
   if (!gameOver.over) {
     return null;
@@ -16,9 +18,14 @@ export default () => {
   return (
     <div className="lg:py-6 py-4 px-2 text-center">
       <p className="lg:text-xl pb-2">
-        The game is over. <br />
-        {gameOver.winner && `The ${gameOver.winner} team wins!`}
-        {gameOver.message}
+        {t("game-over", "The game is over.")}
+        <br />
+        {gameOver.winner && (
+          <Trans i18nKey="winner-team">
+            The {{ team: t(gameOver.winner + "-adj") }} team wins!
+          </Trans>
+        )}
+        {t(gameOver.message)}
       </p>
 
       <Button

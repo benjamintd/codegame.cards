@@ -13,6 +13,7 @@ import playSounds from "../lib/playSounds";
 import shortid from "shortid";
 import { motion } from "framer-motion";
 import useMobileDetect from "../hooks/useMobileDetect";
+import useWindowSize from "../hooks/useWindowSize";
 
 export default () => {
   const network = useNetwork();
@@ -50,7 +51,8 @@ export default () => {
     playerId: player.id,
   });
 
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState<boolean>(false);
+  const windowSize = useWindowSize();
+  const isKeyboardOpen = windowSize.height < 300;
   const mobileDetect = useMobileDetect();
 
   // subscribe to game updates
@@ -100,7 +102,7 @@ export default () => {
           <GameBoard />
         </div>
         <div className="lg:w-4/12 lg:p-6 p-2 h-12 lg:h-full flex-grow lg:flex-grow-0">
-          <Chat setIsKeyboardOpen={setIsKeyboardOpen} />
+          <Chat />
         </div>
       </div>
     </GameViewContext.Provider>

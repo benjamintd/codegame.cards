@@ -8,16 +8,13 @@ import {
 import classnames from "classnames";
 import ChatMessage from "./ChatMessage";
 import { EmojiConvertor } from "emoji-js";
+import { useTranslation } from "react-i18next";
 
 const emoji = new EmojiConvertor();
 emoji.replace_mode = "unified";
 emoji.allow_native = true;
 
-export default ({
-  setIsKeyboardOpen,
-}: {
-  setIsKeyboardOpen: (b: boolean) => void;
-}) => {
+export default () => {
   const chat = useChat();
   const selfPlayer = useSelfPlayer();
   const sendChat = useSendChat();
@@ -26,6 +23,7 @@ export default ({
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     setMessage(emoji.replace_colons(e.currentTarget.value));
   };
+  const { t } = useTranslation();
 
   const send = (hint: boolean = false) => {
     if (message.trim()) {
@@ -38,7 +36,7 @@ export default ({
       } else {
         sendChat({
           playerId: selfPlayer.id,
-          type: 'message',
+          type: "message",
           timestamp: Date.now(),
           message,
         });
@@ -68,13 +66,15 @@ export default ({
             "bg-white": selfPlayer,
           })}
           type="text"
-          placeholder={!selfPlayer ? "join game to start chatting" : ""}
+          placeholder={
+            !selfPlayer
+              ? t("placeholder-join", "join game to start chatting")
+              : ""
+          }
           disabled={!selfPlayer}
           value={message}
           onChange={onChange}
           onKeyDown={onKeyDown}
-          onFocus={() => setIsKeyboardOpen(true)}
-          onBlur={() => setIsKeyboardOpen(false)}
         />
         <button
           className="flex items-center justify-center w-10 h-10 cursor-pointer hover:text-blue-700 focus:outline-none"
@@ -87,7 +87,7 @@ export default ({
             className="rounded border-2 hover:bg-gray-100 border-gray-400 flex items-center text-xs font-bold justify-center w-10 h-10 cursor-pointer hover:text-blue-700 focus:outline-none"
             onClick={() => send(true)}
           >
-            give hint
+            {t("give-hint", "give hint")}
           </button>
         )}
       </div>

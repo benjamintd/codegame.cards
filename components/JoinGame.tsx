@@ -9,6 +9,7 @@ import { IPlayer } from "../lib/game";
 import Button from "./Button";
 import classnames from "classnames";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { useTranslation } from "react-i18next";
 
 const JoinGame = () => {
   const [localStoragePlayer, setLocalStoragePlayer] = useLocalStorage(
@@ -19,6 +20,7 @@ const JoinGame = () => {
   const gameMode = useGameMode();
   const selfId = useSelfId();
   const addPlayer = useAddPlayer();
+  const { t } = useTranslation();
 
   const [name, setName] = useState<string>(localStoragePlayer?.name || "");
   const [warnInput, setWarnInput] = useState<boolean>(false);
@@ -47,7 +49,7 @@ const JoinGame = () => {
 
   return (
     <div className="w-full flex flex-col p-2">
-      <h2 className="h2 text-center pb-2">Join game</h2>
+      <h2 className="h2 text-center pb-2">{t("join-game", "Join game")}</h2>
       <input
         type="text"
         className={classnames("text-input mb-2", {
@@ -61,10 +63,10 @@ const JoinGame = () => {
       {gameMode === "classic" ? (
         <div className="grid grid-cols-2 gap-2 text-sm">
           <Button color="red" onClick={() => onClick({ team: "red" })}>
-            join red
+            {t("join-red", "join red")}
           </Button>
           <Button color="blue" onClick={() => onClick({ team: "blue" })}>
-            join blue
+            {t("join-blue", "join blue")}
           </Button>
         </div>
       ) : (
@@ -73,19 +75,19 @@ const JoinGame = () => {
             color="dark-blue"
             onClick={() => onClick({ team: "duetA", spymaster: true })}
           >
-            join side A
+            {t("join-side", "join side")} A
           </Button>
           <Button
             color="blue"
             onClick={() => onClick({ team: "duetB", spymaster: true })}
           >
-            join side B
+            {t("join-side", "join side")} B
           </Button>
           <Button
             color="neutral"
             onClick={() => onClick({ team: "spectator", spymaster: false })}
           >
-            spectate
+            {t("spectate")}
           </Button>
         </div>
       )}

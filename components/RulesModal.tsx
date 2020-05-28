@@ -1,6 +1,7 @@
 import React from "react";
 import Rules from "./Rules";
 import { IGameMode } from "../lib/game";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
   onClose: () => void;
@@ -9,6 +10,7 @@ interface IProps {
 }
 
 export default ({ onClose, mode, open }: IProps) => {
+  const { t } = useTranslation();
   if (!open) return null;
 
   return (
@@ -27,7 +29,7 @@ export default ({ onClose, mode, open }: IProps) => {
         >
           ×
         </div>
-        <h1 className="h1">Rules</h1>
+        <h1 className="h1">{t("rules", "Rules")}</h1>
         <Rules mode={mode} />
       </div>
     </div>

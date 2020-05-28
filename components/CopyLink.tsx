@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useGameView } from "../hooks/game";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default () => {
   const router = useRouter();
   const gameView = useGameView();
   const ref = React.createRef<HTMLInputElement>();
   const [copied, setCopied] = useState(false);
+  const { t } = useTranslation();
 
   const shareLink =
     typeof window !== "undefined" && window.location.origin
@@ -51,7 +53,7 @@ export default () => {
             animate={{ opacity: 1, y: 50 }}
             exit={{ opacity: 0, y: -50 }}
           >
-            copied to clipboard!
+            {t("copied-to-clipboard", "Copied to clipboard!")}
           </motion.div>
         )}
       </AnimatePresence>

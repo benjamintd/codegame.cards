@@ -17,6 +17,7 @@ import GameOver from "./GameOver";
 import Team from "./Team";
 import DuetScore from "./DuetScore";
 import CopyLink from "./CopyLink";
+import { useTranslation } from "react-i18next";
 
 export default () => {
   const players = usePlayers();
@@ -27,6 +28,7 @@ export default () => {
   const gameOver = useGameOver();
   const presences = usePlayersPresences();
   const turns = useTurns();
+  const { t } = useTranslation();
 
   const teams = groupBy(Object.values(players), (p) => p.team);
 
@@ -37,7 +39,7 @@ export default () => {
     <div className="border rounded bg-white shadow-md w-full h-full flex flex-col text-gray-800">
       <div className="w-full flex flex-col">
         <h2 className="h2 text-center sr-only lg:not-sr-only leading-loose">
-          In the room
+          {t("in-the-room", "In the room")}
         </h2>
         <div className="grid lg:grid-rows-2 lg:grid-cols-1 grid-cols-2 lg:gap-6 gap-2">
           {gameMode === "classic" && (

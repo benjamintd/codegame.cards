@@ -11,8 +11,10 @@ process.on("uncaughtException", (err) => {
 
 export default class MyDocument extends Document {
   render() {
+    const lang = this.props.__NEXT_DATA__?.props?.pageProps?.lang ?? "en";
+
     return (
-      <html lang="en">
+      <html lang={lang}>
         <Head />
         <body>
           <Main />
