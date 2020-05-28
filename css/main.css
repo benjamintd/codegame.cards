@@ -25,3 +25,9 @@ body {
 .text-input:focus {
   @apply outline-none shadow;
 }
+
+.emoji {
+  background-size: contain;
+  display: inline-block;
+  margin-bottom: -3px;
+}

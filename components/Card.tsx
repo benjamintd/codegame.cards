@@ -47,17 +47,17 @@ const Card = ({
   const colorStyles = {
     "z-40": revealing,
     "border cursor-pointer": !w.revealed,
-    "border-4": w.revealed,
+    "border-4 revealed": w.revealed,
     "border-gray-600 bg-gray-200 hover:bg-gray-100": !w.shown,
-    "border-red-800 bg-red-700 text-red-300":
+    "border-red-700 bg-red-500 text-red-100 hover:bg-red-700":
       w.revealed && w.shown && w.color === Color.Red,
-    "border-blue-800 bg-blue-700 text-blue-300":
+    "border-blue-700 bg-blue-500 text-blue-100 hover:bg-blue-700":
       w.revealed && w.shown && w.color === Color.Blue,
-    "border-yellow-800 bg-yellow-100 text-yellow-800":
+    "border-yellow-600 bg-yellow-400 text-yellow-100 hover:bg-yellow-600":
       w.revealed && w.shown && w.color === Color.Neutral,
-    "border-black bg-gray-800 text-gray-200":
+    "border-black bg-gray-800 text-gray-200 hover:bg-black":
       w.revealed && w.shown && w.color === Color.Black,
-    "border-green-800 bg-green-700 text-green-300":
+    "border-green-700 bg-green-500 text-green-100 hover:bg-green-700":
       w.revealed && w.shown && w.color === Color.Green,
     "border-red-800 bg-red-200 text-red-900 hover:bg-red-300":
       !w.revealed && w.shown && w.color === Color.Red,
@@ -97,6 +97,7 @@ const Card = ({
         )}
       >
         <div
+          className="label"
           dangerouslySetInnerHTML={{ __html: emoji.replace_unified(w.word) }}
         />
         {w.duetMarker && (
@@ -110,12 +111,13 @@ const Card = ({
         />
       )}
       <style jsx global>{`
-        .emoji {
+        .revealed:not(:hover) .label {
+          visibility: hidden;
+        }
+
+        .label .emoji {
           height: 32px;
           width: 32px;
-          display: inline-block;
-          background-size: contain;
-          margin-bottom: -3px;
         }
       `}</style>
     </div>
