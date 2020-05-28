@@ -1,10 +1,8 @@
 import ReactGA from "react-ga";
-import { hotjar } from "react-hotjar";
 
 export const initAnalytics = () => {
   if (process.env.NODE_ENV === "production") {
     ReactGA.initialize(process.env.GA_ID);
-    hotjar.initialize(+process.env.HOTJAR_ID, 6);
   }
 };
 

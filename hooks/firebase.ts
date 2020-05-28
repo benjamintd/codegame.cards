@@ -1,9 +1,8 @@
 import "firebase/database";
-import "firebase/analytics";
 import firebase from "firebase/app";
 
-import { IGame, IPlayer } from "../lib/game";
-import { GameHandler, GamesHandler, Network } from "./network";
+import { IGame } from "../lib/game";
+import { GameHandler, Network } from "./network";
 
 export function setupFirebase() {
   if (!firebase.apps.length) {
@@ -18,9 +17,6 @@ export function setupFirebase() {
       measurementId: process.env.FIREBASE_MEASUREMENT_ID,
     };
     firebase.initializeApp(firebaseConfig);
-    if (typeof window !== "undefined") {
-      firebase.analytics();
-    }
   }
 
   return firebase.database();

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNewGame } from "../hooks/game";
 import classnames from "classnames";
 import { useTranslation } from "react-i18next";
+import LanguageSelector from "../components/LanguageSelector";
 
 export default () => {
   const newGame = useNewGame();
@@ -14,6 +15,9 @@ export default () => {
   return (
     // todo add options and stuff
     <div className="w-screen h-screen p-6 flex flex-col items-center bg-gray-100">
+      <div className="absolute top-0 right-0 m-4">
+        <LanguageSelector />
+      </div>
       <h1 className="h1 font-mono mt-6 mb-4">codenames.cards</h1>
 
       <h2 className="text-xl font-bold mt-6 mb-4">
