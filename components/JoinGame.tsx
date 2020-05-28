@@ -55,7 +55,7 @@ const JoinGame = () => {
         className={classnames("text-input mb-2", {
           "border-red-400 shadow-red": warnInput,
         })}
-        placeholder="Enter player name"
+        placeholder={t("player-name-placeholder", "Enter player name")}
         value={name}
         onChange={onChange}
       />

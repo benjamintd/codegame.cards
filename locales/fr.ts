@@ -11,7 +11,7 @@ export default {
   "classic-rules": "Règles classiques",
   "duet-rules": "Règles Duet",
   "support-authors":
-    "Si vous aimez ce jeu, soutenez les auteurs en achetant une version physique.",
+    "Si vous aimez ce jeu, soutenez ses auteurs en achetant une version physique.",
   "made-with-love": "Fabriqué avec ♥ en confinement",
   its: "C'est",
   "check-our": "Consultez notre",
@@ -34,7 +34,8 @@ export default {
   "start-game-classic":
     "Le Maître-Espion <1>{{team}}</1> commence à donner un indice !",
   "see-rules": "Voir les règles",
-  "start-game-duet": "Donnez un indice pour commencer !",
+  "start-game-duet":
+    "Pour commencer, l'un d'entre vous doit donner un indice !",
   "copied-to-clipboard": "Lien copié!",
   "turns-left": "tours restants",
   "game-over": "Le jeu est terminé.",
@@ -61,6 +62,7 @@ export default {
   "just-joined": "a rejoint la partie !",
   "game-created": "La partie a été créée.",
   "no-players-yet": "Il n'y a pas encore de joueurs dans cette équipe !",
+  "player-name-placeholder": "Nom de joueur",
   "positive-reaction-1": "Joli !",
   "positive-reaction-2": "Bien joué !",
   "positive-reaction-3": "Très bien cliqué.",
@@ -97,6 +99,6 @@ export default {
   "privacy-tldr": `
   <p>Nous gardons les parties et les messages du chat dans une base de données temporaires, mais ils peuvent être supprimés à n'importe quel moment. C'est la seule information que nous stockons.</p>
   <p>Nous utilisons des cookies pour savoir comment le site est utilisé (audience, longueur des sessions, types de parties jouées). Ces statistiques ne comportent pas de données personnellement identifiables.</p>
-  <p>Pour cela, nous utilisons Hotjar et Google Analytics.</p>
+  <p>Pour cela, nous utilisons Google Analytics.</p>
 `,
 };

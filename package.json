@@ -30,7 +30,6 @@
     "react": "^16.13.1",
     "react-dom": "16.13.1",
     "react-ga": "^2.7.0",
-    "react-hotjar": "^2.2.0",
     "react-i18next": "^11.5.0",
     "reselect": "^4.0.0",
     "shortid": "^2.2.15",

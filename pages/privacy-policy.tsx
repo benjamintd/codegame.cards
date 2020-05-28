@@ -23,7 +23,7 @@ export default () => {
             (demographics, length of sessions, types of games played). Those
             analytics do not contain personally identifiable information.
           </p>
-          <p>Our analytics providers are Hotjar and Google Analytics.</p>
+          <p>Our analytics provider is Google Analytics.</p>
         </Trans>
       </div>
 

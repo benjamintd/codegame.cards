@@ -61,6 +61,7 @@ export default {
   "just-joined": "joined the game!",
   "game-created": "The game was created.",
   "no-players-yet": "There are no players in this team yet!",
+  "player-name-placeholder": "Enter player name",
   "positive-reaction-1": "Nice!",
   "positive-reaction-2": "Good job!",
   "positive-reaction-3": "Strong move.",
@@ -97,6 +98,6 @@ export default {
   "privacy-tldr": `
   <p>We keep games and chats in our database for some period of time, but they may be deleted at any moment. This is the only information we store.</p>
   <p>We use cookies to be able to see analytics about the site's usage (demographics, length of sessions, types of games played). Those analytics do not contain personally identifiable information.</p>
-  <p>Our analytics providers are Hotjar and Google Analytics.</p>
+  <p>Our analytics provider is Google Analytics.</p>
 `,
 };
