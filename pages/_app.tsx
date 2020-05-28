@@ -6,6 +6,8 @@ import { logPageView, initAnalytics, logEvent } from "../lib/analytics";
 import Router from "next/router";
 import App from "next/app";
 import * as Sentry from "@sentry/browser";
+import { I18nextProvider } from "react-i18next";
+import { i18n } from "../lib/i18n";
 
 import "../css/main.css";
 
@@ -37,6 +39,10 @@ class MyApp extends App {
 
   componentDidMount() {
     initAnalytics();
+
+    i18n.on("initialized", () => {
+      i18n.changeLanguage(i18n.language);
+    });
   }
 
   componentDidCatch(error, errorInfo) {
@@ -56,10 +62,12 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
-      <NetworkContext.Provider value={network}>
-        <Meta />
-        <Component {...pageProps} />
-      </NetworkContext.Provider>
+      <I18nextProvider i18n={i18n}>
+        <NetworkContext.Provider value={network}>
+          <Meta />
+          <Component {...pageProps} />
+        </NetworkContext.Provider>
+      </I18nextProvider>
     );
   }
 }

@@ -1,6 +1,7 @@
 import { IPlayer, ITeam } from "../lib/game";
 import PlayerCard from "./PlayerCard";
 import classnames from "classnames";
+import { useTranslation } from "react-i18next";
 
 const Team = ({
   players,
@@ -15,6 +16,7 @@ const Team = ({
   maxScore?: number;
   presences: { [key: string]: boolean }; // a timestamp for each player
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="pb-1">
       <div
@@ -28,9 +30,7 @@ const Team = ({
           }
         )}
       >
-        <h3 className="capitalize font-mono font-bold">
-          {formattedTeam[team]}
-        </h3>
+        <h3 className="capitalize font-mono font-bold">{t(team)}</h3>
         <span className="text-sm font-bold">
           {maxScore && `${score}/${maxScore} cards`}
         </span>
@@ -42,7 +42,7 @@ const Team = ({
           ))
         ) : (
           <p className="text-gray-500 text-sm">
-            There are no players in this team yet!
+            {t("no-players-yet", "There are no players in this team yet!")}
           </p>
         )}
       </div>

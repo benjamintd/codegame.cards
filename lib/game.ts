@@ -56,7 +56,8 @@ export type IChatMessage =
   | IMessageChatMessage
   | IClickChatMessage
   | IHintChatMessage
-  | ISystemChatMessage;
+  | IGameCreatedChatMessage
+  | IPlayerJoinedChatMessage;
 
 export interface IMessageChatMessage {
   type: "message";
@@ -80,10 +81,15 @@ export interface IHintChatMessage {
   hint: string;
 }
 
-export interface ISystemChatMessage {
-  type: "system";
+export interface IGameCreatedChatMessage {
+  type: "game-created";
   timestamp: number;
-  message: string;
+}
+
+export interface IPlayerJoinedChatMessage {
+  type: "player-joined";
+  timestamp: number;
+  playerName: string;
 }
 
 export type ITurn = IPassTurn | IClickTurn | IHintTurn;

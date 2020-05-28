@@ -1,9 +1,15 @@
 import React from "react";
-import { IChatMessage, IPlayer, ISystemChatMessage } from "../lib/game";
+import {
+  IChatMessage,
+  IPlayer,
+  IPlayerJoinedChatMessage,
+  IGameCreatedChatMessage,
+} from "../lib/game";
 import classnames from "classnames";
 import { motion } from "framer-motion";
 import { useChatMessage, usePlayers, useGameView } from "../hooks/game";
 import { emoji } from "../lib/emoji";
+import { useTranslation } from "react-i18next";
 
 export default React.memo(({ id }: { id: string }) => {
   const chat: IChatMessage | null = useChatMessage(id);
@@ -13,8 +19,10 @@ export default React.memo(({ id }: { id: string }) => {
   }
 
   const message =
-    chat.type === "system" ? (
-      <SystemChatMessage chat={chat} />
+    chat.type === "player-joined" ? (
+      <PlayerJoinedChatMessage chat={chat} />
+    ) : chat.type === "game-created" ? (
+      <GameCreatedChatMessage chat={chat} />
     ) : (
       <PlayerChatMessage chat={chat} player={players[chat.playerId]} />
     );
@@ -42,7 +50,7 @@ const PlayerChatMessage = ({
 }) => {
   const gameView = useGameView();
   const hasEmojis = gameView.game.options.language === "emoji";
-
+  const { t } = useTranslation();
   return (
     <div>
       {player && (
@@ -63,7 +71,7 @@ const PlayerChatMessage = ({
 
       {chat.type === "click" && (
         <>
-          <span>clicked on</span>
+          <span>{t("clicked-on", "Clicked on")}</span>
           {hasEmojis && (
             <span
               className="emoji-small mx-1"
@@ -73,7 +81,7 @@ const PlayerChatMessage = ({
             />
           )}
           {!hasEmojis && <span className="ml-1 font-bold">{chat.word}</span>}
-          <span>. {chat.reaction}</span>
+          <span>. {t(chat.reaction)}</span>
         </>
       )}
 
@@ -101,6 +109,28 @@ const PlayerChatMessage = ({
   );
 };
 
-const SystemChatMessage = ({ chat }: { chat: ISystemChatMessage }) => {
-  return <span className="text-gray-700 font-semibold">{chat.message}</span>;
+const PlayerJoinedChatMessage = ({
+  chat,
+}: {
+  chat: IPlayerJoinedChatMessage;
+}) => {
+  const { t } = useTranslation();
+  return (
+    <span className="text-gray-700 font-semibold">
+      {chat.playerName} {t("just-joined", "joined the game!")}
+    </span>
+  );
+};
+
+const GameCreatedChatMessage = ({
+  chat,
+}: {
+  chat: IGameCreatedChatMessage;
+}) => {
+  const { t } = useTranslation();
+  return (
+    <span className="text-gray-700 font-semibold">
+      {t("game-created", "The game was created.")}
+    </span>
+  );
 };

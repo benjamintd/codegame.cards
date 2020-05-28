@@ -1,8 +1,10 @@
 import React from "react";
 import { IGame, ILanguage } from "../lib/game";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default React.memo(({ game }: { game: IGame }) => {
+  const { t } = useTranslation();
   return (
     <Link href="/[gameId]" as={`/${game.id}`}>
       <div className="border-b-4 border-gray-300 border border-gray-600 rounded p-2 cursor-pointer w-84 hover:bg-white hover:shadow-md">
@@ -23,7 +25,9 @@ export default React.memo(({ game }: { game: IGame }) => {
             </span>
           </div>
           {Object.values(game.turns || []).length > 0 && (
-            <span className="ml-auto text-green-500">started</span>
+            <span className="ml-auto text-green-500">
+              {t("game-started", "started")}
+            </span>
           )}
         </div>
       </div>

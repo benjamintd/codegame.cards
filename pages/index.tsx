@@ -10,6 +10,8 @@ import { sortBy } from "lodash";
 import { gameOverSelector } from "../lib/selectors";
 import { GetStaticProps } from "next";
 import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "../components/LanguageSelector";
 
 interface IProps {
   games: IGame[];
@@ -18,24 +20,33 @@ interface IProps {
 const Home = ({ games }: IProps) => {
   const [seeMore, setSeeMore] = useState<boolean>(false);
   const [rulesMode, setRulesMode] = useState<IGameMode>("classic");
+  const { t } = useTranslation();
 
   return (
     <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">
+      <div className="absolute top-0 right-0 m-4">
+        <LanguageSelector />
+      </div>
       <h1 className="h1 font-mono mt-6">codenames.cards</h1>
-      <p className="font-mono mb-4">The popular card game, online. 🕵️‍♂️</p>
+      <p className="font-mono mb-4">
+        {t("tagline", "The popular card game, online. 🕵️‍♂️")}
+      </p>
       <div className="flex">
         <Link href="/new-game">
           <a>
-            <Button>Create game</Button>
+            <Button>{t("create-game", "Create game")}</Button>
           </a>
         </Link>
       </div>
 
-      <h2 className="h2 mt-6 mb-4">Join a room</h2>
+      <h2 className="h2 mt-6 mb-4">{t("join-room", "Join a room")}</h2>
       <div className="grid grid-flow-row grid-cols-1 gap-2 pb-6">
         {games.length === 0 && (
           <p className="text-gray-700">
-            There are currently no public games. Create one and invite friends!
+            {t(
+              "no-public-room",
+              "There are currently no public games. Create one and invite friends!"
+            )}
           </p>
         )}
         {games.map((g) => (
@@ -44,10 +55,14 @@ const Home = ({ games }: IProps) => {
       </div>
       <DiscordButton />
       <div className="max-w-2xl leading-relaxed border rounded bg-white shadow p-6 text-gray-900 mt-6 ">
-        <h2 className="h2 mb-4 text-center">How to play</h2>
+        <h2 className="h2 mb-4 text-center">
+          {t("how-to-play", "How to play")}
+        </h2>
         <p>
-          Codenames is a game of guessing where teams compete to find words
-          related to a hint-word given by another player.
+          {t(
+            "game-tagline",
+            "Codenames is a game of guessing where teams compete to find words related to a hint-word given by another player."
+          )}
         </p>
         <img
           className="p-6"
@@ -59,7 +74,7 @@ const Home = ({ games }: IProps) => {
             onClick={() => setSeeMore(true)}
             className="cursor-pointer underline text-blue-800 hover:text-blue-700"
           >
-            See more...
+            {t("see-more", "See more...")}
           </p>
         )}
         {seeMore && (
@@ -72,13 +87,14 @@ const Home = ({ games }: IProps) => {
             <div className="flex">
               {(["classic", "duet"] as IGameMode[]).map((mode) => (
                 <button
+                  key={mode}
                   className={classnames(
                     "rounded font-bold mr-2 hover:font-gray-700 p-2",
                     { "bg-gray-300": rulesMode === mode }
                   )}
                   onClick={() => setRulesMode(mode)}
                 >
-                  {mode} rules
+                  {t(mode + "-rules")}
                 </button>
               ))}
             </div>
@@ -88,11 +104,14 @@ const Home = ({ games }: IProps) => {
       </div>
       <div className="mt-6 text-gray-700">
         <p className="mb-2">
-          If you like this game, please support the authors and buy a physical
-          version!
+          {t(
+            "support-authors",
+            "If you like this game, please support the authors and buy a physical version!"
+          )}
         </p>
         <p className="mb-2">
-          Made with ♥ during the lockdown. It's{" "}
+          {t("made-with-love", "Made with ♥ during the lockdown")}.{" "}
+          {t("its", "It's")}{" "}
           <a
             className="hover:text-gray-600 underline"
             href="https://github.com/benjamintd/codenames.cards"
@@ -102,9 +121,11 @@ const Home = ({ games }: IProps) => {
           .
         </p>
         <p className="mb-2">
-          Check our{" "}
+          {t("check-our", "Check our")}{" "}
           <Link href="/privacy-policy">
-            <a className="hover:text-gray-600 underline">privacy policy</a>
+            <a className="hover:text-gray-600 underline">
+              {t("privacy-policy", "privacy policy")}
+            </a>
           </Link>
           .
         </p>

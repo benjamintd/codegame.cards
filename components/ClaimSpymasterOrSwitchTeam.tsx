@@ -15,6 +15,7 @@ import produce from "immer";
 import { IPlayer } from "../lib/game";
 import { useState } from "react";
 import RulesModal from "./RulesModal";
+import { useTranslation, Trans } from "react-i18next";
 
 const ClaimSpymaster = () => {
   const gameView = useGameView();
@@ -24,6 +25,7 @@ const ClaimSpymaster = () => {
   const gameMode = useGameMode();
   const selfId = useSelfId();
   const maxScores = useMaxScores();
+  const { t } = useTranslation();
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -51,7 +53,7 @@ const ClaimSpymaster = () => {
               color={selfPlayer.team === "red" ? "dark-red" : "dark-blue"}
               onClick={() => onClick({ spymaster: true })}
             >
-              Become spymaster
+              {t("become-spymaster", "Become spymaster")}
             </Button>
           )}
 
@@ -71,17 +73,23 @@ const ClaimSpymaster = () => {
                 }
               )}
             >
-              switch teams
+              {t("switch-teams", "Switch teams")}
             </div>
           )}
           <p className="text-center pt-4">
-            The {maxScores.red > maxScores.blue ? "red" : "blue"} spymaster
-            gives a hint to start the game!
+            <Trans i18nKey="start-game-classic">
+              The
+              {{
+                team:
+                  maxScores.red > maxScores.blue ? t("red-adj") : t("blue-adj"),
+              }}
+              spymaster gives a hint to start the game!
+            </Trans>
             <button
               className="underline hover:text-gray-700"
               onClick={() => setShowModal(true)}
             >
-              See rules
+              {t("see-rules", "See rules")}
             </button>
           </p>
         </>
@@ -89,12 +97,15 @@ const ClaimSpymaster = () => {
         // duet game
         <>
           <p className="text-center pt-4">
-            Click on a card or give a hint to start the game!{" "}
+            {t(
+              "start-game-duet",
+              "Click on a card or give a hint to start the game!"
+            )}
             <button
               className="underline hover:text-gray-700"
               onClick={() => setShowModal(true)}
             >
-              See rules
+              {t("see-rules", "See rules")}
             </button>
           </p>
         </>

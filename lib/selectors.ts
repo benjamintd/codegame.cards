@@ -309,7 +309,7 @@ export const gameOverSelector = createSelector(
     if (mode === "duet") {
       // all green cards have been played
       if (scores.duet === maxScores.duet) {
-        return { over: true, message: "You won!" };
+        return { over: true, message: "won" };
       }
 
       // There was a black click
@@ -325,7 +325,7 @@ export const gameOverSelector = createSelector(
       if (blackTurn) {
         return {
           over: true,
-          message: "You lost because you clicked on a black card.",
+          message: "black-card-loss",
         };
       }
 
@@ -333,7 +333,7 @@ export const gameOverSelector = createSelector(
       if (duetTurns > 9) {
         return {
           over: true,
-          message: "You ran out of time!",
+          message: "out-of-time-loss",
         };
       }
 
