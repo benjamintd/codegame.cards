@@ -27,7 +27,15 @@ export default function LanguageSelector() {
   }, [lang, i18nInitialized]);
 
   return (
-    <select className="" value={lang} onChange={(e) => setLang(e.target.value)}>
+    <select
+      id="lang"
+      className=""
+      value={lang}
+      onChange={(e) => setLang(e.target.value)}
+    >
+      <label htmlFor="lang" className="sr-only">
+        Choose a language
+      </label>
       {Object.keys(Languages).map((value) => (
         <option key={value} value={value}>
           {Languages[value]}
