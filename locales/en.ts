@@ -19,7 +19,7 @@ export default {
   "choose-options": "Choose your options",
   duet: "Duet",
   classic: "Classic",
-  dictionnary: "Dictionnary",
+  dictionary: "Dictionary",
   "public-game": "Public game",
   private: "Private",
   public: "Public",

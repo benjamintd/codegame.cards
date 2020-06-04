@@ -1,8 +1,8 @@
-import dictionnaryFr from "./dictionnary-fr";
-import dictionnaryEn from "./dictionnary-en";
-import dictionnaryDe from "./dictionnary-de";
-import dictionnaryEs from "./dictionnary-es";
-import dictionnaryEmoji from "./dictionnary-emoji";
+import dictionaryFr from "./dictionary-fr";
+import dictionaryEn from "./dictionary-en";
+import dictionaryDe from "./dictionary-de";
+import dictionaryEs from "./dictionary-es";
+import dictionaryEmoji from "./dictionary-emoji";
 
 import {
   uniqueNamesGenerator,
@@ -20,12 +20,12 @@ import {
   IDuetGrid,
 } from "./game";
 
-const dictionnaries = {
-  en: dictionnaryEn,
-  fr: dictionnaryFr,
-  de: dictionnaryDe,
-  es: dictionnaryEs,
-  emoji: dictionnaryEmoji,
+const dictionaries = {
+  en: dictionaryEn,
+  fr: dictionaryFr,
+  de: dictionaryDe,
+  es: dictionaryEs,
+  emoji: dictionaryEmoji,
 };
 
 export default (opts?: Partial<IGameOptions>) => {
@@ -34,7 +34,7 @@ export default (opts?: Partial<IGameOptions>) => {
     ...opts,
   };
 
-  const words = getRandom(dictionnaries[options.language].split("\n"), 25);
+  const words = getRandom(dictionaries[options.language].split("\n"), 25);
 
   const id = getId();
   const createdAt = Date.now();
