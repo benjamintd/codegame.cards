@@ -247,25 +247,14 @@ export const lastHintselector = createSelector(turnsSelector, (turns: ITurn[]):
 });
 
 export const duetTurnsSelector = createSelector(
-  playersSelector,
   turnsSelector,
   gameModeSelector,
-  gridSelector,
-  (players, turns, mode, grid) => {
+  (turns, mode) => {
     if (mode !== "duet") {
       return 0;
     }
 
-    return turns.filter((t) => {
-      if (t.type === "click") {
-        const color = getDuetClickTurnColor(t, players, grid);
-        if (color === Color.Neutral) {
-          return true;
-        }
-      } else if (t.type === "hint") {
-        return true;
-      }
-    }).length;
+    return turns.filter((t) => t.type === "hint").length;
   }
 );
 
