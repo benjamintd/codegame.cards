@@ -33,7 +33,7 @@ const Home = ({ games }: IProps) => {
       </p>
       <div className="flex">
         <Link href="/new-game">
-          <a>
+          <a id="create-game">
             <Button>{t("create-game", "Create game")}</Button>
           </a>
         </Link>
@@ -55,7 +55,7 @@ const Home = ({ games }: IProps) => {
       </div>
       <DiscordButton />
       <div className="max-w-2xl leading-relaxed border rounded bg-white shadow p-6 text-gray-900 mt-6 ">
-        <h2 className="h2 mb-4 text-center">
+        <h2 id="how-to-play" className="h2 mb-4 text-center">
           {t("how-to-play", "How to play")}
         </h2>
         <p>

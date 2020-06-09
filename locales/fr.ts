@@ -50,7 +50,7 @@ export default {
   "game-started": "commencé",
   "page-title": "Codenames - Jouez en ligne",
   "page-description":
-    "Jouez á Codenames en ligne, un jeu de mots multijoueur disponible sur mobile, tablette et ordinateur.",
+    "Jouez à Codenames en ligne, un jeu de mots multijoueur disponible sur mobile et ordinateur. Dans ce jeu de déduction, les équipes s'affrontent pour trouver les cartes en rapport avec un indice.",
   "in-the-room": "Dans la partie",
   rules: "Règles",
   // todo rules...

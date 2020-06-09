@@ -49,7 +49,7 @@ export default {
   "game-started": "started",
   "page-title": "Codenames - Play Online",
   "page-description":
-    "Play Codenames online, a multiplayer word game available on phone, tablet & desktop.",
+    "Play Codenames online, a multiplayer word game available on phone and desktop. In that game of guessing, teams compete to find cards related to the given hint-word.",
   "in-the-room": "In the room",
   rules: "Rules",
   // todo rules...
