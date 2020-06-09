@@ -119,7 +119,7 @@ export const boardViewSelector = createSelector(
           );
 
           if (revealedColor === Color.Neutral) {
-            cardView.duetMarker = true;
+            cardView.duetMarker = whoClicked.team;
           } else {
             cardView.revealed = true;
             cardView.color = revealedColor;

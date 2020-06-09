@@ -101,7 +101,17 @@ const Card = ({
           dangerouslySetInnerHTML={{ __html: emoji.replace_unified(w.word) }}
         />
         {w.duetMarker && (
-          <div className="absolute top-0 right-0 m-2 rounded-full w-3 h-3 border-2 border-yellow-800 bg-yellow-300"></div>
+          <div
+            className={classnames(
+              "absolute right-0 m-2 rounded-full w-4 h-4 border-2 border-yellow-800 bg-yellow-300 text-yellow-700 text-xs flex items-center justify-center",
+              {
+                "top-0": w.duetMarker === selfPlayer.team,
+                "bottom-0": w.duetMarker !== selfPlayer.team,
+              }
+            )}
+          >
+            {w.duetMarker === "duetA" ? "A" : "B"}
+          </div>
         )}
       </motion.div>
       {modalOpen && (
