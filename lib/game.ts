@@ -153,7 +153,7 @@ export interface ICardView {
   revealed: boolean;
   shown: boolean; // for spymasters to see unrevealed cards
   color: Color;
-  duetMarker?: ITeam;
+  duetMarkers?: ITeam[];
 }
 
 export function isDuetGame(game: IGame): game is IDuetGame {

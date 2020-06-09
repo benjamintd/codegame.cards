@@ -106,6 +106,7 @@ export const boardViewSelector = createSelector(
           color: getDuetColor(g, selfPlayer?.team),
           shown: !!selfPlayer,
           revealed: false,
+          duetMarkers: [],
         };
 
         const playTurns = turns.filter(
@@ -119,7 +120,7 @@ export const boardViewSelector = createSelector(
           );
 
           if (revealedColor === Color.Neutral) {
-            cardView.duetMarker = whoClicked.team;
+            cardView.duetMarkers.push(whoClicked.team);
           } else {
             cardView.revealed = true;
             cardView.color = revealedColor;
