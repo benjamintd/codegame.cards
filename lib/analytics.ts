@@ -3,6 +3,7 @@ import ReactGA from "react-ga";
 export const initAnalytics = () => {
   if (process.env.NODE_ENV === "production") {
     ReactGA.initialize(process.env.GA_ID);
+    logPageView();
   }
 };
 
