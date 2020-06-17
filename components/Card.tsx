@@ -106,8 +106,12 @@ const Card = ({
               className={classnames(
                 "absolute right-0 m-2 rounded-full w-4 h-4 border-2 border-yellow-800 bg-yellow-300 text-yellow-700 text-xs flex items-center justify-center",
                 {
-                  "top-0": duetMarker === selfPlayer.team,
-                  "bottom-0": duetMarker !== selfPlayer.team,
+                  "top-0": selfPlayer
+                    ? duetMarker === selfPlayer?.team
+                    : duetMarker === "duetA",
+                  "bottom-0": selfPlayer
+                    ? duetMarker !== selfPlayer?.team
+                    : duetMarker === "duetB",
                 }
               )}
             >
