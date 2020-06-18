@@ -85,6 +85,8 @@ const ClaimSpymaster = () => {
               }}
               spymaster gives a hint to start the game!
             </Trans>
+          </p>
+          <p className="text-center pt-4">
             <button
               className="underline hover:text-gray-700"
               onClick={() => setShowModal(true)}
@@ -101,6 +103,8 @@ const ClaimSpymaster = () => {
               "start-game-duet",
               "Click on a card or give a hint to start the game!"
             )}
+          </p>
+          <p className="text-center pt-4">
             <button
               className="underline hover:text-gray-700"
               onClick={() => setShowModal(true)}
