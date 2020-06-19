@@ -61,7 +61,7 @@ export default {
   "just-joined": "присоединился к игре!",
   "game-created": "Игра создана.",
   "no-players-yet": "В этой игре пока никого нет!",
-  "player-name-placeholder": "Enter player name",
+  "player-name-placeholder": "имя игрока",
   "positive-reaction-1": "Отлично!",
   "positive-reaction-2": "Хорошая работа!",
   "positive-reaction-3": "Сильный ход.",

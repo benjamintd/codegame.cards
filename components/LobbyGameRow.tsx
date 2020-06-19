@@ -45,6 +45,8 @@ const getFlag = (language: ILanguage) => {
       return "🇩🇪";
     case "es":
       return "🇪🇸";
+    case "ru":
+      return "🇷🇺";
     case "emoji":
       return "💎";
     default:

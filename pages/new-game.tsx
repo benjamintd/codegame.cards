@@ -77,6 +77,10 @@ const Form = ({
               value: "es",
             },
             {
+              label: "🇷🇺 русский",
+              value: "ru",
+            },
+            {
               label: "🔥 Emoji",
               value: "emoji",
             },

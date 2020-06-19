@@ -6,6 +6,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const Languages = {
   en: "EN",
   fr: "FR",
+  ru: "RU",
 };
 
 export default function LanguageSelector() {
