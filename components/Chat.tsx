@@ -84,7 +84,7 @@ export default () => {
         </button>
         {selfPlayer && selfPlayer.spymaster && (
           <button
-            className="rounded border-2 hover:bg-gray-100 border-gray-400 flex items-center text-xs whitespace-pre-wrap font-bold justify-center w-12 h-10 cursor-pointer hover:text-blue-700 focus:outline-none"
+            className="rounded border-2 hover:bg-gray-100 border-gray-400 flex items-center text-xs whitespace-pre-wrap font-bold justify-center w-20 h-10 cursor-pointer hover:text-blue-700 focus:outline-none"
             onClick={() => send(true)}
           >
             {t("give-hint", "give hint")}
