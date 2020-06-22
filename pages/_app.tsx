@@ -11,10 +11,12 @@ import { i18n } from "../lib/i18n";
 
 import "../css/main.css";
 
-Sentry.init({
-  dsn: process.env.SENTRY_DSN,
-  environment: process.env.NODE_ENV,
-});
+if (process.env.SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    environment: process.env.NODE_ENV,
+  });
+}
 
 Router.events.on("routeChangeComplete", () => logPageView());
 
