@@ -3,6 +3,7 @@ import dictionaryEn from "./dictionary-en";
 import dictionaryDe from "./dictionary-de";
 import dictionaryEs from "./dictionary-es";
 import dictionaryRu from "./dictionary-ru";
+import dictionaryHu from "./dictionary-hu";
 import dictionaryEmoji from "./dictionary-emoji";
 
 import {
@@ -27,6 +28,7 @@ const dictionaries = {
   de: dictionaryDe,
   es: dictionaryEs,
   ru: dictionaryRu,
+  hu: dictionaryHu,
   emoji: dictionaryEmoji,
 };
 
