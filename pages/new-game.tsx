@@ -82,7 +82,11 @@ const Form = ({
             },
             {
               label: "🇭🇺 Magyar",
-              value: "hu"
+              value: "hu",
+            },
+            {
+              label: "🇧🇷 Português",
+              value: "ptbr",
             },
             {
               label: "🔥 Emoji",

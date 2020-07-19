@@ -4,6 +4,7 @@ import dictionaryDe from "./dictionary-de";
 import dictionaryEs from "./dictionary-es";
 import dictionaryRu from "./dictionary-ru";
 import dictionaryHu from "./dictionary-hu";
+import dictionaryPtBr from "./dictionary-ptbr";
 import dictionaryEmoji from "./dictionary-emoji";
 
 import {
@@ -29,6 +30,7 @@ const dictionaries = {
   es: dictionaryEs,
   ru: dictionaryRu,
   hu: dictionaryHu,
+  ptbr: dictionaryPtBr,
   emoji: dictionaryEmoji,
 };
 
