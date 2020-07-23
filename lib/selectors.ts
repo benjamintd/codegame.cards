@@ -20,7 +20,7 @@ import {
   IClassicGame,
 } from "./game";
 import { createSelector } from "reselect";
-import { findLast } from "lodash";
+import { findLast, uniqBy } from "lodash";
 
 export const chatSelector = (gameView: IGameView): string[] =>
   Object.keys(gameView.game?.chat || {});
@@ -170,7 +170,7 @@ export const scoresSelector = createSelector(
     // classic game score
     if (isClassicGame(game)) {
       const grid = gridSelector({ playerId: "", game }) as IClassicGrid;
-      return turns.reduce(
+      return uniqBy(turns, (t) => t.type === "click" && t.value).reduce(
         (acc, turn) => {
           if (turn.type === "click") {
             if (grid[turn.value] === ClassicGridItem.Red) {
@@ -188,7 +188,10 @@ export const scoresSelector = createSelector(
     // duet game score
     if (isDuetGame(game)) {
       const grid = gridSelector({ playerId: "", game }) as IDuetGrid;
-      return turns.reduce(
+      return uniqBy(
+        turns,
+        (t) => t.type === "click" && `${t.from}${t.value}`
+      ).reduce(
         (acc, turn) => {
           if (turn.type === "click") {
             if (
