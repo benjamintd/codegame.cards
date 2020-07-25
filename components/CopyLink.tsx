@@ -30,9 +30,9 @@ export default () => {
 
   // todo add a link to the game and be a button to copy it to clipboard
   return (
-    <div className="p-4 flex flex-col items-center">
+    <div className="p-4 py-2 lg:py-4 flex flex-col items-center">
       <div
-        className="flex text-gray-800 hover:text-gray-600 cursor-pointer mt-2 w-full"
+        className="flex text-gray-800 hover:text-gray-600 cursor-pointer w-full"
         onClick={copyToClipboard}
       >
         <input
@@ -48,7 +48,7 @@ export default () => {
       <AnimatePresence>
         {copied && (
           <motion.div
-            className="absolute mx-auto border rounded bg-yellow-100 text-yellow-600 border-yellow-600 w-24 p-2 text-xs text-center font-bold mt-2 z-50"
+            className="absolute mx-auto border rounded bg-yellow-100 text-yellow-600 border-yellow-600 w-24 p-2 text-xs text-center font-bold z-50"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 50 }}
             exit={{ opacity: 0, y: -50 }}

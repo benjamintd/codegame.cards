@@ -101,7 +101,7 @@ export default () => {
         <div className="lg:w-6/12 lg:p-6 p-2 lg:flex-grow flex">
           <GameBoard />
         </div>
-        <div className="lg:w-4/12 lg:p-6 p-2 h-12 lg:h-full flex-grow lg:flex-grow-0">
+        <div className="lg:w-4/12 lg:p-6 p-2 h-40 lg:h-full flex-grow lg:flex-grow-0">
           <Chat />
         </div>
       </div>

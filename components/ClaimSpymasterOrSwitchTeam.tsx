@@ -65,7 +65,7 @@ const ClaimSpymaster = () => {
                 })
               }
               className={classnames(
-                "text-center ml-2 underline cursor-pointer",
+                "text-center ml-2 mt-2 underline cursor-pointer",
                 {
                   "text-blue-800 hover:text-blue-700":
                     selfPlayer.team === "red",
@@ -76,7 +76,7 @@ const ClaimSpymaster = () => {
               {t("switch-teams", "Switch teams")}
             </div>
           )}
-          <p className="text-center pt-4">
+          <p className="text-center pt-2 lg:pt-4">
             <Trans i18nKey="start-game-classic">
               The
               {{
@@ -86,7 +86,7 @@ const ClaimSpymaster = () => {
               spymaster gives a hint to start the game!
             </Trans>
           </p>
-          <p className="text-center pt-4">
+          <p className="text-center pt-2 lg:pt-4">
             <button
               className="underline hover:text-gray-700"
               onClick={() => setShowModal(true)}
@@ -98,13 +98,13 @@ const ClaimSpymaster = () => {
       ) : (
         // duet game
         <>
-          <p className="text-center pt-4">
+          <p className="text-center pt-2 lg:pt-4">
             {t(
               "start-game-duet",
               "Click on a card or give a hint to start the game!"
             )}
           </p>
-          <p className="text-center pt-4">
+          <p className="text-center pt-2 lg:pt-4">
             <button
               className="underline hover:text-gray-700"
               onClick={() => setShowModal(true)}
