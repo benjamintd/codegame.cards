@@ -7,6 +7,7 @@ const Languages = {
   en: "EN",
   fr: "FR",
   ru: "RU",
+  ptbr: "PT-BR",
 };
 
 export default function LanguageSelector() {
