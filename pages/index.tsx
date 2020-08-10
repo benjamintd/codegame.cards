@@ -109,6 +109,7 @@ const Home = ({ games }: IProps) => {
             "If you like this game, please support the authors and buy a physical version!"
           )}
         </p>
+
         <p className="mb-2">
           {t("made-with-love", "Made with ♥ during the lockdown")}.{" "}
           {t("its", "It's")}{" "}
@@ -118,7 +119,13 @@ const Home = ({ games }: IProps) => {
           >
             open-source
           </a>
-          .
+          .{" "}
+          <a
+            href="https://www.buymeacoffee.com/benjamintd"
+            className="hover:text-gray-600 underline mb-2"
+          >
+            {t("buymeacoffee", "Support the game by buying me a coffee!")}
+          </a>
         </p>
         <p className="mb-2">
           {t("check-our", "Check our")}{" "}

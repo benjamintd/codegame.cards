@@ -64,6 +64,7 @@ export default {
   "game-created": "La partie a été créée.",
   "no-players-yet": "Il n'y a pas encore de joueurs dans cette équipe !",
   cards: "cards",
+  buymeacoffee: "Soutenez ce jeu en m'offrant un café",
   "player-name-placeholder": "Nom de joueur",
   "positive-reaction-1": "Joli !",
   "positive-reaction-2": "Bien joué !",

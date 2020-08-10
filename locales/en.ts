@@ -64,6 +64,7 @@ export default {
   "no-players-yet": "There are no players in this team yet!",
   "player-name-placeholder": "Enter player name",
   cards: "cards",
+  buymeacoffee: "Support the game, buy me a coffee",
   "positive-reaction-1": "Nice!",
   "positive-reaction-2": "Good job!",
   "positive-reaction-3": "Strong move.",
