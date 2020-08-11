@@ -93,6 +93,14 @@ export default () => {
       {!turnsWerePlayed && <ClaimSpymasterOrSwitchTeam />}
       {!turnsWerePlayed && <CopyLink />}
       {gameOver.over && <GameOver />}
+      <div className="mt-auto lg:block hidden">
+        <a
+          href="https://www.buymeacoffee.com/benjamintd"
+          className="text-sm text-gray-600 hover:text-gray-400 underline mb-2 p-2"
+        >
+          {t("buymeacoffee", "Support the game by buying me a coffee!")}
+        </a>
+      </div>
     </div>
   );
 };
