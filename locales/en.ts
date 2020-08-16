@@ -27,7 +27,7 @@ export default {
   "join-game": "Join game",
   "placeholder-join": "join game to start chatting",
   "give-hint": "give hint",
-  "clicked-on": "Clicked on",
+  "clicked-on": "clicked on",
   "become-spymaster": "Become spymaster",
   "switch-teams": "Switch teams",
   "red-adj": "red",
