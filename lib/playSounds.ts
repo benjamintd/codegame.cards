@@ -76,8 +76,7 @@ const playSound = (path) => {
       if (e.name === "NotAllowedError") {
         return;
       }
-
-      throw e;
+      console.error(e);
     });
   }
 };
