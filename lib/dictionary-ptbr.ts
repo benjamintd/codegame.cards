@@ -108,7 +108,6 @@ Morcego
 Taco
 Jato
 Shakespeare
-Raio
 Troca
 Interruptor
 Muro
@@ -232,7 +231,7 @@ Tábua
 Tabuleiro
 Cama
 França
-Mammute
+Mamute
 Algodão
 Andorinha
 Rede
@@ -355,7 +354,7 @@ Bezerro
 Águia
 Falcão
 Agulha
-Foresta
+Floresta
 Dragão
 Chave
 Cinto
@@ -398,7 +397,6 @@ Pista
 Banco
 Alemanha
 Minhoca
-Raio
 Capital
 Greve
 Golpe
@@ -425,7 +423,7 @@ Rato
 Caneca
 Ferradura
 Escorpião
-Agentr
+Agente
 Helicóptero
 Buraco
 Órgão
@@ -572,7 +570,7 @@ Torrada
 Lavanderia
 Tigela
 Truque
-Crusado
+Cruzado
 Fazenda
 Mona Lisa
 Cerveja
@@ -665,7 +663,7 @@ Ferver
 Páscoa
 Quarto
 Microondas
-Choveiro
+Chuveiro
 Combustível
 Terremoto
 Corvo
