@@ -32,7 +32,10 @@ export default () => {
         className="mr-2 mb-2"
         onClick={() => {
           if (!gameView.game.nextGameId) {
-            newGame(gameView.game.options, { forward: true });
+            newGame(
+              { ...gameView.game.options, noReuse: gameView.game.words },
+              { forward: true }
+            );
           } else {
             router.push("/[gameId]", `/${gameView.game.nextGameId}`);
           }

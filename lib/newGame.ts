@@ -35,12 +35,18 @@ const dictionaries = {
 };
 
 export default (opts?: Partial<IGameOptions>) => {
-  let options: IGameOptions = {
+  let options: IGameOptions & { noReuse?: string[] } = {
     ...defaultOptions,
     ...opts,
   };
 
-  const words = getRandom(dictionaries[options.language].split("\n"), 25);
+  const noReuse = new Set(options.noReuse || []);
+
+  const dict = dictionaries[options.language]
+    .split("\n")
+    .filter((w) => (noReuse.size > 0 ? !noReuse.has(w) : true));
+
+  const words = getRandom(dict, 25);
 
   const id = getId();
   const createdAt = Date.now();

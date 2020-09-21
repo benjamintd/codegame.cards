@@ -101,8 +101,9 @@ const Card = ({
           dangerouslySetInnerHTML={{ __html: emoji.replace_unified(w.word) }}
         />
         {w.duetMarkers &&
-          w.duetMarkers.map((duetMarker) => (
+          w.duetMarkers.map((duetMarker, i) => (
             <div
+              key={i}
               className={classnames(
                 "absolute right-0 m-2 rounded-full w-4 h-4 border-2 border-yellow-800 bg-yellow-300 text-yellow-700 text-xs flex items-center justify-center",
                 {
