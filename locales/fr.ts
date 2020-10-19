@@ -15,7 +15,7 @@ export default {
   "made-with-love": "Fabriqué avec ♥ en confinement",
   "its-open-source": "C'est <1>open-source</1>.",
   "check-our-privacy-policy":
-    "Consultez notre <1>politique de confidentialité</1>.",
+    "Consultez notre <2>politique de confidentialité</2>.",
   "choose-options": "Choisissez vos options",
   mode: "Mode",
   duet: "Duet",
@@ -38,7 +38,8 @@ export default {
   "start-game-duet":
     "Pour commencer, l'un d'entre vous doit donner un indice !",
   "copied-to-clipboard": "Lien copié!",
-  "turns-left": "tours restants",
+  "turns-left": "{{ count }} tour restant",
+  "turns-left_plural": "{{ count }} tours restants",
   "game-over": "Le jeu est terminé.",
   "winner-team": "L'équipe <1>{{team}}</1> a gagné !",
   "black-card-loss": "Vous avez perdu car vous avez cliqué sur un assassin.",

@@ -5,6 +5,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 const Languages = {
   en: "EN",
+  es: "ES",
   fr: "FR",
   ru: "RU",
   ptbr: "PT-BR",
