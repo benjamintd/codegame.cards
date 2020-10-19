@@ -13,9 +13,9 @@ export default {
   "support-authors":
     "Если вам понравилась эта игра, пожалуйста, поддержите авторов и купите бумажную версию!",
   "made-with-love": "Сделано с ♥ в карантине",
-  its: "Это",
-  "check-our": "Проверьте нашу",
-  "privacy-policy": "политику конфиденциальности",
+  "its-open-source": "Это <1>open-source</1>.",
+  "check-our-privacy-policy":
+    "Проверьте нашу <1>политику конфиденциальности</1>.",
   "choose-options": "Параметры игры",
   mode: "режим",
   duet: "Дуэт",
@@ -64,6 +64,7 @@ export default {
   "no-players-yet": "В этой игре пока никого нет!",
   "player-name-placeholder": "имя игрока",
   cards: "слов",
+  buymeacoffee: "Поддержите игру, купите мне кофе",
   "positive-reaction-1": "Отлично!",
   "positive-reaction-2": "Хорошая работа!",
   "positive-reaction-3": "Сильный ход.",

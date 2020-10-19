@@ -36,70 +36,72 @@ export default () => {
     turns.filter((t) => t.type === "click" || t.type === "hint").length > 0;
 
   return (
-    <div className="border rounded bg-white shadow-md w-full h-full flex flex-col text-gray-800">
-      <div className="w-full flex flex-col">
-        <h2 className="h2 text-center sr-only lg:not-sr-only leading-loose">
-          {t("in-the-room", "In the room")}
-        </h2>
-        <div className="grid lg:grid-rows-2 lg:grid-cols-1 grid-cols-2 lg:gap-6 gap-2">
-          {gameMode === "classic" && (
-            <>
-              <Team
-                players={teams["red"]}
-                team="red"
-                score={scores["red"]}
-                maxScore={maxScores["red"]}
-                presences={presences}
-              />
-              <Team
-                players={teams["blue"]}
-                team="blue"
-                score={scores["blue"]}
-                maxScore={maxScores["blue"]}
-                presences={presences}
-              />
-            </>
-          )}
-
-          {gameMode === "duet" && (
-            <>
-              <Team
-                players={teams["duetA"]}
-                team="duetA"
-                score={scores["duet"]}
-                maxScore={maxScores["duet"]}
-                presences={presences}
-              />
-              <Team
-                players={teams["duetB"]}
-                team="duetB"
-                score={scores["duet"]}
-                maxScore={maxScores["duet"]}
-                presences={presences}
-              />
-              {teams.spectator && (
+    <div className="border rounded bg-gray-200 p-1 shadow-md w-full h-full flex flex-col text-gray-800 overflow-y-scroll">
+      <div className="border rounded bg-white flex flex-col flex-grow">
+        <div>
+          <h2 className="uppercase font-bold text-sm text-center sr-only lg:not-sr-only leading-loose">
+            {t("in-the-room", "In the room")}
+          </h2>
+          <div className="grid lg:grid-rows-2 lg:grid-cols-1 grid-cols-2 lg:gap-6 gap-2">
+            {gameMode === "classic" && (
+              <>
                 <Team
-                  players={teams["spectator"]}
-                  team="spectator"
+                  players={teams["red"]}
+                  team="red"
+                  score={scores["red"]}
+                  maxScore={maxScores["red"]}
                   presences={presences}
                 />
-              )}
-            </>
-          )}
+                <Team
+                  players={teams["blue"]}
+                  team="blue"
+                  score={scores["blue"]}
+                  maxScore={maxScores["blue"]}
+                  presences={presences}
+                />
+              </>
+            )}
+
+            {gameMode === "duet" && (
+              <>
+                <Team
+                  players={teams["duetA"]}
+                  team="duetA"
+                  score={scores["duet"]}
+                  maxScore={maxScores["duet"]}
+                  presences={presences}
+                />
+                <Team
+                  players={teams["duetB"]}
+                  team="duetB"
+                  score={scores["duet"]}
+                  maxScore={maxScores["duet"]}
+                  presences={presences}
+                />
+                {teams.spectator && (
+                  <Team
+                    players={teams["spectator"]}
+                    team="spectator"
+                    presences={presences}
+                  />
+                )}
+              </>
+            )}
+          </div>
         </div>
-      </div>
-      <DuetScore />
-      {!selfPlayer && <JoinGame />}
-      {!turnsWerePlayed && <ClaimSpymasterOrSwitchTeam />}
-      {!turnsWerePlayed && <CopyLink />}
-      {gameOver.over && <GameOver />}
-      <div className="mt-auto lg:block hidden">
-        <a
-          href="https://www.buymeacoffee.com/benjamintd"
-          className="text-sm text-gray-600 hover:text-gray-400 underline mb-2 p-2"
-        >
-          {t("buymeacoffee", "Support the game by buying me a coffee!")}
-        </a>
+        <DuetScore />
+        {!selfPlayer && <JoinGame />}
+        {!turnsWerePlayed && <ClaimSpymasterOrSwitchTeam />}
+        {!turnsWerePlayed && <CopyLink />}
+        {gameOver.over && <GameOver />}
+        <div className="mt-auto lg:block hidden leading-tight p-2">
+          <a
+            href="https://www.buymeacoffee.com/benjamintd"
+            className="text-sm text-gray-600 hover:text-gray-400 underline mb-2"
+          >
+            {t("buymeacoffee", "Support the game by buying me a coffee!")}
+          </a>
+        </div>
       </div>
     </div>
   );

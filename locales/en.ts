@@ -13,9 +13,8 @@ export default {
   "support-authors":
     "If you like this game, please support the authors and buy a physical version!",
   "made-with-love": "Made with ♥ during the lockdown",
-  its: "It's",
-  "check-our": "Check our",
-  "privacy-policy": "privacy policy",
+  "its-open-source": "It's <1>open-source</1>.",
+  "check-our": "Check our <1>privacy policy</1>.",
   "choose-options": "Choose your options",
   mode: "Mode",
   duet: "Duet",
