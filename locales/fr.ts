@@ -13,9 +13,9 @@ export default {
   "support-authors":
     "Si vous aimez ce jeu, soutenez ses auteurs en achetant une version physique.",
   "made-with-love": "Fabriqué avec ♥ en confinement",
-  its: "C'est",
-  "check-our": "Consultez notre",
-  "privacy-policy": "politique de confidentialité",
+  "its-open-source": "C'est <1>open-source</1>.",
+  "check-our-privacy-policy":
+    "Consultez notre <1>politique de confidentialité</1>.",
   "choose-options": "Choisissez vos options",
   mode: "Mode",
   duet: "Duet",
@@ -63,7 +63,7 @@ export default {
   "just-joined": "a rejoint la partie !",
   "game-created": "La partie a été créée.",
   "no-players-yet": "Il n'y a pas encore de joueurs dans cette équipe !",
-  cards: "cards",
+  cards: "cartes",
   buymeacoffee: "Soutenez ce jeu en m'offrant un café",
   "player-name-placeholder": "Nom de joueur",
   "positive-reaction-1": "Joli !",

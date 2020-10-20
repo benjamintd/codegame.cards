@@ -10,7 +10,7 @@ import { sortBy } from "lodash";
 import { gameOverSelector } from "../lib/selectors";
 import { GetStaticProps } from "next";
 import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import LanguageSelector from "../components/LanguageSelector";
 
 interface IProps {
@@ -109,32 +109,34 @@ const Home = ({ games }: IProps) => {
             "If you like this game, please support the authors and buy a physical version!"
           )}
         </p>
-
         <p className="mb-2">
           {t("made-with-love", "Made with ♥ during the lockdown")}.{" "}
-          {t("its", "It's")}{" "}
-          <a
-            className="hover:text-gray-600 underline"
-            href="https://github.com/benjamintd/codenames.cards"
-          >
-            open-source
-          </a>
-          .{" "}
+          <Trans i18nKey="its-open-source">
+            It's
+            <a
+              className="hover:text-gray-600 underline"
+              href="https://github.com/benjamintd/codenames.cards"
+            >
+              open-source
+            </a>
+            .
+          </Trans>{" "}
           <a
             href="https://www.buymeacoffee.com/benjamintd"
             className="hover:text-gray-600 underline mb-2"
           >
-            {t("buymeacoffee", "Support the game by buying me a coffee!")}
+            {t("buymeacoffee", "Support the game, buy me a coffee.")}
           </a>
+          .
         </p>
         <p className="mb-2">
-          {t("check-our", "Check our")}{" "}
-          <Link href="/privacy-policy">
-            <a className="hover:text-gray-600 underline">
-              {t("privacy-policy", "privacy policy")}
+          <Trans i18nKey="check-our-privacy-policy">
+            Check our{" "}
+            <a href="/privacy-policy" className="hover:text-gray-600 underline">
+              privacy policy
             </a>
-          </Link>
-          .
+            .
+          </Trans>
         </p>
       </div>
     </div>
