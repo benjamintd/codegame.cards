@@ -15,7 +15,7 @@ export default {
   "made-with-love": "Сделано с ♥ в карантине",
   "its-open-source": "Это <1>open-source</1>.",
   "check-our-privacy-policy":
-    "Проверьте нашу <1>политику конфиденциальности</1>.",
+    "Проверьте нашу <2>политику конфиденциальности</2>.",
   "choose-options": "Параметры игры",
   mode: "режим",
   duet: "Дуэт",
@@ -37,7 +37,8 @@ export default {
   "see-rules": "Правила",
   "start-game-duet": "Нажмите на карту или дайте подсказку, чтобы начать игру!",
   "copied-to-clipboard": "Скопировано в буфер обмена!",
-  "turns-left": "ходов осталось",
+  "turns-left": "{{ count }} ходов осталось",
+  "turns-left_plural": "{{ count }} ходов осталось",
   "game-over": "Игра окончена.",
   "winner-team": "Команда <1>{{team}}</1> побеждает!",
   "black-card-loss": "Вы проиграли, потому что нажали на черную карту.",
