@@ -190,7 +190,7 @@ export const scoresSelector = createSelector(
       const grid = gridSelector({ playerId: "", game }) as IDuetGrid;
       return uniqBy(
         turns,
-        (t) => t.type === "click" && `${t.from}${t.value}`
+        (t) => t.type === "click" && `${players[t.from].team}${t.value}`
       ).reduce(
         (acc, turn) => {
           if (turn.type === "click") {
