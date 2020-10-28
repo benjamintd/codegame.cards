@@ -42,7 +42,7 @@ export default () => {
           <h2 className="uppercase font-bold text-sm text-center sr-only lg:not-sr-only leading-loose">
             {t("in-the-room", "In the room")}
           </h2>
-          <div className="grid lg:grid-rows-2 lg:grid-cols-1 grid-cols-2 lg:gap-6 gap-2">
+          <div className="grid grid-cols-2 lg:grid-rows-2 lg:grid-cols-1 lg:gap-6 gap-2">
             {gameMode === "classic" && (
               <>
                 <Team
@@ -80,6 +80,7 @@ export default () => {
                 />
                 {teams.spectator && (
                   <Team
+                    className="hidden lg:block"
                     players={teams["spectator"]}
                     team="spectator"
                     presences={presences}

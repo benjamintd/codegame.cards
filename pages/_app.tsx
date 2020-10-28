@@ -42,9 +42,9 @@ class MyApp extends App {
   componentDidMount() {
     initAnalytics();
 
-    i18n.on("initialized", () => {
-      i18n.changeLanguage(i18n.language);
-    });
+    if (this.props.router.locale) {
+      i18n.changeLanguage(this.props.router.locale);
+    }
   }
 
   componentDidCatch(error, errorInfo) {

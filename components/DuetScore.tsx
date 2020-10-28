@@ -1,6 +1,11 @@
 import React from "react";
-import { useGameMode, useDuetTurns, useTurns } from "../hooks/game";
+import { useGameMode, useDuetTurns, useTurns, usePlayers } from "../hooks/game";
 import { useTranslation, Trans } from "react-i18next";
+import { groupBy } from "lodash";
+
+const players = usePlayers();
+const teams = groupBy(Object.values(players), (p) => p.team);
+const spectators = teams["spectator"]
 
 export default () => {
   const gameMode = useGameMode();
@@ -14,7 +19,12 @@ export default () => {
   }
 
   return (
-    <div className="text-center p-2">
+    <div className="text-center lg:p-2 p-1">
+      {spectators && spectators.length && (
+          spectators.map((s) => (
+            <span key={s.id}>{s.name}</span>
+          ))
+        )}
       <Trans i18nKey="turns-left" count={count}>
         {{ count }} turns left ⏱
       </Trans>
