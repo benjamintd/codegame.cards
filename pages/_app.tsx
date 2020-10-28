@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Meta from "../components/Meta";
 import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
 import { NetworkContext } from "../hooks/network";
