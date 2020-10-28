@@ -21,7 +21,7 @@ export default function LanguageSelector() {
           {({ open }) => (
             <>
               <span className="rounded-md shadow-sm">
-                <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800">
+                <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-600 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800">
                   <span>{Languages[router.locale]}</span>
                   <svg
                     className="w-5 h-5 ml-2 -mr-1"
@@ -50,7 +50,11 @@ export default function LanguageSelector() {
                   className="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                 >
                     {Object.keys(Languages).map((value) => (
-                      <Menu.Item key={value}>
+                      <Menu.Item
+                        as='span'
+                        className="flex justify-between w-full text-sm leading-5 text-left text-gray-800"
+                        key={value}
+                      >
                         {({ active }) => (
                           <Link
                             as={router.asPath}
@@ -60,9 +64,9 @@ export default function LanguageSelector() {
                           >
                             <a className={`${
                                 active
-                                  ? "bg-gray-200 text-gray-900"
+                                  ? "bg-blue-200 text-blue-900"
                                   : "text-gray-700"
-                              } flex justify-between w-full px-4 py-2 text-sm leading-5 text-left`}
+                              } block px-4 py-2 h-full w-full`}
                             >
                               {Languages[value]}
                             </a>
