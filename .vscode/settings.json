@@ -1,7 +1,8 @@
 {
-  "editor.formatOnSave": true,
+  "css.validate": false,
+  "stylelint.enable": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "css.validate": false
 }

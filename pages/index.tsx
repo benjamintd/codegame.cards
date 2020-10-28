@@ -1,4 +1,4 @@
-import React, { AnchorHTMLAttributes, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { IGame, IGameMode } from "../lib/game";
 import LobbyGameRow from "../components/LobbyGameRow";

@@ -15,21 +15,21 @@ export default function LanguageSelector() {
 
   return (
     <label htmlFor="lang">
-    <span className="sr-only">Choose a language</span>
-    <select
-      className="form-select bg-transparent"
-      value={router.locale}
-      onChange={e => {
-        router.push(router.pathname, router.asPath, { locale: e.target.value });
-      }}
-    >
-      {Object.keys(Languages).map(value => (
-        <option key={value} value={value}>
-          {Languages[value]}
-        </option>
-      ))}
+      <span className="sr-only">Choose a language</span>
+      <select
+        className="form-select bg-transparent"
+        value={router.locale}
+        onChange={e => {
+          router.push(router.pathname, router.asPath, { locale: e.target.value });
+        }}
+      >
+        {Object.keys(Languages).map(value => (
+          <option key={value} value={value}>
+            {Languages[value]}
+          </option>
+        ))}
       </select>
-      </label>
+    </label>
   );
 }
 

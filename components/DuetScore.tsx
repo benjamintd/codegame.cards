@@ -3,11 +3,12 @@ import { useGameMode, useDuetTurns, useTurns, usePlayers } from "../hooks/game";
 import { useTranslation, Trans } from "react-i18next";
 import { groupBy } from "lodash";
 
-const players = usePlayers();
-const teams = groupBy(Object.values(players), (p) => p.team);
-const spectators = teams["spectator"]
+
 
 const DuetScore = () => {
+  const players = usePlayers();
+  const teams = groupBy(Object.values(players), (p) => p.team);
+  const spectators = teams["spectator"]
   const gameMode = useGameMode();
   const duetScore = useDuetTurns();
   const turns = useTurns();
