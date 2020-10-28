@@ -19,7 +19,7 @@ import DuetScore from "./DuetScore";
 import CopyLink from "./CopyLink";
 import { useTranslation } from "react-i18next";
 
-export default () => {
+const RoomInfo = () => {
   const players = usePlayers();
   const gameMode = useGameMode();
   const selfPlayer = useSelfPlayer();
@@ -107,3 +107,5 @@ export default () => {
     </div>
   );
 };
+
+export default RoomInfo;

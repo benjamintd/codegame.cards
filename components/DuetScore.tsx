@@ -7,7 +7,7 @@ const players = usePlayers();
 const teams = groupBy(Object.values(players), (p) => p.team);
 const spectators = teams["spectator"]
 
-export default () => {
+const DuetScore = () => {
   const gameMode = useGameMode();
   const duetScore = useDuetTurns();
   const turns = useTurns();
@@ -31,3 +31,5 @@ export default () => {
     </div>
   );
 };
+
+export default DuetScore;

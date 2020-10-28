@@ -6,7 +6,7 @@ import classnames from "classnames";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../components/LanguageSelector";
 
-export default () => {
+const NewGame = () => {
   const newGame = useNewGame();
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState<IGameOptions>(defaultOptions);
@@ -42,6 +42,8 @@ export default () => {
     </div>
   );
 };
+
+export default NewGame;
 
 const Form = ({
   className,

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useTranslation, Trans } from "react-i18next";
 
-export default () => {
+const PrivacyPolicy = () => {
   const { t } = useTranslation();
   return (
     <div className="max-w-3xl mx-auto p-6">
@@ -229,3 +229,5 @@ export default () => {
     </div>
   );
 };
+
+export default PrivacyPolicy;

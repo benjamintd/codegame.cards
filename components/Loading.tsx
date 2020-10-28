@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default () => {
+const Loading = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -31,3 +31,5 @@ export default () => {
     </motion.div>
   );
 };
+
+export default Loading;

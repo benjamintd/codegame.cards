@@ -4,7 +4,7 @@ import Button from "./Button";
 import Link from "next/link";
 import { useTranslation, Trans } from "react-i18next";
 
-export default () => {
+const GameOver = () => {
   const gameView = useGameView();
   const gameOver = useGameOver();
   const newGame = useNewGame();
@@ -53,3 +53,5 @@ export default () => {
     </div>
   );
 };
+
+export default GameOver;

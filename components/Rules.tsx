@@ -2,7 +2,7 @@ import React from "react";
 import { IGameMode } from "../lib/game";
 import { Trans, useTranslation } from "react-i18next";
 
-export default ({ mode }: { mode: IGameMode }) => {
+const Rules = ({ mode }: { mode: IGameMode }) => {
   const { t } = useTranslation();
   if (mode === "classic") {
     return (
@@ -148,3 +148,5 @@ export default ({ mode }: { mode: IGameMode }) => {
     );
   }
 };
+
+export default Rules;

@@ -9,7 +9,7 @@ interface IProps {
   open: boolean;
 }
 
-export default ({ onClose, mode, open }: IProps) => {
+const RulesModal = ({ onClose, mode, open }: IProps) => {
   const { t } = useTranslation();
   if (!open) return null;
 
@@ -35,3 +35,5 @@ export default ({ onClose, mode, open }: IProps) => {
     </div>
   );
 };
+
+export default RulesModal;
