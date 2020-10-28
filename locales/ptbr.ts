@@ -1,6 +1,8 @@
 export default {
   tagline: "O jogo popular de cartas, online. 🕵️‍♂️",
   "create-game": "Criar um jogo",
+  "new-game": "Novo jogo",
+  "back-to-lobby": "De volta ao lobby",
   "join-room": "Entrar em um jogo",
   "no-public-room":
     "Nenhum jogo público disponível no momento. Crie um e convide seus amigos!!",

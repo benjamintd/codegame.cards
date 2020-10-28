@@ -1,6 +1,8 @@
 export default {
   tagline: "Jouez au fameux jeu de cartes en ligne. 🕵️‍♂️",
   "create-game": "Créer une partie",
+  "new-game": "Nouvelle partie",
+  "back-to-lobby": "Revenir au lobby",
   "join-room": "Rejoindre une partie",
   "no-public-room":
     "Il n'y a pas de partie publique. Créez-en une et invitez vos amis !",
@@ -63,7 +65,7 @@ export default {
   spectator: "Spectateurs",
   "just-joined": "a rejoint la partie !",
   "game-created": "La partie a été créée.",
-  "no-players-yet": "Il n'y a pas encore de joueurs dans cette équipe !",
+  "no-players-yet": "Il n'y a pas encore de joueurs dans cette équipe.",
   cards: "cartes",
   buymeacoffee: "Soutenez ce jeu en m'offrant un café",
   "player-name-placeholder": "Nom de joueur",

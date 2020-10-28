@@ -9,16 +9,18 @@ const Team = ({
   score,
   maxScore,
   presences,
+  className,
 }: {
   players: IPlayer[] | undefined;
   team: ITeam;
   score?: number;
   maxScore?: number;
   presences: { [key: string]: boolean }; // a timestamp for each player
+  className?: string;
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="pb-1">
+    <div className={classnames("pb-1", className)}>
       <div
         className={classnames(
           "w-full px-2 py-1 lg:border-t border-b flex justify-between mb-1",

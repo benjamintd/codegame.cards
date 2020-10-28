@@ -1,6 +1,8 @@
 export default {
   tagline: "The popular card game, online. 🕵️‍♂️",
   "create-game": "Create game",
+  "new-game": "New game",
+  "back-to-lobby": "Back to lobby",
   "join-room": "Join a room",
   "no-public-room":
     "There are currently no public games. Create one and invite friends!",

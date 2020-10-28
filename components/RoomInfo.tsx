@@ -19,7 +19,7 @@ import DuetScore from "./DuetScore";
 import CopyLink from "./CopyLink";
 import { useTranslation } from "react-i18next";
 
-export default () => {
+const RoomInfo = () => {
   const players = usePlayers();
   const gameMode = useGameMode();
   const selfPlayer = useSelfPlayer();
@@ -42,7 +42,7 @@ export default () => {
           <h2 className="uppercase font-bold text-sm text-center sr-only lg:not-sr-only leading-loose">
             {t("in-the-room", "In the room")}
           </h2>
-          <div className="grid lg:grid-rows-2 lg:grid-cols-1 grid-cols-2 lg:gap-6 gap-2">
+          <div className="grid grid-cols-2 lg:grid-rows-2 lg:grid-cols-1 lg:gap-6 gap-2">
             {gameMode === "classic" && (
               <>
                 <Team
@@ -80,6 +80,7 @@ export default () => {
                 />
                 {teams.spectator && (
                   <Team
+                    className="hidden lg:block"
                     players={teams["spectator"]}
                     team="spectator"
                     presences={presences}
@@ -94,15 +95,9 @@ export default () => {
         {!turnsWerePlayed && <ClaimSpymasterOrSwitchTeam />}
         {!turnsWerePlayed && <CopyLink />}
         {gameOver.over && <GameOver />}
-        <div className="mt-auto lg:block hidden leading-tight p-2">
-          <a
-            href="https://www.buymeacoffee.com/benjamintd"
-            className="text-sm text-gray-600 hover:text-gray-400 underline mb-2"
-          >
-            {t("buymeacoffee", "Support the game by buying me a coffee!")}
-          </a>
-        </div>
       </div>
     </div>
   );
 };
+
+export default RoomInfo;

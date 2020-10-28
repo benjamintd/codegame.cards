@@ -1,15 +1,18 @@
 import React from "react";
 import Link from "next/link";
 import { useTranslation, Trans } from "react-i18next";
+import LanguageSelector from "../components/LanguageSelector";
 
-export default () => {
+const PrivacyPolicy = () => {
   const { t } = useTranslation();
   return (
     <div className="max-w-3xl mx-auto p-6">
       <Link href="/">
         <h1 className="h1 font-mono mt-6 cursor-pointer">codenames.cards</h1>
       </Link>
-
+      <div className="absolute top-0 right-0 m-4">
+        <LanguageSelector />
+      </div>
       <div className="mv-6 rounded-lg border-2 border-blue-500 bg-blue-200 p-4">
         <strong>{t("long-story-short", "Long story short")}</strong>
         <Trans i18nKey="privacy-tldr">
@@ -229,3 +232,5 @@ export default () => {
     </div>
   );
 };
+
+export default PrivacyPolicy;

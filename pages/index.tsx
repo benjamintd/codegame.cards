@@ -132,10 +132,7 @@ const Home = ({ games }: IProps) => {
         <p className="mb-2">
           <Trans i18nKey="check-our-privacy-policy">
             Check our{" "}
-            <a href="/privacy-policy" className="hover:text-gray-600 underline">
-              privacy policy
-            </a>
-            .
+            <PrivacyLink>privacy policy</PrivacyLink>
           </Trans>
         </p>
       </div>
@@ -165,6 +162,14 @@ export const getStaticProps: GetStaticProps<IProps> = async () => {
     props: {
       games,
     },
-    unstable_revalidate: 1,
+    revalidate: 1,
   };
 };
+
+const PrivacyLink: React.FC = ({children}) => {
+  return (
+    <Link href="/privacy-policy">
+      <a className="hover:text-gray-600 underline">{children}</a>
+    </Link>
+  )
+}

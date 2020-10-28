@@ -4,7 +4,6 @@ import {
   useGameView,
   usePlayers,
   useSelfPlayer,
-  useTurns,
   useMaxScores,
 } from "../hooks/game";
 import Button from "./Button";

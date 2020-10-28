@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
 
-export default () => {
+const Meta = () => {
   const { t } = useTranslation();
   return (
     <Head>
@@ -33,3 +33,5 @@ export default () => {
     </Head>
   );
 };
+
+export default Meta;

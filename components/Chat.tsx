@@ -14,7 +14,7 @@ const emoji = new EmojiConvertor();
 emoji.replace_mode = "unified";
 emoji.allow_native = true;
 
-export default () => {
+const Chat = () => {
   const chat = useChat();
   const selfPlayer = useSelfPlayer();
   const sendChat = useSendChat();
@@ -94,6 +94,8 @@ export default () => {
     </div>
   );
 };
+
+export default Chat;
 
 const SendIcon = (props) => (
   <svg

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Meta from "../components/Meta";
 import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
 import { NetworkContext } from "../hooks/network";
 import { logPageView, initAnalytics, logEvent } from "../lib/analytics";
-import Router from "next/router";
+import Router, { withRouter } from "next/router";
 import App from "next/app";
 import * as Sentry from "@sentry/browser";
 import { I18nextProvider } from "react-i18next";
@@ -21,6 +21,10 @@ if (process.env.SENTRY_DSN) {
 Router.events.on("routeChangeComplete", () => logPageView());
 
 class MyApp extends App {
+  public state = {
+    i18nInitialized: false
+  }
+
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
@@ -42,9 +46,17 @@ class MyApp extends App {
   componentDidMount() {
     initAnalytics();
 
-    i18n.on("initialized", () => {
-      i18n.changeLanguage(i18n.language);
-    });
+    if (this.props.router.locale) {
+      i18n.changeLanguage(this.props.router.locale);
+    }
+
+    i18n.on('initialized', () => this.setState({i18nInitialized: true}))
+  }
+
+  componentDidUpdate() {
+    if (this.props.router.locale) {
+      i18n.changeLanguage(this.props.router.locale);
+    }
   }
 
   componentDidCatch(error, errorInfo) {
@@ -74,4 +86,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default withRouter(MyApp);

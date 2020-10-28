@@ -10,7 +10,7 @@ import {
 import { ICardView } from "../lib/game";
 import Card from "./Card";
 
-export default () => {
+const GameBoard = () => {
   const selfPlayer = useSelfPlayer();
   const boardView = useBoardView();
   const pushTurn = usePushTurn();
@@ -40,3 +40,5 @@ export default () => {
     </div>
   );
 };
+
+export default GameBoard;

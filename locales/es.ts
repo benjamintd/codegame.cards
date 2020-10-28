@@ -1,6 +1,8 @@
 export default {
   tagline: "El popular juego de palabras, en línea. 🕵️‍♂️",
   "create-game": "Crear un juego",
+  "new-game": "Nuevo juego",
+  "back-to-lobby": "Volver al lobby",
   "join-room": "Unirse a un juego",
   "no-public-room":
     "Actualmente no hay juegos públicos. ¡Crea uno e invita a tus amigos!",

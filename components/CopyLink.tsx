@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-export default () => {
+const CopyLink = () => {
   const router = useRouter();
   const gameView = useGameView();
   const ref = React.createRef<HTMLInputElement>();
@@ -60,6 +60,8 @@ export default () => {
     </div>
   );
 };
+
+export default CopyLink;
 
 const CopyIcon = (props) => (
   <svg
