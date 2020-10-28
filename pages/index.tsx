@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from 'next/image';
 import { IGame, IGameMode } from "../lib/game";
 import LobbyGameRow from "../components/LobbyGameRow";
 import Button from "../components/Button";
@@ -64,7 +65,9 @@ const Home = ({ games }: IProps) => {
             "Codenames is a game of guessing where teams compete to find words related to a hint-word given by another player."
           )}
         </p>
-        <img
+        <Image
+          height={665}
+          width={888}
           className="p-6"
           src="/illustration.svg"
           alt="Codenames illustration"
