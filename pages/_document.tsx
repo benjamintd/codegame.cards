@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Head, Main, NextScript, Html } from "next/document";
 import * as Sentry from "@sentry/browser";
 
 process.on("unhandledRejection", (err) => {
@@ -12,13 +12,13 @@ process.on("uncaughtException", (err) => {
 export default class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <Html>
         <Head />
         <body>
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

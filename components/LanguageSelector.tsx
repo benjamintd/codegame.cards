@@ -3,11 +3,11 @@ import React from "react";
 
 
 const Languages = {
-  en: "EN",
-  es: "ES",
-  fr: "FR",
-  ru: "RU",
-  ptbr: "PT-BR",
+  en: "English",
+  fr: "Français",
+  es: "Español",
+  ru: "русский",
+  ptbr: "Brasileiro",
 };
 
 export default function LanguageSelector() {
