@@ -653,7 +653,6 @@ Troupeau
 Tsar
 Tube
 Tuer
-Tuer
 Tupperware
 Tuyau
 Twitter
