@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
 import useNetwork from "../hooks/network";
-import { IGame, IGameView } from "../lib/game";
+import { IGame, IGameView, ILanguage } from "../lib/game";
 import useLocalStorage from "../hooks/useLocalStorage";
 import RoomInfo from "../components/RoomInfo";
 import GameBoard from "../components/GameBoard";
@@ -14,11 +14,16 @@ import shortid from "shortid";
 import { motion } from "framer-motion";
 import useMobileDetect from "../hooks/useMobileDetect";
 import useWindowSize from "../hooks/useWindowSize";
+import { i18n } from "../lib/i18n";
 
 export default () => {
   const network = useNetwork();
   const router = useRouter();
   const [lastSound, setLastSound] = useState<number>(0);
+
+  useEffect(() => {
+    i18n.changeLanguage(router.locale as ILanguage)
+  }, []);
 
   // using this for side effects that depend on the previous game state
   // e.g. sounds or forwarding the player to the next game

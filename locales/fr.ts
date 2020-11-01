@@ -6,7 +6,7 @@ export default {
   "join-room": "Rejoindre une partie",
   "no-public-room":
     "Il n'y a pas de partie publique. Créez-en une et invitez vos amis !",
-  "how-to-play": "Comment jouuer",
+  "how-to-play": "Comment jouer",
   "game-tagline":
     "Codenames est un jeu de déduction où deux équipes s'affrontent pour trouver des mots en rapport avec l'indice donné par leur équipier.",
   "see-more": "Voir plus...",

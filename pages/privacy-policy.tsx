@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useTranslation, Trans } from "react-i18next";
 import LanguageSelector from "../components/LanguageSelector";
+import { useRouter } from "next/router";
+import { ILanguage } from "../lib/game";
+import { i18n } from "../lib/i18n";
 
 const PrivacyPolicy = () => {
+  const router = useRouter();
+  useEffect(() => {
+    i18n.changeLanguage(router.locale as ILanguage)
+  }, []);
   const { t } = useTranslation();
+
   return (
     <div className="max-w-3xl mx-auto p-6">
       <Link href="/">
@@ -232,5 +240,6 @@ const PrivacyPolicy = () => {
     </div>
   );
 };
+
 
 export default PrivacyPolicy;

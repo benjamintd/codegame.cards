@@ -1,17 +1,22 @@
 import Button from "../components/Button";
 import { IGameOptions, defaultOptions, ILanguage } from "../lib/game";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNewGame } from "../hooks/game";
 import classnames from "classnames";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../components/LanguageSelector";
 import { useRouter } from "next/router";
+import { i18n } from "../lib/i18n";
 
 const NewGame = () => {
   const newGame = useNewGame();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [options, setOptions] = useState<IGameOptions>({...defaultOptions, language: (router.locale as ILanguage) || 'en'});
+  const [options, setOptions] = useState<IGameOptions>({ ...defaultOptions, language: (router.locale as ILanguage) || 'en' });
+
+  useEffect(() => {
+    i18n.changeLanguage(router.locale as ILanguage)
+  }, []);
   const { t } = useTranslation();
 
   return (

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from 'next/image';
-import { IGame, IGameMode } from "../lib/game";
+import { IGame, IGameMode, ILanguage } from "../lib/game";
 import LobbyGameRow from "../components/LobbyGameRow";
 import Button from "../components/Button";
 import DiscordButton from "../components/DiscordButton";
@@ -13,15 +13,21 @@ import { GetStaticProps } from "next";
 import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
 import { useTranslation, Trans } from "react-i18next";
 import LanguageSelector from "../components/LanguageSelector";
+import { i18n } from "../lib/i18n";
 
 interface IProps {
   games: IGame[];
+  locale: string;
 }
 
-const Home = ({ games }: IProps) => {
+const Home = ({ games, locale }: IProps) => {
   const [seeMore, setSeeMore] = useState<boolean>(false);
   const [rulesMode, setRulesMode] = useState<IGameMode>("classic");
   const { t } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(locale as ILanguage)
+  }, []);
 
   return (
     <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">
@@ -55,7 +61,7 @@ const Home = ({ games }: IProps) => {
         ))}
       </div>
       <DiscordButton />
-      <div className="max-w-2xl leading-relaxed border rounded bg-white shadow p-6 text-gray-900 mt-6 ">
+      <div className="w-full max-w-2xl leading-relaxed border rounded bg-white shadow p-6 text-gray-900 mt-6 ">
         <h2 id="how-to-play" className="h2 mb-4 text-center">
           {t("how-to-play", "How to play")}
         </h2>
@@ -72,6 +78,7 @@ const Home = ({ games }: IProps) => {
           src="/illustration.svg"
           alt="Codenames illustration"
         />
+
         {!seeMore && (
           <p
             onClick={() => setSeeMore(true)}
@@ -145,7 +152,7 @@ const Home = ({ games }: IProps) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps<IProps> = async () => {
+export const getStaticProps: GetStaticProps<IProps> = async ({ locale }) => {
   const firebase = new FirebaseNetwork(setupFirebase());
   let games = await firebase.getPublicGames();
 
@@ -164,6 +171,7 @@ export const getStaticProps: GetStaticProps<IProps> = async () => {
   return {
     props: {
       games,
+      locale
     },
     revalidate: 1,
   };
