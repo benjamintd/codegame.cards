@@ -20,12 +20,7 @@ const DuetScore = () => {
   }
 
   return (
-    <div className="text-center lg:p-2 p-1">
-      {spectators && spectators.length && (
-          spectators.map((s) => (
-            <span key={s.id}>{s.name}</span>
-          ))
-        )}
+    <div className="lg:p-2 p-1">
       <Trans i18nKey="turns-left" count={count}>
         {{ count }} turns left ⏱
       </Trans>
