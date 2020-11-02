@@ -50,7 +50,7 @@ const GameOver = () => {
           </Button>
         </a>
       </Link>
-      <div className="mt-auto lg:block hidden leading-tight p-2">
+      <div className="mt-auto leading-tight p-2">
         <a
           href="https://www.buymeacoffee.com/benjamintd"
           className="text-sm text-gray-600 hover:text-gray-400 underline mb-2"
