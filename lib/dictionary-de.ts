@@ -265,7 +265,7 @@ Bauer
 Strudel
 Bremse
 Hahn
-Kapele
+Kapelle
 Strauss
 Satz
 Grund
