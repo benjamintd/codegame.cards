@@ -14,6 +14,7 @@ import FirebaseNetwork, { setupFirebase } from "../hooks/firebase";
 import { useTranslation, Trans } from "react-i18next";
 import LanguageSelector from "../components/LanguageSelector";
 import { i18n } from "../lib/i18n";
+import Head from "next/head";
 
 interface IProps {
   games: IGame[];
@@ -31,6 +32,12 @@ const Home = ({ games, locale }: IProps) => {
 
   return (
     <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">
+      <Head>
+      <link rel="alternate" hrefLang="x-default" href="/" />
+        {["en", "fr", "es", "ru", "ptbr"].map(locale =>
+          <link rel="alternate" hrefLang={locale} key={locale} href={`/${locale}`} />
+        )}
+      </Head>
       <div className="absolute top-0 right-0 m-4">
         <LanguageSelector />
       </div>

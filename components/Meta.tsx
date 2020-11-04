@@ -1,9 +1,11 @@
 import React from "react";
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 
 const Meta = () => {
   const { t } = useTranslation();
+  const router = useRouter();
   return (
     <Head>
       <title>{t("page-title", "Codenames - Play Online")}</title>
