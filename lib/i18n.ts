@@ -6,6 +6,7 @@ import es from "../locales/es";
 import fr from "../locales/fr";
 import ru from "../locales/ru";
 import ptbr from "../locales/ptbr";
+import de from "../locales/de";
 
 i18n
   .use(initReactI18next)
@@ -25,6 +26,9 @@ i18n
       },
       ptbr: {
         translation: ptbr,
+      },
+      de: {
+        translation: de,
       },
     },
     fallbackLng: "en",
