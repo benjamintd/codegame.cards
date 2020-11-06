@@ -55,7 +55,6 @@ export default {
     "Play Codenames online, a multiplayer word game available on phone and desktop. In that game of guessing, teams compete to find cards related to the given hint-word.",
   "in-the-room": "In the room",
   rules: "Rules",
-  // todo rules...
   red: "Red",
   blue: "Blue",
   duetA: "Side A",
