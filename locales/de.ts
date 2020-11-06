@@ -50,7 +50,7 @@ export default {
   "join-side": "Seite beitreten",
   spectate: "Zuschauen",
   "game-started": "Das Spiel hat begonnen",
-  "page-title": "Codenames - Online spielen",
+  "page-title": "Codenames online spielen",
   "page-description":
   "Spiele Codenames online, ein Mehrspieler-Wörterspiel, das für Handys und Desktop verfügbar ist. Bei diesem Ratespiel treten zwei Teams gegeneinander an und versuchen mithilfe von Hinweisen Codewörter zu erraten.",
   "in-the-room": "Im Raum",
@@ -61,7 +61,7 @@ export default {
   duetB: "Seite B",
   spectator: "Zuschauer",
   "just-joined": "ist dem Spiel beigetreten!",
-  "game-created": "Das Spiel wurde erstellt.",
+  "game-created": "Spiel erstellt.",
   "no-players-yet": "Es sind noch keine Spieler in diesem Team!",
   "player-name-placeholder": "Spielername eingeben",
   cards: "Karten",
@@ -91,12 +91,12 @@ export default {
   "rules-classic-grid": `25 zufällige Wortkarten werden in einem 5-mal-5-Raster ausgelegt. Ein Teil dieser Wörter steht für <1>rote</1> Agenten, ein anderer Teil für <3>blaue</3> Agenten, eines für einen <5>Attentäter</5>, und die anderen repräsentieren <7>unbeteiligte Zuschauer</span>. Die Geheimdienstchefs der Teams kennen die Farben der einzelnen Wörter und geben ihrem Team abwechselnd Hinweise, damit sie die Wörter ihrer Farbe erraten.`,
   "rules-classic-hints": `Jeder Hinweis darf nur aus einem einzigen Wort und einer Anzahl von Karten bestehen, auf die er sich bezieht. Der Geheimdienstchef gibt einen Hinweis, der sich auf möglichst viele der Wörter auf den Karten seiner eigenen Agenten bezieht, aber nicht auf andere - er könnte sein Team versehentlich dazu bringen, eine Karte zu wählen, die einen unbeteiligten Zuschauer, einen gegnerischen Agenten oder den Attentäter darstellt.`,
   "rules-hint-restrictions": `Das Hinweiswort kann frei gewählt werden, solange es keines der Wörter ist (und nicht enthält), die zu diesem Zeitpunkt noch offen sind. Phonetische Hinweise sind typischerweise verboten.`,
-  "rules-turns": `Die Karten werden aufgedeckt, wenn Rateversuche werden. Ermittler müssen mindestens einen Rateversuch pro Runde tätigen, wobei sie einen Fehlschlag riskieren. Sie können ihren Zug auch zu jedem späteren Zeitpunkt freiwillig beenden. Sie können bis zu der vom Geheimdienstchef angegebenen Zahl plus eins (ein Bonus, um ein zuvor angedeutetes Wort zu finden) raten.`,
+  "rules-turns": `Die Karten werden aufgedeckt, wenn geraten wird. Ermittler müssen mindestens einen Rateversuch pro Runde tätigen, wobei sie einen Fehlschlag riskieren. Sie können ihren Zug auch zu jedem späteren Zeitpunkt freiwillig beenden. Sie können bis zu der vom Geheimdienstchef angegebenen Zahl plus eins (ein Bonus, um ein zuvor angedeutetes Wort zu finden) raten.`,
   "rules-classic-game-end": `Das Spiel endet, wenn alle Agenten einer Mannschaft identifiziert sind (🏅), oder wenn eine Mannschaft den <1>Attentäter</1> identifiziert hat (☠️).`,
   "rules-duet-objective": `Zwei Spieler arbeiten zusammen, um 15 Wörter auf dem Raster zu finden.`,
   "rules-duet-grid": `25 zufällige Wortkarten werden in einem 5-mal-5-Raster ausgelegt. Ein Teil dieser Wörter steht für <1>grüne</1> Agenten, ein anderer für <3>Attentäter</3>, und die restlichen für <5>unschuldige Zuschauer</5>. Jeder Spieler kennt 9 <7>grüne</7> Wörter, von denen sich einige mit der anderen Seite überschneiden.`,
   "rules-duet-hints": `Die Spieler geben abwechselnd Hinweise, damit der andere Spieler seine grüne Karte errät. Jeder Hinweis darf nur aus einem einzigen Wort und einer Anzahl von Karten bestehen, auf die er sich bezieht. Der Geheimdienstchef gibt einen Hinweis, der sich auf möglichst viele der Wörter auf den Karten seiner eigenen Agenten bezieht, aber nicht auf andere - sie könnten den anderen Spieler versehentlich dazu verleiten, eine Karte zu wählen, die einen unschuldigen Zuschauer oder einen Attentäter darstellt`,
-  "rules-duet-game-end": `Das Spiel endet, wenn alle 15 grünen Agenten identifiziert sind (🏅), oder wenn ein Spieler einen <1>Assassinen</1> identifiziert hat (☠️). Das Spiel ist zeitbegrenzt. Beide Spieler haben insgesamt 9 Runden Zeit, um alle Wörter zu finden. Ein Klick auf einen <3>unschuldiger Zuschauer</Spanne> verbraucht einen zusätzlichen Zug.`,
+  "rules-duet-game-end": `Das Spiel endet, wenn alle 15 grünen Agenten identifiziert sind (🏅), oder wenn ein Spieler einen <1>Attentäter</1> identifiziert hat (☠️). Das Spiel ist zeitbegrenzt. Beide Spieler haben insgesamt 9 Runden Zeit, um alle Wörter zu finden. Ein Klick auf einen <3>unschuldiger Zuschauer</Spanne> verbraucht einen zusätzlichen Zug.`,
   "long-story-short": "Langer Rede kurzer Sinn",
   "privacy-tldr": `
   <p>Die Partien und Chats verbleiben für eine gewisse Zeit in unserer Datenbank, können aber jederzeit gelöscht werden. Dies ist die einzige Information, die wir speichern.</p>
@@ -104,5 +104,4 @@ export default {
   <p> Unser Trackingtool ist Google Analytics.< /p>
   `
 }
-
 
