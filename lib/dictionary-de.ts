@@ -42,7 +42,6 @@ Oktopus
 Hubschrauber
 Känguru
 Mikroskop
-Zentaur
 Superheld
 Teleskop
 Fallschirm
@@ -96,7 +95,7 @@ Anwalt
 Forscher
 Tanz
 Karotte
-Ketschup
+Ketchup
 Nacht
 Meer
 Fuss
@@ -139,7 +138,6 @@ Kanal
 Nadel
 Linie
 Korb
-Blau
 Taste
 Schirm
 Spiel
@@ -165,7 +163,7 @@ Kraft
 Schloss
 Maschine
 Welle
-Storm
+Sturm
 Haupt
 Pol
 Mittel
@@ -215,7 +213,7 @@ Peking
 Inka
 Becken
 Optik
-Strasse
+Straße
 Essen
 Siegel
 Bart
@@ -224,7 +222,6 @@ Moos
 Abgabe
 Bahn
 Tafel
-Bart
 Quartett
 Torte
 Tau
@@ -266,7 +263,7 @@ Strudel
 Bremse
 Hahn
 Kapelle
-Strauss
+Strauß
 Satz
 Grund
 Kater
@@ -343,7 +340,6 @@ Ausdruck
 Zug
 Kiefer
 Washington
-Mini
 Gut
 Kohle
 Grad
@@ -376,7 +372,6 @@ Quelle
 Harz
 Wurf
 Golf
-Rost
 Rost
 Nagel
 Toast
