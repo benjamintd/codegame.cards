@@ -41,7 +41,7 @@ const Home = ({ games, locale }: IProps) => {
       <div className="absolute top-0 right-0 m-4">
         <LanguageSelector />
       </div>
-      <h1 className="h1 font-mono mt-6">codenames.cards</h1>
+      <h1 className="h1 font-mono mt-6">codegame.cards</h1>
       <p className="font-mono mb-4">
         {t("tagline", "The popular card game, online. 🕵️‍♂️")}
       </p>
@@ -75,7 +75,7 @@ const Home = ({ games, locale }: IProps) => {
         <p>
           {t(
             "game-tagline",
-            "Codenames is a game of guessing where teams compete to find words related to a hint-word given by another player."
+            "Codegame is a game of guessing where teams compete to find words related to a hint-word given by another player."
           )}
         </p>
         <Image
@@ -83,7 +83,7 @@ const Home = ({ games, locale }: IProps) => {
           width={888}
           className="p-6"
           src="/illustration.svg"
-          alt="Codenames illustration"
+          alt="Codegame illustration"
         />
 
         {!seeMore && (
@@ -132,7 +132,7 @@ const Home = ({ games, locale }: IProps) => {
             It's
             <a
               className="hover:text-gray-600 underline"
-              href="https://github.com/benjamintd/codenames.cards"
+              href="https://github.com/benjamintd/codegame.cards"
             >
               open-source
             </a>

@@ -8,7 +8,7 @@ export default {
     "Il n'y a pas de partie publique. Créez-en une et invitez vos amis !",
   "how-to-play": "Comment jouer",
   "game-tagline":
-    "Codenames est un jeu de déduction où deux équipes s'affrontent pour trouver des mots en rapport avec l'indice donné par leur équipier.",
+    "Codegame est un jeu de déduction où deux équipes s'affrontent pour trouver des mots en rapport avec l'indice donné par leur équipier.",
   "see-more": "Voir plus...",
   "classic-rules": "Règles classiques",
   "duet-rules": "Règles Duet",
@@ -52,9 +52,9 @@ export default {
   "join-side": "Côté",
   spectate: "Spectateur",
   "game-started": "commencé",
-  "page-title": "Codenames - Jouez en ligne",
+  "page-title": "Codegame - Jouez en ligne",
   "page-description":
-    "Jouez à Codenames en ligne, un jeu de mots multijoueur disponible sur mobile et ordinateur. Dans ce jeu de déduction, les équipes s'affrontent pour trouver les cartes en rapport avec un indice.",
+    "Jouez à Codegame en ligne, un jeu de mots multijoueur disponible sur mobile et ordinateur. Dans ce jeu de déduction, les équipes s'affrontent pour trouver les cartes en rapport avec un indice.",
   "in-the-room": "Dans la partie",
   rules: "Règles",
   // todo rules...

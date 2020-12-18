@@ -16,7 +16,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <Link href="/">
-        <h1 className="h1 font-mono mt-6 cursor-pointer">codenames.cards</h1>
+        <h1 className="h1 font-mono mt-6 cursor-pointer">codegame.cards</h1>
       </Link>
       <div className="absolute top-0 right-0 m-4">
         <LanguageSelector />
@@ -43,7 +43,7 @@ const PrivacyPolicy = () => {
 
         <p>
           This Privacy Policy document contains types of information that is
-          collected and recorded by codenames.cards and how we use it.
+          collected and recorded by codegame.cards and how we use it.
         </p>
 
         <p>
@@ -55,7 +55,7 @@ const PrivacyPolicy = () => {
         <p>
           This Privacy Policy applies only to our online activities and is valid
           for visitors to our website with regards to the information that they
-          shared and/or collect in codenames.cards. This policy is not
+          shared and/or collect in codegame.cards. This policy is not
           applicable to any information collected offline or via channels other
           than this website.
         </p>
@@ -96,7 +96,7 @@ const PrivacyPolicy = () => {
         <h2 className="h2 mt-4 mb-2">Log Files</h2>
 
         <p>
-          codenames.cards follows a standard procedure of using log files. These
+          codegame.cards follows a standard procedure of using log files. These
           files log visitors when they visit websites. All hosting companies do
           this and a part of hosting services' analytics. The information
           collected by log files include internet protocol (IP) addresses,
@@ -111,7 +111,7 @@ const PrivacyPolicy = () => {
         <h2 className="h2 mt-4 mb-2">Cookies and Web Beacons</h2>
 
         <p>
-          Like any other website, codenames.cards uses 'cookies'. These cookies
+          Like any other website, codegame.cards uses 'cookies'. These cookies
           are used to store information including visitors' preferences, and the
           pages on the website that the visitor accessed or visited. The
           information is used to optimize the users' experience by customizing
@@ -130,7 +130,7 @@ const PrivacyPolicy = () => {
         <h2 className="h2 mt-4 mb-2">Third Party Privacy Policies</h2>
 
         <p>
-          codenames.cards's Privacy Policy does not apply to other advertisers
+          codegame.cards's Privacy Policy does not apply to other advertisers
           or websites. Thus, we are advising you to consult the respective
           Privacy Policies of these third-party ad servers for more detailed
           information. It may include their practices and instructions about how
@@ -218,7 +218,7 @@ const PrivacyPolicy = () => {
         </p>
 
         <p>
-          codenames.cards does not knowingly collect any Personal Identifiable
+          codegame.cards does not knowingly collect any Personal Identifiable
           Information from children under the age of 13. If you think that your
           child provided this kind of information on our website, we strongly
           encourage you to contact us immediately and we will do our best

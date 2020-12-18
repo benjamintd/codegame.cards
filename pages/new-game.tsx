@@ -25,7 +25,7 @@ const NewGame = () => {
       <div className="absolute top-0 right-0 m-4">
         <LanguageSelector />
       </div>
-      <h1 className="h1 font-mono mt-6 mb-4">codenames.cards</h1>
+      <h1 className="h1 font-mono mt-6 mb-4">codegame.cards</h1>
 
       <h2 className="text-xl font-bold mt-6 mb-4">
         {t("choose-options", "Choose your options")}

@@ -8,7 +8,7 @@ export default {
     "There are currently no public games. Create one and invite friends!",
   "how-to-play": "How to play",
   "game-tagline":
-    "Codenames is a game of guessing where teams compete to find words related to a hint-word given by another player.",
+    "Codegame is a game of guessing where teams compete to find words related to a hint-word given by another player.",
   "see-more": "See more...",
   "classic-rules": "Classic rules",
   "duet-rules": "Duet rules",
@@ -50,9 +50,9 @@ export default {
   "join-side": "join side",
   spectate: "spectate",
   "game-started": "started",
-  "page-title": "Codenames - Play Online",
+  "page-title": "Codegame - Play Online",
   "page-description":
-    "Play Codenames online, a multiplayer word game available on phone and desktop. In that game of guessing, teams compete to find cards related to the given hint-word.",
+    "Play Codegame online, a multiplayer word game available on phone and desktop. In that game of guessing, teams compete to find cards related to the given hint-word.",
   "in-the-room": "In the room",
   rules: "Rules",
   red: "Red",

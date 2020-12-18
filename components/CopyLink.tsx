@@ -14,7 +14,7 @@ const CopyLink = () => {
   const shareLink =
     typeof window !== "undefined" && window.location.origin
       ? `${window.location.origin}${router.asPath}`
-      : `https://codenames.cards${router.asPath}`;
+      : `https://codegame.cards${router.asPath}`;
 
   const copyToClipboard = () => {
     ref.current.select();
