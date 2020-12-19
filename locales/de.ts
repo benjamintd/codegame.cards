@@ -8,7 +8,7 @@ export default {
   "Es gibt derzeit keine öffentlichen Spiele. Erstelle eins und lade Freunde ein!",
   "how-to-play": "Spielanleitung",
   "game-tagline":
-  "Codenames ist ein Spiel, bei dem zwei Teams gegeneinander antreten und versuchen mithilfe von Hinweisen Codewörter zu erraten.",
+  "Codegame ist ein Spiel, bei dem zwei Teams gegeneinander antreten und versuchen mithilfe von Hinweisen Codewörter zu erraten.",
   "see-more": "Mehr anzeigen...",
   "classic-rules": "Klassische Regeln",
   "duet-rules":  "Duett Regeln",
@@ -50,9 +50,9 @@ export default {
   "join-side": "Seite beitreten",
   spectate: "Zuschauen",
   "game-started": "Das Spiel hat begonnen",
-  "page-title": "Codenames online spielen",
+  "page-title": "Codegame online spielen",
   "page-description":
-  "Spiele Codenames online, ein Mehrspieler-Wörterspiel, das für Handys und Desktop verfügbar ist. Bei diesem Ratespiel treten zwei Teams gegeneinander an und versuchen mithilfe von Hinweisen Codewörter zu erraten.",
+  "Spiele Codegame online, ein Mehrspieler-Wörterspiel, das für Handys und Desktop verfügbar ist. Bei diesem Ratespiel treten zwei Teams gegeneinander an und versuchen mithilfe von Hinweisen Codewörter zu erraten.",
   "in-the-room": "Im Raum",
   rules: "Regeln",
   red: "Rot",

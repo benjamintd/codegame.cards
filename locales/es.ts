@@ -8,7 +8,7 @@ export default {
     "Actualmente no hay juegos públicos. ¡Crea uno e invita a tus amigos!",
   "how-to-play": "Cómo jugar",
   "game-tagline":
-    "Codenames es un juego de adivinanzas en el que los equipos compiten para encontrar palabras relacionadas con una palabra clave dada por otro jugador.",
+    "Codegame es un juego de adivinanzas en el que los equipos compiten para encontrar palabras relacionadas con una palabra clave dada por otro jugador.",
   "see-more": "Ver más...",
   "classic-rules": "Reglas clásicas",
   "duet-rules": "Reglas duet",
@@ -51,9 +51,9 @@ export default {
   "join-side": "Únete al equipo",
   spectate: "Observar",
   "game-started": "ha comenzado",
-  "page-title": "Codenames - Jugar en línea",
+  "page-title": "Codegame - Jugar en línea",
   "page-description":
-    "Juega a Codenames (Código Secreto) en línea, un juego de palabras multijugador disponible en el teléfono y en el escritorio. En ese juego de adivinanzas, los equipos compiten para encontrar cartas relacionadas con la palabra clave dada.",
+    "Juega a Codegame (Código Secreto) en línea, un juego de palabras multijugador disponible en el teléfono y en el escritorio. En ese juego de adivinanzas, los equipos compiten para encontrar cartas relacionadas con la palabra clave dada.",
   "in-the-room": "En el juego",
   rules: "Reglas",
   // todo rules...

@@ -8,7 +8,7 @@ export default {
     "Nenhum jogo público disponível no momento. Crie um e convide seus amigos!!",
   "how-to-play": "Como jogar",
   "game-tagline":
-    "Codenames é um jogo de adivinhação, onde times competem para encontrar palavras a partir de dicas dadas pelos jogadores.",
+    "Codegame é um jogo de adivinhação, onde times competem para encontrar palavras a partir de dicas dadas pelos jogadores.",
   "see-more": "Ver mais...",
   "classic-rules": "Regras - Clássico",
   "duet-rules": "Regras - Dueto",
@@ -50,9 +50,9 @@ export default {
   "join-side": "juntar-se ao lado",
   spectate: "observar",
   "game-started": "começou",
-  "page-title": "Codenames - Jogue Online",
+  "page-title": "Codegame - Jogue Online",
   "page-description":
-    "Jogue Codenames online, um jogo de palavras multijogador, disponível para celular e desktop. Neste jogo de adivinhação, times competem para encontrar palavras a partir de dicas dadas pelos jogadores.",
+    "Jogue Codegame online, um jogo de palavras multijogador, disponível para celular e desktop. Neste jogo de adivinhação, times competem para encontrar palavras a partir de dicas dadas pelos jogadores.",
   "in-the-room": "Na sala",
   rules: "Regras",
   // todo rules...

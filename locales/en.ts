@@ -1,5 +1,5 @@
 export default {
-  tagline: "The popular card game, online. 🕵️‍♂️",
+  tagline: "A game of guessing, online. 🕵️‍♂️",
   "create-game": "Create game",
   "new-game": "New game",
   "back-to-lobby": "Back to lobby",
@@ -8,12 +8,12 @@ export default {
     "There are currently no public games. Create one and invite friends!",
   "how-to-play": "How to play",
   "game-tagline":
-    "Codenames is a game of guessing where teams compete to find words related to a hint-word given by another player.",
+    "Codegame is a game of guessing where teams compete to find words related to a hint-word given by another player.",
   "see-more": "See more...",
   "classic-rules": "Classic rules",
   "duet-rules": "Duet rules",
   "support-authors":
-    "If you like this game, please support the authors and buy a physical version!",
+    "This game is inspired by the mechanics of Codenames, but this website is not affiliated with CGE, the editor of Codenames. If you like this game, please support the authors and buy a physical version.",
   "made-with-love": "Made with ♥ during the lockdown",
   "its-open-source": "It's <1>open-source</1>.",
   "check-our-privacy-policy": "Check our <2>privacy policy</2>.",
@@ -50,9 +50,9 @@ export default {
   "join-side": "join side",
   spectate: "spectate",
   "game-started": "started",
-  "page-title": "Codenames - Play Online",
+  "page-title": "Codegame - Play Online",
   "page-description":
-    "Play Codenames online, a multiplayer word game available on phone and desktop. In that game of guessing, teams compete to find cards related to the given hint-word.",
+    "Play Codegame online, a multiplayer word game available on phone and desktop. In that game of guessing, teams compete to find cards related to the given hint-word.",
   "in-the-room": "In the room",
   rules: "Rules",
   red: "Red",
@@ -65,7 +65,7 @@ export default {
   "no-players-yet": "There are no players in this team yet!",
   "player-name-placeholder": "Enter player name",
   cards: "cards",
-  buymeacoffee: "Support the game, buy me a coffee",
+  buymeacoffee: "Support Codegame, buy me a coffee",
   "positive-reaction-1": "Nice!",
   "positive-reaction-2": "Good job!",
   "positive-reaction-3": "Strong move.",

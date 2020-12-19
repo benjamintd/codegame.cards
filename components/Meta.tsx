@@ -8,21 +8,21 @@ const Meta = () => {
   const router = useRouter();
   return (
     <Head>
-      <title>{t("page-title", "Codenames - Play Online")}</title>
+      <title>{t("page-title", "Codegame - Play Online")}</title>
       <meta name="description" content={t("page-description")} />
       <link rel="shortcut icon" href="/icon-192.png" />
-      <meta property="og:title" content="codenames.cards" />
+      <meta property="og:title" content="codegame.cards" />
       <meta property="og:description" content={t("page-description")} />
       <meta
         property="og:image"
-        content="https://codenames.cards/og-image.png"
+        content="https://codegame.cards/og-image.png"
       />
-      <meta property="og:url" content="https://codenames.cards" />
-      <meta name="twitter:title" content="Codenames.cards" />
+      <meta property="og:url" content="https://codegame.cards" />
+      <meta name="twitter:title" content="Codegame.cards" />
       <meta name="twitter:description" content={t("page-description")} />
       <meta
         name="twitter:image"
-        content="https://codenames.cards/og-image.png"
+        content="https://codegame.cards/og-image.png"
       />
       <meta name="twitter:card" content="summary_large_image"></meta>
       <meta name="theme-color" content="#f7fafc"></meta>

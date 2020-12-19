@@ -1,5 +1,5 @@
 export default {
-  tagline: "Jouez au fameux jeu de cartes en ligne. 🕵️‍♂️",
+  tagline: "Un jeu d'ambiance et de mots en ligne. 🕵️‍♂️",
   "create-game": "Créer une partie",
   "new-game": "Nouvelle partie",
   "back-to-lobby": "Revenir au lobby",
@@ -8,12 +8,12 @@ export default {
     "Il n'y a pas de partie publique. Créez-en une et invitez vos amis !",
   "how-to-play": "Comment jouer",
   "game-tagline":
-    "Codenames est un jeu de déduction où deux équipes s'affrontent pour trouver des mots en rapport avec l'indice donné par leur équipier.",
+    "Codegame est un jeu de déduction où deux équipes s'affrontent pour trouver des mots en rapport avec l'indice donné par leur équipier.",
   "see-more": "Voir plus...",
   "classic-rules": "Règles classiques",
   "duet-rules": "Règles Duet",
   "support-authors":
-    "Si vous aimez ce jeu, soutenez ses auteurs en achetant une version physique.",
+    "Les mécaniques de ce jeu sont inspirées de Codenames, mais n'est pas affilié à CGE, l'éditeur de Codenames. Si vous aimez ce jeu, soutenez ses auteurs en achetant une version physique.",
   "made-with-love": "Fabriqué avec ♥ en confinement",
   "its-open-source": "C'est <1>open-source</1>.",
   "check-our-privacy-policy":
@@ -52,9 +52,9 @@ export default {
   "join-side": "Côté",
   spectate: "Spectateur",
   "game-started": "commencé",
-  "page-title": "Codenames - Jouez en ligne",
+  "page-title": "Codegame - Jouez en ligne",
   "page-description":
-    "Jouez à Codenames en ligne, un jeu de mots multijoueur disponible sur mobile et ordinateur. Dans ce jeu de déduction, les équipes s'affrontent pour trouver les cartes en rapport avec un indice.",
+    "Jouez à Codegame en ligne, un jeu de mots multijoueur disponible sur mobile et ordinateur. Dans ce jeu de déduction, les équipes s'affrontent pour trouver les cartes en rapport avec un indice.",
   "in-the-room": "Dans la partie",
   rules: "Règles",
   // todo rules...
@@ -67,7 +67,7 @@ export default {
   "game-created": "La partie a été créée.",
   "no-players-yet": "Il n'y a pas encore de joueurs dans cette équipe.",
   cards: "cartes",
-  buymeacoffee: "Soutenez ce jeu en m'offrant un café",
+  buymeacoffee: "Soutenez Codegame en m'offrant un café",
   "player-name-placeholder": "Nom de joueur",
   "positive-reaction-1": "Joli !",
   "positive-reaction-2": "Bien joué !",
