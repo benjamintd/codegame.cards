@@ -1,5 +1,5 @@
 export default {
-  tagline: "Jouez au fameux jeu de cartes en ligne. 🕵️‍♂️",
+  tagline: "Un jeu d'ambiance et de mots en ligne. 🕵️‍♂️",
   "create-game": "Créer une partie",
   "new-game": "Nouvelle partie",
   "back-to-lobby": "Revenir au lobby",
@@ -13,7 +13,7 @@ export default {
   "classic-rules": "Règles classiques",
   "duet-rules": "Règles Duet",
   "support-authors":
-    "Si vous aimez ce jeu, soutenez ses auteurs en achetant une version physique.",
+    "Ce jeu n'est pas affilié à CGE, l'éditeur de Codenames. Si vous aimez ce jeu, soutenez ses auteurs en achetant une version physique.",
   "made-with-love": "Fabriqué avec ♥ en confinement",
   "its-open-source": "C'est <1>open-source</1>.",
   "check-our-privacy-policy":

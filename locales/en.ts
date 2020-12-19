@@ -1,5 +1,5 @@
 export default {
-  tagline: "The popular card game, online. 🕵️‍♂️",
+  tagline: "A game of guessing, online. 🕵️‍♂️",
   "create-game": "Create game",
   "new-game": "New game",
   "back-to-lobby": "Back to lobby",
@@ -13,7 +13,7 @@ export default {
   "classic-rules": "Classic rules",
   "duet-rules": "Duet rules",
   "support-authors":
-    "If you like this game, please support the authors and buy a physical version!",
+    "This website is not affiliated with CGE, the editor of Codenames. If you like this game, please support the authors and buy a physical version!",
   "made-with-love": "Made with ♥ during the lockdown",
   "its-open-source": "It's <1>open-source</1>.",
   "check-our-privacy-policy": "Check our <2>privacy policy</2>.",

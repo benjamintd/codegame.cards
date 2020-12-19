@@ -123,7 +123,7 @@ const Home = ({ games, locale }: IProps) => {
         <p className="mb-2">
           {t(
             "support-authors",
-            "If you like this game, please support the authors and buy a physical version!"
+            "This website is not affiliated with CGE which edits Codenames. If you like this game, please support the authors and buy a physical version!"
           )}
         </p>
         <p className="mb-2">

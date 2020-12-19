@@ -8,13 +8,8 @@ export default {
   "Es gibt derzeit keine öffentlichen Spiele. Erstelle eins und lade Freunde ein!",
   "how-to-play": "Spielanleitung",
   "game-tagline":
-<<<<<<< Updated upstream
-  "Codenames ist ein Spiel, bei dem zwei Teams gegeneinander antreten und versuchen mithilfe von Hinweisen Codewörter zu erraten.",
+  "Codegame ist ein Spiel, bei dem zwei Teams gegeneinander antreten und versuchen mithilfe von Hinweisen Codewörter zu erraten.",
   "see-more": "Mehr anzeigen...",
-=======
-  "Codegame ist ein Ratespiel, bei dem die Teams gegeneinander antreten, um Wörter zu finden, die sich auf ein von einem anderen Spieler eingegebenes Andeutungswort beziehen",
-  "see-more": "Mehr sehen...",
->>>>>>> Stashed changes
   "classic-rules": "Klassische Regeln",
   "duet-rules":  "Duett Regeln",
   "support-authors":
@@ -55,17 +50,10 @@ export default {
   "join-side": "Seite beitreten",
   spectate: "Zuschauen",
   "game-started": "Das Spiel hat begonnen",
-<<<<<<< Updated upstream
-  "page-title": "Codenames online spielen",
+  "page-title": "Codegame online spielen",
   "page-description":
-  "Spiele Codenames online, ein Mehrspieler-Wörterspiel, das für Handys und Desktop verfügbar ist. Bei diesem Ratespiel treten zwei Teams gegeneinander an und versuchen mithilfe von Hinweisen Codewörter zu erraten.",
+  "Spiele Codegame online, ein Mehrspieler-Wörterspiel, das für Handys und Desktop verfügbar ist. Bei diesem Ratespiel treten zwei Teams gegeneinander an und versuchen mithilfe von Hinweisen Codewörter zu erraten.",
   "in-the-room": "Im Raum",
-=======
-  "page-title": "Codegame - Online spielen",
-  "page-description":
-  "Codegame online spielen, ein Mehrspieler-Wortspiel, das auf Telefon und Desktop verfügbar ist. Bei diesem Ratespiel treten die Teams gegeneinander an, um Karten zu finden, die mit dem gegebenen Hinweiskartenwort in Zusammenhang stehen",
-  "in-the-room": "Im Zimmer",
->>>>>>> Stashed changes
   rules: "Regeln",
   red: "Rot",
   blue: "Blau",
@@ -96,7 +84,6 @@ export default {
   "black-reaction-4": "Oh nein, du hast auf einen Attentäter geklickt ☠️",
   "negative-reaction-1": "Ups!",
   "negative-reaction-2": "Oh nein!",
-<<<<<<< Updated upstream
   "negative-reaction-3": `Das andere Team dankt euch.`,
   "negative-reaction-4": "Keine Sorge, Ihr haben euer Bestes gegeben. 💛",
   "negative-reaction-5": "🤦",
@@ -111,22 +98,6 @@ export default {
   "rules-duet-hints": `Die Spieler geben abwechselnd Hinweise, damit der andere Spieler seine grüne Karte errät. Jeder Hinweis darf nur aus einem einzigen Wort und einer Anzahl von Karten bestehen, auf die er sich bezieht. Der Geheimdienstchef gibt einen Hinweis, der sich auf möglichst viele der Wörter auf den Karten seiner eigenen Agenten bezieht, aber nicht auf andere - sie könnten den anderen Spieler versehentlich dazu verleiten, eine Karte zu wählen, die einen unschuldigen Zuschauer oder einen Attentäter darstellt`,
   "rules-duet-game-end": `Das Spiel endet, wenn alle 15 grünen Agenten identifiziert sind (🏅), oder wenn ein Spieler einen <1>Attentäter</1> identifiziert hat (☠️). Das Spiel ist zeitbegrenzt. Beide Spieler haben insgesamt 9 Runden Zeit, um alle Wörter zu finden. Ein Klick auf einen <3>unschuldiger Zuschauer</Spanne> verbraucht einen zusätzlichen Zug.`,
   "long-story-short": "Langer Rede kurzer Sinn",
-=======
-  "negative-reaction-3": `Das andere Team dankt Ihnen.`,
-  "negative-reaction-4": "Keine Sorge, Sie haben Ihr Bestes versucht 💛.",
-  "negative-reaction-5": "Keine Sorge, Sie haben Ihr Bestes gegeben. 🤦",
-  "rules-classic-teams": `Die Spieler werden in zwei Mannschaften aufgeteilt: <1>rot</1> und <3>blau</3>. Ein Spieler jeder Mannschaft wird zum Spymaster der Mannschaft gewählt 🕵️ - die anderen sind Feldspieler`,
-  "rules-classic-grid": `Fünfundzwanzig Wortkarten werden zufällig in einem Gitter ausgelegt. Eine Anzahl dieser Wörter repräsentieren <1>rot</1> Agenten, eine Anzahl repräsentiert <3>blau</3> Agenten, eines repräsentiert einen <5>Meuchelmörder</5>, und die anderen repräsentieren <7>unschuldige Zuschauer</span>. Die Geheimdienstchef der Teams kennen die Farben der einzelnen Wörter und weisen ihr Team abwechselnd darauf hin, damit sie die Wörter ihrer Farbe finden.`,
-  "rules-classic-hints": `Jeder Hinweis darf nur aus einem einzigen Wort und einer Anzahl von Karten bestehen, auf die er sich bezieht. Der Spielleiter gibt einen Hinweis, der sich auf möglichst viele der Wörter auf den Karten seiner eigenen Agenten bezieht, aber nicht auf andere - er könnte sein Team versehentlich dazu bringen, eine Karte zu wählen, die einen unschuldigen Zuschauer, einen gegnerischen Agenten oder den Attentäter darstellt.`,
-  "rules-hint-restrictions": `Das Wort des Hinweises kann frei gewählt werden, solange es keines der Wörter auf den Codegamekarten ist (und nicht enthält), die zu diesem Zeitpunkt noch auftauchen. Phonetische Hinweise sind typischerweise verboten.`,
-  "rules-turns": `Die Karten werden aufgedeckt, wenn Vermutungen angestellt werden. Außendienstmitarbeiter müssen mindestens eine Vermutung pro Runde anstellen, wobei sie eine falsche Vermutung und deren Folgen riskieren. Sie können ihren Zug auch zu jedem späteren Zeitpunkt freiwillig beenden. Sie können bis zu der vom Geheimdienstchef angegebenen Zahl plus eins (ein Bonus, um ein zuvor angedeutetes Wort zu finden) raten`,
-  "rules-classic-game-end": `Das Spiel endet, wenn alle Agenten einer Mannschaft identifiziert sind (🏅), oder wenn eine Mannschaft den <1>Assassinen</1> identifiziert hat (☠️).`,
-  "rules-duet-objective": `Zwei Spieler arbeiten zusammen, um 15 Wörter auf der Tafel zu finden.`,
-  "rules-duet-grid": `Fünfundzwanzig Wortkarten werden zufällig in einem Raster angeordnet. Eine Anzahl dieser Wörter steht für <1>grün</1> Agenten, eine Anzahl steht für <3>Meuchelmörder</3>, und die anderen stehen für <5>unschuldige Zuschauer</5>. Jeder Spieler kennt 9 <7>grüne</7> Wörter, von denen sich einige mit der anderen Seite überschneiden`,
-  "rules-duet-hints": `Die Spieler geben abwechselnd Hinweise, damit der andere Spieler seine grüne Karte findet. Jeder Hinweis darf nur aus einem einzigen Wort und einer Anzahl von Karten bestehen, auf die er sich bezieht. Der Geheimdienstchef gibt einen Hinweis, der sich auf möglichst viele der Wörter auf den Karten seiner eigenen Agenten bezieht, aber nicht auf andere - sie könnten den anderen Spieler versehentlich dazu verleiten, eine Karte zu wählen, die einen unschuldigen Zuschauer oder einen Attentäter darstellt`,
-  "rules-duet-game-end": `Das Spiel endet, wenn alle 15 grünen Agenten identifiziert sind (🏅), oder wenn ein Spieler einen <1>Assassinen</1> identifiziert hat (☠️). Das Spiel ist zeitgesteuert, was bedeutet, dass die Spieler insgesamt 9 Runden Zeit haben, um alle Wörter zu finden. Ein Klick auf einen <3>Unschuldiger Zuschauer</Spanne> verbraucht einen zusätzlichen Zug`,
-  "long-story-short": "Lange Geschichte-kurz",
->>>>>>> Stashed changes
   "privacy-tldr": `
   <p>Die Partien und Chats verbleiben für eine gewisse Zeit in unserer Datenbank, können aber jederzeit gelöscht werden. Dies ist die einzige Information, die wir speichern.</p>
   <p>Wir verwenden Cookies, um Analysen über die Nutzung der Website (demographische Daten, Dauer der Sitzungen, Art der gespielten Spiele) zu erhalten. Diese Analysen enthalten keine persönlich identifizierbaren Informationen.</p>
