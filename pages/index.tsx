@@ -119,7 +119,7 @@ const Home = ({ games, locale }: IProps) => {
           </div>
         )}
       </div>
-      <div className="mt-6 text-gray-700">
+      <div className="mt-6 text-gray-700 max-w-4xl">
         <p className="mb-2">
           {t(
             "support-authors",

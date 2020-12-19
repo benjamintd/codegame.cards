@@ -13,7 +13,7 @@ export default {
   "classic-rules": "Classic rules",
   "duet-rules": "Duet rules",
   "support-authors":
-    "This website is not affiliated with CGE, the editor of Codenames. If you like this game, please support the authors and buy a physical version!",
+    "This game is inspired by the mechanics of Codenames, but this website is not affiliated with CGE, the editor of Codenames. If you like this game, please support the authors and buy a physical version.",
   "made-with-love": "Made with ♥ during the lockdown",
   "its-open-source": "It's <1>open-source</1>.",
   "check-our-privacy-policy": "Check our <2>privacy policy</2>.",
@@ -65,7 +65,7 @@ export default {
   "no-players-yet": "There are no players in this team yet!",
   "player-name-placeholder": "Enter player name",
   cards: "cards",
-  buymeacoffee: "Support the game, buy me a coffee",
+  buymeacoffee: "Support Codegame, buy me a coffee",
   "positive-reaction-1": "Nice!",
   "positive-reaction-2": "Good job!",
   "positive-reaction-3": "Strong move.",

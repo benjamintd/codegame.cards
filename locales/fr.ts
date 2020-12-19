@@ -13,7 +13,7 @@ export default {
   "classic-rules": "Règles classiques",
   "duet-rules": "Règles Duet",
   "support-authors":
-    "Ce jeu n'est pas affilié à CGE, l'éditeur de Codenames. Si vous aimez ce jeu, soutenez ses auteurs en achetant une version physique.",
+    "Les mécaniques de ce jeu sont inspirées de Codenames, mais n'est pas affilié à CGE, l'éditeur de Codenames. Si vous aimez ce jeu, soutenez ses auteurs en achetant une version physique.",
   "made-with-love": "Fabriqué avec ♥ en confinement",
   "its-open-source": "C'est <1>open-source</1>.",
   "check-our-privacy-policy":
@@ -67,7 +67,7 @@ export default {
   "game-created": "La partie a été créée.",
   "no-players-yet": "Il n'y a pas encore de joueurs dans cette équipe.",
   cards: "cartes",
-  buymeacoffee: "Soutenez ce jeu en m'offrant un café",
+  buymeacoffee: "Soutenez Codegame en m'offrant un café",
   "player-name-placeholder": "Nom de joueur",
   "positive-reaction-1": "Joli !",
   "positive-reaction-2": "Bien joué !",
