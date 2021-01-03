@@ -691,7 +691,7 @@ Spy
 Square
 Squash
 Squirrel
-St.Patrick
+St. Patrick
 Stable
 Stadium
 Staff
