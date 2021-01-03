@@ -380,7 +380,6 @@ Knife
 Knight
 Knot
 Kung Fu
-Kung fu
 Lab
 Lace
 Ladder
