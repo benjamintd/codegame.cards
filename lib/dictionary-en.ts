@@ -772,7 +772,6 @@ Tutu
 Tuxedo
 Undertaker
 Unicorn
-Univerity
 University
 Vacuum
 Valentine
