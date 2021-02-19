@@ -392,5 +392,4 @@ Löffel
 Futter
 Schuppen
 Orange
-Pension
-`;
+Pension`;
