@@ -380,7 +380,6 @@ Knife
 Knight
 Knot
 Kung Fu
-Kung fu
 Lab
 Lace
 Ladder
@@ -691,7 +690,7 @@ Spy
 Square
 Squash
 Squirrel
-St.Patrick
+St. Patrick
 Stable
 Stadium
 Staff
@@ -773,7 +772,6 @@ Tutu
 Tuxedo
 Undertaker
 Unicorn
-Univerity
 University
 Vacuum
 Valentine
