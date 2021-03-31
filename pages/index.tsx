@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from 'next/image';
+import Image from "next/image";
 import { IGame, IGameMode, ILanguage } from "../lib/game";
 import LobbyGameRow from "../components/LobbyGameRow";
 import Button from "../components/Button";
@@ -27,22 +27,27 @@ const Home = ({ games, locale }: IProps) => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    i18n.changeLanguage(locale as ILanguage)
+    i18n.changeLanguage(locale as ILanguage);
   }, []);
 
   return (
-    <div className="w-screen h-min-screen p-6 flex flex-col items-center bg-gray-100">
+    <div className="flex flex-col items-center w-screen p-6 bg-gray-100 h-min-screen">
       <Head>
-      <link rel="alternate" hrefLang="x-default" href="/" />
-        {["en", "fr", "es", "ru", "ptbr"].map(locale =>
-          <link rel="alternate" hrefLang={locale} key={locale} href={`/${locale}`} />
-        )}
+        <link rel="alternate" hrefLang="x-default" href="/" />
+        {["en", "fr", "es", "ru", "ptbr"].map((locale) => (
+          <link
+            rel="alternate"
+            hrefLang={locale}
+            key={locale}
+            href={`/${locale}`}
+          />
+        ))}
       </Head>
       <div className="absolute top-0 right-0 m-4">
         <LanguageSelector />
       </div>
-      <h1 className="h1 font-mono mt-6">codegame.cards</h1>
-      <p className="font-mono mb-4">
+      <h1 className="mt-6 font-mono h1">codegame.cards</h1>
+      <p className="mb-4 font-mono">
         {t("tagline", "The popular card game, online. 🕵️‍♂️")}
       </p>
       <div className="flex">
@@ -53,7 +58,7 @@ const Home = ({ games, locale }: IProps) => {
         </Link>
       </div>
 
-      <h2 className="h2 mt-6 mb-4">{t("join-room", "Join a room")}</h2>
+      <h2 className="mt-6 mb-4 h2">{t("join-room", "Join a room")}</h2>
       <div className="grid grid-flow-row grid-cols-1 gap-2 pb-6">
         {games.length === 0 && (
           <p className="text-gray-700">
@@ -68,8 +73,8 @@ const Home = ({ games, locale }: IProps) => {
         ))}
       </div>
       <DiscordButton />
-      <div className="w-full max-w-2xl leading-relaxed border rounded bg-white shadow p-6 text-gray-900 mt-6 ">
-        <h2 id="how-to-play" className="h2 mb-4 text-center">
+      <div className="w-full max-w-2xl p-6 mt-6 leading-relaxed text-gray-900 bg-white border rounded shadow ">
+        <h2 id="how-to-play" className="mb-4 text-center h2">
           {t("how-to-play", "How to play")}
         </h2>
         <p>
@@ -89,7 +94,7 @@ const Home = ({ games, locale }: IProps) => {
         {!seeMore && (
           <p
             onClick={() => setSeeMore(true)}
-            className="cursor-pointer underline text-blue-800 hover:text-blue-700"
+            className="text-blue-800 underline cursor-pointer hover:text-blue-700"
           >
             {t("see-more", "See more...")}
           </p>
@@ -119,7 +124,7 @@ const Home = ({ games, locale }: IProps) => {
           </div>
         )}
       </div>
-      <div className="mt-6 text-gray-700 max-w-4xl">
+      <div className="max-w-4xl mt-6 text-gray-700">
         <p className="mb-2">
           {t(
             "support-authors",
@@ -131,27 +136,25 @@ const Home = ({ games, locale }: IProps) => {
           <Trans i18nKey="its-open-source">
             It's
             <a
-              className="hover:text-gray-600 underline"
+              className="underline hover:text-gray-600"
               href="https://github.com/benjamintd/codegame.cards"
             >
               open-source
             </a>
             .
-          </Trans>{" "}
-          <a
-            href="https://www.buymeacoffee.com/benjamintd"
-            className="hover:text-gray-600 underline mb-2"
-          >
-            {t("buymeacoffee", "Support the game, buy me a coffee.")}
-          </a>
-          .
+          </Trans>
         </p>
         <p className="mb-2">
           <Trans i18nKey="check-our-privacy-policy">
             Check our{" "}
-            <PrivacyLink>privacy policy</PrivacyLink>
+            <a className="underline hover:text-gray-600" href="/privacy-policy">
+              privacy policy
+            </a>
           </Trans>
         </p>
+        <a className="py-2" href="https://www.buymeacoffee.com/benjamintd">
+          <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=benjamintd&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" />
+        </a>
       </div>
     </div>
   );
@@ -178,16 +181,8 @@ export const getStaticProps: GetStaticProps<IProps> = async ({ locale }) => {
   return {
     props: {
       games,
-      locale
+      locale,
     },
     revalidate: 1,
   };
 };
-
-const PrivacyLink: React.FC = ({children}) => {
-  return (
-    <Link href="/privacy-policy">
-      <a className="hover:text-gray-600 underline">{children}</a>
-    </Link>
-  )
-}

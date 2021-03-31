@@ -24,7 +24,7 @@ const NewGame = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center w-screen h-screen p-6 bg-gray-100">
+    <div className="flex flex-col items-center w-screen min-h-screen p-6 bg-gray-100">
       <div className="absolute top-0 right-0 m-4">
         <LanguageSelector />
       </div>
