@@ -42,9 +42,17 @@ export default (opts?: Partial<IGameOptions>) => {
 
   const noReuse = new Set(options.noReuse || []);
 
-  const dict = dictionaries[options.language]
-    .split("\n")
-    .filter((w) => (noReuse.size > 0 ? !noReuse.has(w) : true));
+  let dict = [];
+
+  if (!(opts.onlyUseCustomWords && opts.customWords?.length >= 25)) {
+    dict = dictionaries[options.language]
+      .split("\n")
+      .filter((w) => (noReuse.size > 0 ? !noReuse.has(w) : true));
+  }
+
+  if (opts.customWords && opts.customWords.length > 0) {
+    dict = dict.concat(opts.customWords);
+  }
 
   const words = getRandom(dict, 25);
 

@@ -35,6 +35,8 @@ export interface IGameOptions {
   mode: IGameMode;
   language: ILanguage;
   private: IPrivate;
+  customWords: string[];
+  onlyUseCustomWords: boolean;
 }
 
 export type IPrivate = "public" | "private";
@@ -154,6 +156,8 @@ export const defaultOptions: IGameOptions = {
   language: "en",
   mode: "classic",
   private: "public",
+  customWords: [],
+  onlyUseCustomWords: false,
 };
 
 export interface ICardView {

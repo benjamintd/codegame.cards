@@ -19,6 +19,14 @@ export default {
   "check-our-privacy-policy":
     "Consultez notre <2>politique de confidentialité</2>.",
   "choose-options": "Choisissez vos options",
+  "custom-words-placeholder": "harder, better, faster, stronger",
+  "custom-words-warning":
+    "Au moins 25 mots sont nécessaires pour jouer sans le dictionnaire classique.",
+  "custom-words-checkbox": "Mélanger au dictionnaire classique",
+  "custom-words-notice":
+    "Entrez une liste de mots séparés par des virgules. Décochez la case ci-dessous pour n'utiliser que ces mots personnalisés.",
+  advanced: "avancé...",
+  "custom-words": "Mots personnalisés",
   mode: "Mode",
   duet: "Duet",
   classic: "Classique",
@@ -57,7 +65,6 @@ export default {
     "Jouez à Codegame en ligne, un jeu de mots multijoueur disponible sur mobile et ordinateur. Dans ce jeu de déduction, les équipes s'affrontent pour trouver les cartes en rapport avec un indice.",
   "in-the-room": "Dans la partie",
   rules: "Règles",
-  // todo rules...
   red: "Rouge",
   blue: "Bleu",
   duetA: "Côté A",

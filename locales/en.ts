@@ -18,6 +18,14 @@ export default {
   "its-open-source": "It's <1>open-source</1>.",
   "check-our-privacy-policy": "Check our <2>privacy policy</2>.",
   "choose-options": "Choose your options",
+  "custom-words-placeholder": "harder, better, faster, stronger",
+  "custom-words-warning":
+    "You need at least 25 words to play with custom words only.",
+  "custom-words-checkbox": "Merge with the dictionary",
+  "custom-words-notice":
+    "Enter a comma-separated list of custom words. Uncheck the box below to use those words exclusively.",
+  advanced: "advanced...",
+  "custom-words": "Custom words",
   mode: "Mode",
   duet: "Duet",
   classic: "Classic",

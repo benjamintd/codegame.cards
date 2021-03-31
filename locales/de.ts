@@ -5,19 +5,27 @@ export default {
   "back-to-lobby": "Zurück zur Lobby",
   "join-room": "Einem Spiel beitreten",
   "no-public-room":
-  "Es gibt derzeit keine öffentlichen Spiele. Erstelle eins und lade Freund:innen ein!",
+    "Es gibt derzeit keine öffentlichen Spiele. Erstelle eins und lade Freund:innen ein!",
   "how-to-play": "Spielanleitung",
   "game-tagline":
-  "Codegame ist ein Spiel, bei dem zwei Teams gegeneinander antreten und versuchen, mithilfe von Hinweisen Codewörter zu erraten.",
+    "Codegame ist ein Spiel, bei dem zwei Teams gegeneinander antreten und versuchen, mithilfe von Hinweisen Codewörter zu erraten.",
   "see-more": "Mehr anzeigen...",
   "classic-rules": "Klassische Regeln",
-  "duet-rules":  "Duett Regeln",
+  "duet-rules": "Duett Regeln",
   "support-authors":
-  "Wenn dir dieses Spiel gefällt, unterstütze bitte die Autor:innen und kaufe eine physische Version!",
+    "Wenn dir dieses Spiel gefällt, unterstütze bitte die Autor:innen und kaufe eine physische Version!",
   "made-with-love": "Mit ♥ gemacht während des Lockdowns",
   "its-open-source": "Es ist <1>Open Source</1>.",
   "check-our-privacy-policy": "Lies unsere <2>Datenschutzerklärung</2>.",
   "choose-options": "Spieleinstellungen",
+  "custom-words-placeholder": "harder, better, faster, stronger",
+  "custom-words-warning":
+    "Zum Spielen ohne das klassische Wörterbuch sind mindestens 25 Wörter erforderlich.",
+  "custom-words-checkbox": "mit klassischem Wörterbuch mischen",
+  "custom-words-notice":
+    "Geben Sie eine durch Kommas getrennte Wörterliste ein. Deaktivieren Sie das Kontrollkästchen unten, um ausschließlich diese Wörter zu verwenden.",
+  advanced: "weiter...",
+  "custom-words": "Benutzerdefinierte Wörter",
   mode: "Modus",
   duet: "Duett",
   classic: "Klassisch",
@@ -34,15 +42,17 @@ export default {
   "red-adj": "rote",
   "blue-adj": "blaue",
   "start-game-classic":
-  "Der/die <1>{{team}}</1> Geheimdienstchef:in gibt einen Hinweis, um das Spiel zu beginnen!",
+    "Der/die <1>{{team}}</1> Geheimdienstchef:in gibt einen Hinweis, um das Spiel zu beginnen!",
   "see-rules": "Regeln anzeigen",
-  "start-game-duet": "Klicke auf eine Karte oder gib einen Hinweis, um das Spiel zu starten!",
-  "copied-to-clipboard":"In die Zwischenablage kopiert!",
+  "start-game-duet":
+    "Klicke auf eine Karte oder gib einen Hinweis, um das Spiel zu starten!",
+  "copied-to-clipboard": "In die Zwischenablage kopiert!",
   "turns-left": "{{ count }} Runde übrig",
   "turns-left_plural": "{{count}} Runden übrig",
   "game-over": "Das Spiel ist vorbei.",
   "winner-team": "Das <1>{{team}}</1> Team gewinnt!",
-  "black-card-loss": "Das Spiel ist vorbei. Ihr habt verloren, weil ihr auf eine schwarze Karte geklickt habt.",
+  "black-card-loss":
+    "Das Spiel ist vorbei. Ihr habt verloren, weil ihr auf eine schwarze Karte geklickt habt.",
   "out-of-time-loss": "Die Zeit ist abgelaufen.",
   won: "Dein Team hat gewonnen!",
   "join-red": "Rot beitreten",
@@ -52,7 +62,7 @@ export default {
   "game-started": "Das Spiel hat begonnen",
   "page-title": "Codegame online spielen",
   "page-description":
-  "Spiele Codegame online, ein Mehrspieler-Wörterspiel, das für Handys und Desktop verfügbar ist. Bei diesem Ratespiel treten zwei Teams gegeneinander an und versuchen, mithilfe von Hinweisen Codewörter zu erraten.",
+    "Spiele Codegame online, ein Mehrspieler-Wörterspiel, das für Handys und Desktop verfügbar ist. Bei diesem Ratespiel treten zwei Teams gegeneinander an und versuchen, mithilfe von Hinweisen Codewörter zu erraten.",
   "in-the-room": "Im Raum",
   rules: "Regeln",
   red: "Rot",
@@ -102,6 +112,5 @@ export default {
   <p>Die Partien und Chats verbleiben für eine gewisse Zeit in unserer Datenbank, können aber jederzeit gelöscht werden. Dies ist die einzige Information, die wir speichern.</p>
   <p>Wir verwenden Cookies, um Analysen über die Nutzung der Website (demographische Daten, Dauer der Sitzungen, Art der gespielten Spiele) zu erhalten. Diese Analysen enthalten keine persönlich identifizierbaren Informationen.</p>
   <p> Unser Trackingtool ist Google Analytics.</p>
-  `
-}
-
+  `,
+};
