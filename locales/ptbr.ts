@@ -18,6 +18,14 @@ export default {
   "its-open-source": "É <1>open-source</1>.",
   "check-our-privacy-policy": "Confira nossa <2>política de privacidade</2>.",
   "choose-options": "Escolha suas opções",
+  "custom-words-placeholder": "harder, better, faster, stronger",
+  "custom-words-warning":
+    "Você precisa de pelo menos 25 palavras para brincar apenas com palavras personalizadas.",
+  "custom-words-checkbox": "Funda com o dicionário",
+  "custom-words-notice":
+    "Insira uma lista separada por vírgulas de palavras personalizadas. Desmarque a caixa abaixo para usar essas palavras exclusivamente.",
+  advanced: "avançado...",
+  "custom-words": "Palavras personalizada",
   mode: "Modo",
   duet: "Dueto",
   classic: "Clássico",

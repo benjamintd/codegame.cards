@@ -19,6 +19,14 @@ export default {
   "check-our-privacy-policy":
     "Проверьте нашу <2>политику конфиденциальности</2>.",
   "choose-options": "Параметры игры",
+  "custom-words-placeholder": "сложнее, лучше, быстрее, сильнее",
+  "custom-words-warning":
+    "Вам нужно как минимум 25 слов, чтобы играть только со своими словами.",
+  "custom-words-checkbox": "Слить со словарём",
+  "custom-words-notice":
+    "Введите список пользовательских слов, разделенных запятыми. Снимите флажок ниже, чтобы использовать только эти слова",
+  advanced: "передовой...",
+  "custom-words": "Custom words",
   mode: "режим",
   duet: "Дуэт",
   classic: "Классика",
