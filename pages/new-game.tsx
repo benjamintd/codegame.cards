@@ -159,7 +159,7 @@ const MultipleChoice = ({ options, onClick, selected }) => {
         <div
           key={opt.value}
           className={classnames(
-            "rounded px-2 py-1 cursor-pointer w-48 text-center font-bold text-white border-b-4 w-full",
+            "rounded px-2 py-1 cursor-pointer text-center font-bold text-white border-b-4 w-full",
             {
               "bg-green-600 border-green-800": selected === opt.value,
               "bg-blue-500 border-blue-700 hover:bg-blue-400 hover:border-blue-600":

@@ -36,13 +36,13 @@ const RoomInfo = () => {
     turns.filter((t) => t.type === "click" || t.type === "hint").length > 0;
 
   return (
-    <div className="border rounded bg-gray-200 p-1 shadow-md w-full h-full flex flex-col text-gray-800 overflow-y-scroll">
-      <div className="border rounded bg-white flex flex-col flex-grow">
+    <div className="flex flex-col w-full h-full p-1 overflow-y-scroll text-gray-800 bg-gray-100 border border-gray-300 rounded shadow-md">
+      <div className="flex flex-col flex-grow bg-white border rounded">
         <div>
-          <h2 className="uppercase font-bold text-sm text-center sr-only lg:not-sr-only leading-loose">
+          <h2 className="text-sm font-bold leading-loose text-center uppercase sr-only lg:not-sr-only">
             {t("in-the-room", "In the room")}
           </h2>
-          <div className="grid grid-cols-2 lg:grid-rows-2 lg:grid-cols-1 lg:gap-6 gap-2">
+          <div className="grid grid-cols-2 gap-2 lg:grid-rows-2 lg:grid-cols-1 lg:gap-6">
             {gameMode === "classic" && (
               <>
                 <Team

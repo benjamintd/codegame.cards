@@ -25,6 +25,7 @@ module.exports = {
           800: "#2c5282",
           900: "#2a4365",
         },
+        gray: colors.blueGray,
       },
       spacing: {
         72: "18rem",

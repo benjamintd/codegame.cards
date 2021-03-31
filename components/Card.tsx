@@ -48,7 +48,7 @@ const Card = ({
     "z-40": revealing,
     "border cursor-pointer": !w.revealed,
     "border-4 revealed": w.revealed,
-    "border-gray-600 bg-gray-200 hover:bg-gray-100": !w.shown,
+    "border-gray-500 bg-gray-100 hover:bg-gray-50": !w.shown,
     "border-red-700 bg-red-500 text-red-100 hover:bg-red-700":
       w.revealed && w.shown && w.color === Color.Red,
     "border-blue-700 bg-blue-500 text-blue-100 hover:bg-blue-700":
@@ -79,7 +79,7 @@ const Card = ({
   };
 
   return (
-    <div className="relative lg:h-16 md:h-12 h-10 overflow-visible select-none">
+    <div className="relative h-10 overflow-visible select-none lg:h-16 md:h-12">
       <motion.div
         variants={variants}
         initial="initial"
@@ -151,12 +151,12 @@ const ConfirmationModal = ({
 }) => {
   return (
     <div
-      className="fixed h-screen w-screen top-0 left-0 z-50 lg:p-6 p-4 flex items-center justify-center"
+      className="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen p-4 lg:p-6"
       style={{ backgroundColor: "rgba(74, 85, 104, 0.4)" }}
       onClick={onClose}
     >
       <div
-        className="bg-white p-4 rounded shadow-lg overflow-y-scroll max-w-3xl mx-auto text-base"
+        className="max-w-3xl p-4 mx-auto overflow-y-scroll text-base bg-white rounded shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
         Are you sure you want to reveal this card?

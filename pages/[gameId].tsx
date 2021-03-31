@@ -22,7 +22,7 @@ export default () => {
   const [lastSound, setLastSound] = useState<number>(0);
 
   useEffect(() => {
-    i18n.changeLanguage(router.locale as ILanguage)
+    i18n.changeLanguage(router.locale as ILanguage);
   }, []);
 
   // using this for side effects that depend on the previous game state
@@ -81,32 +81,32 @@ export default () => {
     <GameViewContext.Provider value={gameView}>
       <AnimatePresence>
         {!game && (
-          <div className="absolute flex w-screen h-screen bg-gray-200">
+          <div className="absolute flex w-screen h-screen bg-gray-100">
             <Loading />
           </div>
         )}
       </AnimatePresence>
 
-      <div className="flex w-screen bg-gray-300 max-h-screen h-screen lg:flex-row flex-col lg:text-base text-sm">
+      <div className="flex flex-col w-screen h-screen max-h-screen text-sm bg-gray-100 lg:flex-row lg:text-base">
         <AnimatePresence>
           {!(mobileDetect.isMobile() && isKeyboardOpen) && (
             <motion.div
               initial={{ height: "auto", opacity: 1 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="lg:w-3/12 lg:h-screen flex"
+              className="flex lg:w-3/12 lg:h-screen"
             >
-              <div className="w-full h-full lg:p-6 p-2">
+              <div className="w-full h-full p-2 lg:p-6">
                 <RoomInfo />
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        <div className="lg:w-6/12 lg:p-6 px-2 lg:flex-grow flex">
+        <div className="flex px-2 lg:w-6/12 lg:p-6 lg:flex-grow">
           <GameBoard />
         </div>
-        <div className="lg:w-4/12 lg:p-6 p-2 h-40 lg:h-full flex-grow lg:flex-grow-0">
+        <div className="flex-grow h-40 p-2 lg:w-4/12 lg:p-6 lg:h-full lg:flex-grow-0">
           <Chat />
         </div>
       </div>

@@ -48,11 +48,11 @@ const JoinGame = () => {
   };
 
   return (
-    <div className="w-full flex flex-col p-2">
-      <h2 className="h2 text-center pb-2">{t("join-game", "Join game")}</h2>
+    <div className="flex flex-col w-full p-2">
+      <h2 className="pb-2 text-center h2">{t("join-game", "Join game")}</h2>
       <input
         type="text"
-        className={classnames("text-input mb-2", {
+        className={classnames("text-input mb-2 border-gray-400", {
           "border-red-400 shadow-red": warnInput,
         })}
         placeholder={t("player-name-placeholder", "Enter player name")}

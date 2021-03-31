@@ -27,7 +27,7 @@ const Button = (props: IProps) => {
             color === "red",
           "bg-red-800 hover:bg-red-700 hover:border-red-800 border-red-900":
             color === "dark-red",
-          "text-gray-800 bg-gray-400 hover:bg-gray-300 hover:border-gray-400 border-gray-500":
+          "text-gray-800 bg-gray-300 hover:bg-gray-200 hover:border-gray-300 border-gray-400":
             color === "neutral",
         }
       )}

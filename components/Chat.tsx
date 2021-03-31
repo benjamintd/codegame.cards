@@ -52,8 +52,8 @@ const Chat = () => {
   };
 
   return (
-    <div className="border rounded bg-gray-200 w-full h-full flex flex-col text-gray-800 p-1 shadow-md">
-      <div className="overflow-y-scroll flex-grow mb-1 border bg-white rounded leading-normal text-sm flex flex-col-reverse">
+    <div className="flex flex-col w-full h-full p-1 text-gray-800 bg-gray-100 border border-gray-300 rounded shadow-md">
+      <div className="flex flex-col-reverse flex-grow mb-1 overflow-y-scroll text-sm leading-normal bg-white border rounded">
         {/* we reverse the chat and add a flex-col-reverse to keep the scroll down by default */}
         {chat.map((id) => <ChatMessage key={id} id={id} />).reverse()}
       </div>
@@ -61,10 +61,13 @@ const Chat = () => {
         <input
           inputMode="text"
           autoComplete="off"
-          className={classnames("flex-grow text-input text-sm", {
-            "bg-gray-100": !selfPlayer,
-            "bg-white": selfPlayer,
-          })}
+          className={classnames(
+            "flex-grow text-input text-sm border-gray-400",
+            {
+              "bg-gray-100": !selfPlayer,
+              "bg-white": selfPlayer,
+            }
+          )}
           type="text"
           placeholder={
             !selfPlayer
@@ -84,7 +87,7 @@ const Chat = () => {
         </button>
         {selfPlayer && selfPlayer.spymaster && (
           <button
-            className="rounded border-2 hover:bg-gray-100 border-gray-400 flex items-center text-xs whitespace-pre-wrap font-bold justify-center w-20 h-10 cursor-pointer hover:text-blue-700 focus:outline-none"
+            className="flex items-center justify-center w-20 h-10 text-xs font-bold whitespace-pre-wrap border-2 border-gray-400 rounded cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none"
             onClick={() => send(true)}
           >
             {t("give-hint", "give hint")}
