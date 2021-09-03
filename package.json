@@ -22,7 +22,7 @@
     "framer-motion": "^1.10.3",
     "i18next": "^19.4.5",
     "i18next-browser-languagedetector": "^4.2.0",
-    "immer": "^8.0.1",
+    "immer": "^9.0.6",
     "lodash": "^4.17.19",
     "next": "^10.0.0",
     "next-offline": "^5.0.1",
