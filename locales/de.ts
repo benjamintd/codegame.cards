@@ -86,7 +86,7 @@ export default {
   "neutral-reaction-2": "Knapp daneben.",
   "neutral-reaction-3": "Nächstes Mal schaffst du es.",
   "neutral-reaction-4": "Das war ein unbeteiligter Zuschauer.",
-  "neutral-reaction-5": "Fast!`",
+  "neutral-reaction-5": "Fast!",
   "neutral-reaction-6": "Zu schade.",
   "black-reaction-1": "Dein Team hat das Spiel verloren!",
   "black-reaction-2": "Das andere Team gewinnt!",
