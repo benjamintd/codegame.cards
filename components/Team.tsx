@@ -32,7 +32,7 @@ const Team = ({
           }
         )}
       >
-        <h3 className="capitalize font-bold">{t(team)}</h3>
+        <h3 className="capitalize font-mono font-bold">{t(team)}</h3>
         <span className="text-sm font-bold">
           {maxScore && `${score}/${maxScore} ${t("cards", "cards")}`}
         </span>
