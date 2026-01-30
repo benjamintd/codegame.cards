@@ -185,7 +185,7 @@ export function usePlayersPresences(
     const interval = setInterval(async () => {
       const promises = Object.keys(players).map(
         (id: string) =>
-          new Promise((resolve) => {
+          new Promise<void>((resolve) => {
             const ref = network.db.ref(`/presence/${id}`);
             ref.once("value", (val) => {
               if (remoteTs[id] !== val.val()) {
