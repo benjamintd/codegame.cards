@@ -10,6 +10,7 @@ const Languages = {
   de: "Deutsch",
   ru: "русский",
   ptbr: "Brasileiro",
+  ua: "Українська",
 };
 
 export default function LanguageSelector() {
