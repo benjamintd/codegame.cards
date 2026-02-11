@@ -7,6 +7,7 @@ import fr from "../locales/fr";
 import ru from "../locales/ru";
 import ptbr from "../locales/ptbr";
 import de from "../locales/de";
+import ua from "../locales/ua";
 
 i18n
   .use(initReactI18next)
@@ -29,6 +30,9 @@ i18n
       },
       de: {
         translation: de,
+      },
+      ua: {
+        translation: ua,
       },
     },
     fallbackLng: "en",

@@ -75,8 +75,8 @@ const Form = ({
 
   return (
     <form className={className}>
-      <div className="w-auto mb-2">
-        <h2 className="mb-2 font-semibold">{t("dictionary", "Dictionary")}</h2>
+      <div className="w-auto mb-3">
+        <h2 className="mb-3 font-semibold">{t("dictionary", "Dictionary")}</h2>
         <MultipleChoice
           options={[
             {
@@ -111,6 +111,10 @@ const Form = ({
               label: "🔥 Emoji",
               value: "emoji",
             },
+            {
+              label: "🇺🇦 Українська",
+              value: "ua",
+            }
           ]}
           onClick={(language) => setOptions({ ...options, language })}
           selected={options.language}
@@ -153,13 +157,20 @@ interface IMultipleChoice {
 }
 
 const MultipleChoice = ({ options, onClick, selected }) => {
+  const columns = options.length >= 6 ? 3 : 2;
+
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div
+      className={classnames("grid gap-2", {
+        "grid-cols-2": columns === 2,
+        "grid-cols-3": columns === 3,
+      })}
+    >
       {options.map((opt) => (
         <div
           key={opt.value}
           className={classnames(
-            "rounded px-2 py-1 cursor-pointer text-center font-bold text-white border-b-4 w-full",
+            "rounded px-3 py-2 cursor-pointer text-center font-bold text-white border-b-4",
             {
               "bg-green-600 border-green-800": selected === opt.value,
               "bg-blue-500 border-blue-700 hover:bg-blue-400 hover:border-blue-600":
